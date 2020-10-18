@@ -31,7 +31,7 @@ static size_t	len_alloc(const char *format)
 	return (len);
 }
 
-int				ft_alloc_txt(const char *format, t_data **s, size_t *index)
+int				ft_alloc_txt(const char *format, t_data **s)
 {
 	char	*data;
 	size_t	len;
@@ -53,7 +53,6 @@ int				ft_alloc_txt(const char *format, t_data **s, size_t *index)
 	}
 	data[j] = '\0';
 	ft_lstd_add(s, ft_lstd_new(data, len));
-	*index += i;
 	free(data);
-	return (0);
+	return (i);
 }

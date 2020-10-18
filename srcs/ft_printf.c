@@ -21,14 +21,10 @@ t_data	*ft_parse_format(const char *format, va_list ap)
 	i = 0;
 	while (format[i])
 	{
-		/*
 		if (format[i] == '%' && format[i + 1] != '%')
-		{
-			ft_alloc_format(format + i, ap, data, &i);
-		}
+			i += ft_alloc_format(format + i + 1, ap, &data);
 		else
-		*/
-			ft_alloc_txt(format + i, &data, &i);
+			i += ft_alloc_txt(format + i, &data);
 	}
 	return (data);
 }
@@ -41,9 +37,7 @@ int		ft_process(const char *format, va_list ap)
 	size = 0;
 	data = ft_parse_format(format, ap);
 	ft_lstd_print(&data, &size, 1);
-	//	printf("t1: %zu\n", data->size);
 	ft_lstd_clear(&data);
-	// printf("t2: %zu\n", data->size);
 	return (size);
 }
 

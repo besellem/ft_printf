@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-static int	is_flag(char *s)
+static int		is_flag(char *s)
 {
 	return (0);
 }
@@ -31,28 +31,45 @@ static size_t	len_alloc(const char *format)
 	return (i);
 }
 
-int				ft_alloc_format(const char *format, va_list ap, t_data *s, size_t *index)
+static int		is_conversion(t_types *t, char *s)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (s[++i])
+	{
+		j = -1;
+		while (t[++j].type)
+		{
+			//	ft_ncmp();
+		}
+	}
+	return (i);
+}
+
+int				ft_alloc_format(const char *format, va_list ap, t_data **s)
 {
 	char	*data;
+	t_types	*t;
 	size_t	len;
 	size_t	i;
 
+	t = ft_init_conversions();
 	len = len_alloc(format) + 1;
 	if (!(data = (char *)malloc(sizeof(char) * len)))
 		return (-1);
 	i = 0;
 	while (i < len)
 	{
-		if (format[i] == '%')	// No need to check if (format[i + 1] == '%'), it's done in len_alloc()
+		if (format[i] == '%')
 			data[i++] = '%';
 		else
 			data[i] = format[i];
 		++i;
 	}
 	data[i] = '\0';
-	*index += len;
-	ft_lstd_add(&s, ft_lstd_new(data, len - 1));
+	ft_lstd_add(s, ft_lstd_new(data, len - 1));
 	free(data);
-	return (0);
+	return (len);
 }
-

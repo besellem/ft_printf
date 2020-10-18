@@ -29,6 +29,12 @@ typedef	struct	s_type
 	struct s_type	*next;
 }				t_type;
 
+typedef	struct	s_types
+{
+	char *type;
+	void (*f)();
+}				t_types;
+
 typedef	struct	s_data
 {
 	char			*data;
@@ -62,8 +68,10 @@ void			ft_lstd_clear(t_data **lst);
 /*
 ** Alloc
 */
-int				ft_alloc_txt(const char *format, t_data **s, size_t *index);
-int				ft_alloc_format(const char *format, va_list ap, t_data *s, size_t *index);
+t_types			*ft_init_conversions(void);
+void			ft_alloc_s(t_data **s, va_list ap);
+int				ft_alloc_txt(const char *format, t_data **s);
+int				ft_alloc_format(const char *format, va_list ap, t_data **s);
 
 /*
 ** ft_printf
