@@ -14,7 +14,6 @@
 # define FT_PRINTF_H
 
 # include <stdio.h>
-# include <string.h>
 
 # include <stdlib.h>
 # include <stdarg.h>
@@ -25,16 +24,9 @@
 */
 typedef	struct	s_types
 {
-	char *type;
+	char type;
 	void (*f)();
 }				t_types;
-
-typedef	struct	s_data
-{
-	char			*data;
-	int				size;
-	struct s_data	*next;
-}				t_data;
 
 typedef	struct	s_indicators
 {
@@ -45,13 +37,20 @@ typedef	struct	s_indicators
 	int plus;
 }				t_indicators;
 
+typedef	struct	s_data
+{
+	char			*data;
+	int				size;
+	struct s_data	*next;
+}				t_data;
+
 /*
 ** -- PROTOTYPES --
 ** Common
 */
 int				ft_len(const char *s);
 char			*ft_dup(const char *s1);
-int     		ft_ncmp(const char *s1, const char *s2, int n);
+int				ft_ncmp(const char *s1, const char *s2, int n);
 
 /*
 ** Lists
@@ -71,7 +70,8 @@ void			ft_alloc_s(t_data **s, t_indicators	table, va_list ap);
 void			ft_alloc_p(t_data **s, t_indicators	table, va_list ap);
 void			ft_alloc_d(t_data **s, t_indicators table, va_list ap);
 int				ft_alloc_txt(const char *format, t_data **s);
-int				ft_alloc_format(const char *format, va_list ap, t_data **s, t_types	*t);
+int				ft_alloc_format(const char *format, va_list ap, t_data **s,
+								t_types	*t);
 
 /*
 ** ft_printf

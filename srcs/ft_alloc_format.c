@@ -45,7 +45,7 @@ static int	is_conversion(t_types *t, const char *s)
 	i = -1;
 	while (t[++i].type)
 	{
-		if (strncmp(s, t[i].type, ft_len(t[i].type)) == 0)
+		if (*s == t[i].type)
 			return (i);
 	}
 	return (-1);
@@ -56,7 +56,7 @@ static int	ft_width(const char *format, t_indicators *table)
 	return (0);
 }
 
-int			ft_alloc_format(const char *format, va_list ap, t_data **s, t_types	*t)
+int			ft_alloc_format(const char *format, va_list ap, t_data **s, t_types *t)
 {
 	t_indicators	table;
 	int				index;
@@ -73,5 +73,5 @@ int			ft_alloc_format(const char *format, va_list ap, t_data **s, t_types	*t)
 		++i;
 	}
 	t[index].f(s, table, ap);
-	return (ft_len(t[index].type));
+	return (1);	// ft_len(t[index].type)
 }

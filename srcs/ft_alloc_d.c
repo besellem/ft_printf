@@ -12,29 +12,42 @@
 
 #include "../includes/ft_printf.h"
 
+static int	nblen(long long n)
+{
+	long long	i;
+	int			len;
+
+	n = n < 0 ? -n : n;
+	len = 1;
+	i = 10;
+	while (n / i > 0)
+	{
+		i *= 10;
+		++len;
+	}
+	return (len);
+}
+
 static char	*convert_nb(long long ptr)
 {
 	char		*data;
 	long long	div;
-	int			len;
 	int			i;
 
-	len = 1;
-	div = 1;
-	while (ptr / div >= 10)
-	{
-		div *= 10;
-		++len;
-	}
-	if (!(data = (char *)malloc(sizeof(char) * (len + 1))))
+	if (!(data = (char *)malloc(nblen(ptr) + 1 + (ptr < 0 ? 1 : 0))))
 		return (NULL);
 	i = -1;
-	while (++i < len)
+	if (ptr < 0 && (ptr = -ptr))
+		data[++i] = '-';
+	div = 1;
+	while (ptr / div >= 10)
+		div *= 10;
+	while (div > 0)
 	{
-		data[i] = (ptr / div) % 10 + 48;
+		data[++i] = (ptr / div) % 10 + 48;
 		div /= 10;
 	}
-	data[i] = '\0';
+	data[++i] = '\0';
 	return (data);
 }
 
