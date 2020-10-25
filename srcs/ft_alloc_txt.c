@@ -14,8 +14,8 @@
 
 static size_t	len_alloc(const char *format)
 {
-	size_t len;
-	size_t i;
+	int len;
+	int i;
 
 	len = 0;
 	i = 0;
@@ -34,9 +34,9 @@ static size_t	len_alloc(const char *format)
 int				ft_alloc_txt(const char *format, t_data **s)
 {
 	char	*data;
-	size_t	len;
-	size_t	i;
-	size_t	j;
+	int		len;
+	int		i;
+	int		j;
 
 	len = len_alloc(format);
 	if (!(data = (char *)malloc(sizeof(char) * (len + 1))))

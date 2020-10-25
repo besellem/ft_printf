@@ -12,20 +12,38 @@
 
 #include "../includes/ft_printf.h"
 
+int		ft_len(const char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+		++i;
+	return (i);
+}
+
 char	*ft_dup(const char *s1)
 {
 	char	*cpy;
-	size_t	i;
+	int		i;
 
-	if (!(cpy = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
+	if (!(cpy = (char *)malloc(sizeof(char) * (ft_len(s1) + 1))))
 		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
+	i = -1;
+	while (s1[++i])
 		cpy[i] = s1[i];
-		++i;
-	}
 	cpy[i] = '\0';
 	return (cpy);
 }
 
+int		ft_ncmp(const char *s1, const char *s2, int n)
+{
+	int i;
+
+	if (n <= 0)
+		return (0);
+	i = 0;
+	while (i < n - 1 && s1[i] && s2[i] && s1[i] == s2[i])
+		++i;
+	return (s1[i] - s2[i]);
+}

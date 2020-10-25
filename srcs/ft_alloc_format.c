@@ -12,64 +12,66 @@
 
 #include "../includes/ft_printf.h"
 
-static int		is_flag(char *s)
+void		init_indicators(t_indicators *table)
+{
+	table->minus = 0;
+	table->zero = 0;
+	table->dot = 0;
+	table->star = 0;
+	table->plus = 0;
+}
+
+static int	ft_indicator(const char *format, t_indicators *table)
+{
+	if (*format == '-')
+		table->minus = 1;
+	else if (*format == '0')
+		table->zero = 1;
+	else if (*format == '.')
+		table->dot = 1;
+	else if (*format == '*')
+		table->star = 1;
+	else if (*format == '+')
+		table->plus = 1;
+	else
+		return (0);
+	return (1);
+}
+
+static int	is_conversion(t_types *t, const char *s)
+{
+	int i;
+
+	i = -1;
+	while (t[++i].type)
+	{
+		if (strncmp(s, t[i].type, ft_len(t[i].type)) == 0)
+			return (i);
+	}
+	return (-1);
+}
+
+static int	ft_width(const char *format, t_indicators *table)
 {
 	return (0);
 }
 
-static size_t	len_alloc(const char *format)
+int			ft_alloc_format(const char *format, va_list ap, t_data **s, t_types	*t)
 {
-	size_t i;
+	t_indicators	table;
+	int				index;
+	int				i;
 
+	init_indicators(&table);
+	/*
+	i = ft_indicator(format, &table);
+	i += ft_width(format + i, &table);
+	*/
 	i = 0;
-	while (format[i])
+	while ((format + i) && (index = is_conversion(t, format + i)) == -1)
 	{
-		if (format[i] == '%' && format[i + 1] != '%')
-			return (i);
 		++i;
 	}
-	return (i);
-}
-
-static int		is_conversion(t_types *t, char *s)
-{
-	int i;
-	int j;
-
-	i = -1;
-	while (s[++i])
-	{
-		j = -1;
-		while (t[++j].type)
-		{
-			//	ft_ncmp();
-		}
-	}
-	return (i);
-}
-
-int				ft_alloc_format(const char *format, va_list ap, t_data **s)
-{
-	char	*data;
-	t_types	*t;
-	size_t	len;
-	size_t	i;
-
-	t = ft_init_conversions();
-	len = len_alloc(format) + 1;
-	if (!(data = (char *)malloc(sizeof(char) * len)))
-		return (-1);
-	i = 0;
-	while (i < len)
-	{
-		if (format[i] == '%')
-			data[i++] = '%';
-		else
-			data[i] = format[i];
-		++i;
-	}
-	data[i] = '\0';
-	ft_lstd_add(s, ft_lstd_new(data, len - 1));
-	free(data);
-	return (len);
+	t[index].f(s, table, ap);
+	return (ft_len(t[index].type));
 }

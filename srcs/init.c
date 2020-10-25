@@ -12,10 +12,10 @@
 
 #include "../includes/ft_printf.h"
 
-void	add_conversion(t_types t, char *type, void (*f)())
+void	add_conversion(t_types *t, char *type, void (*f)())
 {
-	t.type = ft_dup(type);
-	t.f = f;
+	t->type = ft_dup(type);
+	t->f = f;
 }
 
 t_types	*ft_init_conversions(void)
@@ -23,16 +23,19 @@ t_types	*ft_init_conversions(void)
 	t_types	*t;
 	int		size;
 
-	size = 5;
+	size = 3;	// (8)?
 	if (!(t = (t_types *)malloc(sizeof(t_types) * (size + 1))))
 		return (NULL);
-	//	add_conversion(t[0], "c", &ft_alloc_c);
-	add_conversion(t[0], "s", &ft_alloc_s);
+	add_conversion(&t[0], "c", &ft_alloc_c);
+	add_conversion(&t[1], "s", &ft_alloc_s);
+	add_conversion(&t[2], "p", &ft_alloc_p);
 	/*
-	add_conversion(t[2], "d", &ft_alloc_d);
-	add_conversion(t[3], "x", &ft_alloc_x);
-	add_conversion(t[4], "X", &ft_alloc_X);
+	add_conversion(&t[3], "d", &ft_alloc_d);
+	add_conversion(&t[4], "i", &ft_alloc_i);
+	add_conversion(&t[5], "u", &ft_alloc_u);
+	add_conversion(&t[6], "x", &ft_alloc_x);
+	add_conversion(&t[7], "X", &ft_alloc_X);
 	*/
-	add_conversion(t[size], NULL, NULL);
+	t[size].type = NULL;
 	return (t);
 }

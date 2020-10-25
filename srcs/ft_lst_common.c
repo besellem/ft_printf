@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-t_data	*ft_lstd_new(char *data, size_t size)
+t_data	*ft_lstd_new(char *data, int size)
 {
 	t_data *new;
 

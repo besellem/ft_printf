@@ -12,6 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
+/*
 size_t	ft_strlen(const char *s)
 {
 	size_t i;
@@ -97,14 +98,18 @@ t_type	*ft_init_types(void)
 	s[4].f = &ft_print_hex_maj;
 	return (s);
 }
+*/
 
 int		main(void)
 {
 	int size_real;
 	int size_mine;
+	char tab[] = "Hello !";
 
-	size_mine = ft_printf_bis("Bonjour ! %%\nComment va la faf%%a?\n %s", "STRING SECTION !");
-	ft_printf("Size: %d\n", size_mine);
+	size_mine = ft_printf("Hey %s%c %p\n", "there !", 48, &tab);
+	size_real = printf("Hey %s%c %p\n", "there !", 48, &tab);
+	printf("Mine Size: %d\n", size_mine);
+	printf("Real Size: %d\n", size_real);
 	/*
 	size_real = printf("real: Tu as %% %d ans ! %s %c\n", 12035045, "Bravo !", 175);
 	size_mine = ft_printf("mine: Tu as %% %d ans ! %s %c\n", 12035045, "Bravo !", 175);
