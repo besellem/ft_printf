@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_alloc_hex_maj.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/17 21:02:07 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/26 17:04:18 by besellem         ###   ########.fr       */
+/*   Created: 2020/10/26 16:23:35 by besellem          #+#    #+#             */
+/*   Updated: 2020/10/26 19:21:15 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_alloc_hex_maj(t_data **s, t_indicators table, va_list ap)
 {
-	va_list	ap;
-	int		size;
+	char *str;
 
-	va_start(ap, format);
-	size = ft_process(format, ap, 1);
-	va_end(ap);
-	return (size);
-}
-
-int	ft_dprintf(int fd, const char *format, ...)
-{
-	va_list	ap;
-	int		size;
-
-	va_start(ap, format);
-	size = ft_process(format, ap, fd);
-	va_end(ap);
-	return (size);
+	str = convert_base(va_arg(ap, unsigned int), "0123456789ABCDEF");
+	ft_lstd_add(s, ft_lstd_new(str, ft_strlen(str)));
 }

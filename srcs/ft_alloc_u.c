@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_alloc_u.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/17 21:02:07 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/26 17:04:18 by besellem         ###   ########.fr       */
+/*   Created: 2020/10/26 16:58:37 by besellem          #+#    #+#             */
+/*   Updated: 2020/10/26 19:20:47 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_alloc_u(t_data **s, t_indicators table, va_list ap)
 {
-	va_list	ap;
-	int		size;
+	char *data;
 
-	va_start(ap, format);
-	size = ft_process(format, ap, 1);
-	va_end(ap);
-	return (size);
-}
-
-int	ft_dprintf(int fd, const char *format, ...)
-{
-	va_list	ap;
-	int		size;
-
-	va_start(ap, format);
-	size = ft_process(format, ap, fd);
-	va_end(ap);
-	return (size);
+	data = convert_base(va_arg(ap, unsigned int), "0123456789");
+	ft_lstd_add(s, ft_lstd_new(data, ft_strlen(data)));
 }

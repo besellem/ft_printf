@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:02:45 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/17 21:02:48 by besellem         ###   ########.fr       */
+/*   Updated: 2020/10/27 00:11:10 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
+# include "../libft/libft.h"
 
 /*
 ** -- STRUCTURES --
@@ -32,7 +33,6 @@ typedef	struct	s_indicators
 	int minus;
 	int zero;
 	int dot;
-	int star;
 	int plus;
 }				t_indicators;
 
@@ -47,9 +47,9 @@ typedef	struct	s_data
 ** -- PROTOTYPES --
 ** Common
 */
-int				ft_len(const char *s);
-char			*ft_dup(const char *s1);
-int				ft_ncmp(const char *s1, const char *s2, int n);
+int				ft_len_base(long long n, int base);
+void			ft_free(size_t nb, ...);
+char			*convert_base(long long ptr, char *base);
 
 /*
 ** Lists
@@ -68,14 +68,22 @@ void			ft_alloc_c(t_data **s, t_indicators table, va_list ap);
 void			ft_alloc_s(t_data **s, t_indicators	table, va_list ap);
 void			ft_alloc_p(t_data **s, t_indicators	table, va_list ap);
 void			ft_alloc_d(t_data **s, t_indicators table, va_list ap);
+void			ft_alloc_u(t_data **s, t_indicators table, va_list ap);
+void			ft_alloc_hex_min(t_data **s, t_indicators table, va_list ap);
+void			ft_alloc_hex_maj(t_data **s, t_indicators table, va_list ap);
 int				ft_alloc_txt(const char *format, t_data **s);
 int				ft_alloc_format(const char *format, va_list ap, t_data **s,
 								t_types	*t);
 
 /*
-** ft_printf
+** Parser
 */
 t_data			*ft_parse_format(const char *format, va_list ap);
+int				ft_process(const char *format, va_list ap, int fd);
+
+/*
+** ft_printf
+*/
 int				ft_printf(const char *format, ...);
 int				ft_dprintf(int fd, const char *format, ...);
 

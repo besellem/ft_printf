@@ -6,44 +6,64 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 01:11:34 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/18 01:11:36 by besellem         ###   ########.fr       */
+/*   Updated: 2020/10/27 00:10:16 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		ft_len(const char *s)
+int		ft_len_base(long long n, int base)
 {
-	int i;
+	long long	i;
+	int			len;
 
-	i = 0;
-	while (s[i])
-		++i;
-	return (i);
+	n = n < 0 ? -n : n;
+	len = 1;
+	i = base;
+	while (n / i > 0)
+	{
+		i *= base;
+		++len;
+	}
+	return (len);
 }
 
-char	*ft_dup(const char *s1)
+void	ft_free(size_t nb, ...)
 {
-	char	*cpy;
-	int		i;
+	va_list	ap;
+	void	*ptr;
 
-	if (!(cpy = (char *)malloc(sizeof(char) * (ft_len(s1) + 1))))
+	va_start(ap, nb);
+	while (nb-- > 0)
+	{
+		ptr = va_arg(ap, void *);
+		free(ptr);
+	}
+	va_end(ap);
+}
+
+char	*convert_base(long long n, char *base)
+{
+	char		*data;
+	long long	div;
+	int			i;
+	int			len;
+
+	len = ft_len_base(n, ft_strlen(base)) + (n < 0 ? 1 : 0) + 1;
+	if (!(data = (char *)malloc(sizeof(char) * len)))
 		return (NULL);
+	len = ft_strlen(base);
 	i = -1;
-	while (s1[++i])
-		cpy[i] = s1[i];
-	cpy[i] = '\0';
-	return (cpy);
-}
-
-int		ft_ncmp(const char *s1, const char *s2, int n)
-{
-	int i;
-
-	if (n <= 0)
-		return (0);
-	i = 0;
-	while (i < n - 1 && s1[i] && s2[i] && s1[i] == s2[i])
-		++i;
-	return (s1[i] - s2[i]);
+	if (n < 0 && (n = -n))
+		data[++i] = '-';
+	div = 1;
+	while (n / div >= len)
+		div *= len;
+	while (div > 0)
+	{
+		data[++i] = base[n / div % len];
+		div /= len;
+	}
+	data[++i] = '\0';
+	return (data);
 }
