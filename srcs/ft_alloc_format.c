@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 22:18:36 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/26 23:45:13 by besellem         ###   ########.fr       */
+/*   Updated: 2020/10/27 16:05:36 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@ void		init_indicators(t_indicators *table)
 void	check_dot(const char *format, va_list ap, t_indicators *table)
 {
 	if (*format && *format == '*')
+	{
 		table->dot = va_arg(ap, int);
+		if (table->dot < 0)
+			table->dot = -1;
+	}
 	else
-		table->dot = ft_atoi(format);
+		table->dot = ft_atoi(format) < 0 ? -1 : ft_atoi(format);
 }
 
 static void	fill_indicators(const char *format, va_list ap, t_indicators *table)
@@ -40,7 +44,7 @@ static void	fill_indicators(const char *format, va_list ap, t_indicators *table)
 		table->plus = 1;
 }
 
-static int	is_conversion(t_types *t, const char *s)
+static int	is_conversion(const char *s, t_types *t)
 {
 	int i;
 
@@ -59,11 +63,11 @@ int			ft_alloc_format(const char *format, va_list ap, t_data **s, t_types *t)
 
 	init_indicators(&table);
 	i = 0;
-	while (format[i] && (index = is_conversion(t, format + i)) == -1)
+	while (format[i] && (index = is_conversion(format + i, t)) == -1)
 	{
 		fill_indicators(format + i, ap, &table);
 		++i;
 	}
 	t[index].f(s, table, ap);
-	return (i + 1);	// ft_len(t[index].type)
+	return (i + 1);
 }

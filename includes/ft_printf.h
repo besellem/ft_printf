@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:02:45 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/27 00:11:10 by besellem         ###   ########.fr       */
+/*   Updated: 2020/10/27 17:13:51 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef	struct	s_data
 int				ft_len_base(long long n, int base);
 void			ft_free(size_t nb, ...);
 char			*convert_base(long long ptr, char *base);
+void			*ft_malloc_c(size_t size, char c);
+char			*zero_padding(long long nbr, int pad, char *base);
 
 /*
 ** Lists
