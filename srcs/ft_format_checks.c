@@ -1,0 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_format_checks.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/01 11:51:03 by besellem          #+#    #+#             */
+/*   Updated: 2020/11/01 15:36:38 by besellem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/ft_printf.h"
+
+int	check_minus(const char *format, va_list ap, t_indicators *table)
+{
+	return (1);
+}
+
+int	check_zero(const char *format, va_list ap, t_indicators *table)
+{
+	if (*format && *format == '0')
+		return (0);
+	if (*format && *format == '*')
+	{
+		table->zero = va_arg(ap, int);
+		if (table->zero < 0)
+			table->zero = -1;
+		return (1);
+	}
+	if (*format && ft_atoi(format) < 0)
+		return (check_minus(format, ap, table));
+	else if (*format && ft_atoi(format) == 0)
+	{
+		table->zero = 0;
+		return (0);
+	}
+	table->zero = ft_atoi(format);
+	return (ft_len_base(table->zero, 10));
+}
+
+int	check_precision(const char *format, va_list ap, t_indicators *table)
+{
+	int i;
+
+	table->dot = 0;
+	if (*format && *format == '*')
+	{
+		table->dot = va_arg(ap, int);
+		if (table->dot < 0)
+			table->dot = -1;
+		return (1);
+	}
+	else
+	{
+		i = 0;
+		if (*format && *format == '0')
+			while (format[i] == '0')
+				++i;
+		if (ft_atoi(format + i) == 0)
+			return (i);
+		table->dot = ft_atoi(format + i) < 0 ? -1 : ft_atoi(format + i);
+		return (i + ft_len_base(table->dot, 10));
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 01:11:34 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/27 00:10:16 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/01 16:00:49 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,23 @@ int		ft_len_base(long long n, int base)
 	return (len);
 }
 
+void	*ft_malloc_c(size_t size, char c)
+{
+	char	*str;
+	size_t	i;
+
+	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		str[i] = c;
+		++i;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
 void	ft_free(size_t nb, ...)
 {
 	va_list	ap;
@@ -37,7 +54,8 @@ void	ft_free(size_t nb, ...)
 	while (nb-- > 0)
 	{
 		ptr = va_arg(ap, void *);
-		free(ptr);
+		if (ptr)
+			free(ptr);
 	}
 	va_end(ap);
 }

@@ -6,30 +6,48 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 16:59:04 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/27 17:13:42 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/01 16:00:43 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	*ft_malloc_c(size_t size, char c)
+char	*space_padding(char *data, int padding, char *base)
 {
-	char	*str;
-	size_t	i;
+	char	*spaces;
+	int		len;
 
-	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
+	len = ft_strlen(data) > padding ? 0 : padding - ft_strlen(data);
+	if (len <= 0)
 		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		str[i] = c;
-		++i;
-	}
-	str[i] = '\0';
-	return (str);
+	spaces = ft_malloc_c(len, ' ');
+	return (spaces);
 }
 
 char	*zero_padding(long long nbr, int pad, char *base)
+{
+	char	*data;
+	char	*tmp;
+	char	*zeros;
+	int		len;
+
+	tmp = convert_base((nbr < 0 ? -nbr : nbr), base);
+	len = nbr < 0 ? 1 : 0;
+	len = pad - len > ft_strlen(tmp) ? pad - len - ft_strlen(tmp) : 0;
+	zeros = ft_malloc_c(len, '0');
+	len = ft_strlen(tmp) > pad ? ft_strlen(tmp) : pad;
+	if (!(data = (char *)ft_calloc(len + 1, sizeof(char))))
+		return (NULL);
+	if (nbr < 0)
+		ft_strncat(data, "-", 1);
+	if (zeros)
+		ft_strncat(data, zeros, ft_strlen(zeros));
+	ft_strncat(data, tmp, ft_strlen(tmp));
+	ft_free(2, tmp, zeros);
+	return (data);
+}
+
+char	*prec_padding(long long nbr, int pad, char *base)
 {
 	char	*data;
 	char	*tmp;

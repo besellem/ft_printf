@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 16:13:26 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/26 20:29:37 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/01 12:15:32 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_data	*ft_parse_format(const char *format, va_list ap)
 	t_data	*data;
 	t_types	*t;
 	size_t	i;
+	int		check;
 
 	data = NULL;
 	t = ft_init_conversions();
@@ -24,7 +25,11 @@ t_data	*ft_parse_format(const char *format, va_list ap)
 	while (format[i])
 	{
 		if (format[i] == '%' && format[i + 1] != '%' && ++i)
-			i += ft_alloc_format(format + i, ap, &data, t);
+		{
+			if ((check = ft_alloc_format(format + i, ap, &data, t)) == -1)
+				return (NULL);
+			i += check;
+		}
 		else
 			i += ft_alloc_txt(format + i, &data);
 	}
