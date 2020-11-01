@@ -3,6 +3,6 @@
 # cd ..
 # -fsanitize=address
 clear
-gcc -fsanitize=address test/main.c srcs/*.c -I includes/ft_printf.h libft/libft.a 
+gcc -Wall -Wextra -Werror -fsanitize=address test/main.c srcs/*.c -I includes/ft_printf.h libft/libft.a 
 ./a.out
 rm ./a.out

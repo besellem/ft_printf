@@ -6,15 +6,33 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 11:51:03 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/01 15:36:38 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/01 23:59:39 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	check_minus(const char *format, va_list ap, t_indicators *table)
+int	check_min(t_indicators *table)
 {
-	return (1);
+	table->minus = 1;
+	return (0);
+}
+
+int	check_wdt(const char *format, va_list ap, t_indicators *table)
+{
+	if (*format && *format == '*')
+	{
+		table->width = va_arg(ap, int);
+		if (table->width < 0)
+		{
+			table->minus = 1;
+			table->width *= -1;
+		}
+		return (1);
+	}
+	else
+		table->width = ft_atoi(format);
+	return (ft_len_base(table->width, 10));
 }
 
 int	check_zero(const char *format, va_list ap, t_indicators *table)
@@ -25,11 +43,15 @@ int	check_zero(const char *format, va_list ap, t_indicators *table)
 	{
 		table->zero = va_arg(ap, int);
 		if (table->zero < 0)
+		{
+			table->width = -table->zero;
 			table->zero = -1;
+			table->minus = 1;
+		}
 		return (1);
 	}
 	if (*format && ft_atoi(format) < 0)
-		return (check_minus(format, ap, table));
+		return (check_min(table));
 	else if (*format && ft_atoi(format) == 0)
 	{
 		table->zero = 0;
@@ -39,7 +61,7 @@ int	check_zero(const char *format, va_list ap, t_indicators *table)
 	return (ft_len_base(table->zero, 10));
 }
 
-int	check_precision(const char *format, va_list ap, t_indicators *table)
+int	check_prec(const char *format, va_list ap, t_indicators *table)
 {
 	int i;
 

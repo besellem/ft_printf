@@ -6,21 +6,30 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:06:02 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/27 17:18:09 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/02 00:15:08 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void		ft_alloc_s(t_data **s, t_indicators table, va_list ap)
+void		ft_alloc_s(t_data **s, t_indicators t, va_list ap)
 {
-	char	*str;
+	char	*data;
+	char	*sp;
 	int		size;
+	int		tmp;
 
-	str = va_arg(ap, char *);
-	str = str ? str : "(null)";
-	size = str ? ft_strlen(str) : 6;
-	if (table.dot != -1)
-		size = size >= table.dot ? table.dot : size;
-	ft_lstd_add(s, ft_lstd_new(str, size));
+	data = va_arg(ap, char *);
+	data = data ? data : "(null)";
+	size = ft_strlen(data);
+	sp = NULL;
+	if (t.dot >= 0)
+		size = (size >= t.dot) ? t.dot : size;
+	tmp = ft_strlen(data) + (t.width > t.dot ? t.width - t.dot : t.width - size);
+	if ((t.dot >= 0 && t.zero >= 0) || t.width >= 0)
+		sp = space_padding(data, tmp);
+	(t.minus == -1) ? add_lstd(s, sp) : 0;
+	ft_lstd_add(s, ft_lstd_new(data, size));
+	(t.minus == 1) ? add_lstd(s, sp) : 0;
+	ft_free(1, sp);
 }

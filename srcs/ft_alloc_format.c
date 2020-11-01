@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 22:18:36 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/01 14:28:46 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/01 23:53:42 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int		is_conversion(const char *s, t_types *t)
 
 void	init_indicators(t_indicators *table)
 {
+	table->width = -1;
 	table->minus = -1;
 	table->zero = -1;
 	table->dot = -1;
-	table->plus = -1;
 }
 
 int		fill_indicators(const char *format, va_list ap, t_indicators *table)
@@ -36,15 +36,13 @@ int		fill_indicators(const char *format, va_list ap, t_indicators *table)
 	int index;
 
 	if (*format == '-')
-		table->minus = 1;
+		index = 1 + check_min(table);
 	else if (*format == '0')
 		index = 1 + check_zero(format + 1, ap, table);
-	//else if (ft_isdigit(*format))
-	//	index = check_padding(format + 1, ap, table);
+	else if (*format == '*' || (*format >= '1' && *format <= '9'))
+		index = check_wdt(format, ap, table);
 	else if (*format == '.')
-		index = 1 + check_precision(format + 1, ap, table);
-	else if (*format == '+')
-		table->plus = 1;
+		index = 1 + check_prec(format + 1, ap, table);
 	else
 		return (-1);
 	return (index);

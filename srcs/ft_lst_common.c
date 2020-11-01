@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:57:23 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/26 19:22:19 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/01 22:05:11 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_data	*ft_lstd_new(char *data, int size)
 {
 	t_data *new;
 
-	if (!(new = (t_data *)malloc(sizeof(t_data))))
+	if (!data || !(new = (t_data *)malloc(sizeof(t_data))))
 		return (NULL);
 	new->data = ft_strdup(data);
 	new->size = size;

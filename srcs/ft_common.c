@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 01:11:34 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/01 16:00:49 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/01 22:24:01 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,13 @@ char	*convert_base(long long n, char *base)
 	}
 	data[++i] = '\0';
 	return (data);
+}
+
+void	add_lstd(t_data **s, char *str)
+{
+	size_t size;
+
+	if (!str || ((size = ft_strlen(str)) == 0))
+		return ;
+	ft_lstd_add(s, ft_lstd_new(str, size));
 }

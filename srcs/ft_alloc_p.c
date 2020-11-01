@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 16:20:39 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/26 19:21:30 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/01 23:50:59 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,17 @@ static char	*convert_p(long long ptr)
 	return (data);
 }
 
-void		ft_alloc_p(t_data **s, t_indicators table, va_list ap)
+void		ft_alloc_p(t_data **s, t_indicators t, va_list ap)
 {
 	char *data;
+	char *sp;
 
 	data = convert_p(va_arg(ap, unsigned long));
-	ft_lstd_add(s, ft_lstd_new(data, ft_strlen(data)));
+	sp = NULL;
+	if ((t.dot >= 0 && t.zero >= 0) || t.width >= 0)
+		sp = space_padding(data, t.width >= 0 ? t.width : t.zero);
+	(t.minus == -1) ? add_lstd(s, sp) : 0;
+	data ? add_lstd(s, data) : 0;
+	(t.minus == 1) ? add_lstd(s, sp) : 0;
+	ft_free(2, sp, data);
 }

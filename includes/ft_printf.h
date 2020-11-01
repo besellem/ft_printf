@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:02:45 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/01 16:02:23 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/01 23:53:00 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ typedef	struct	s_types
 
 typedef	struct	s_indicators
 {
+	int width;
 	int minus;
 	int zero;
 	int dot;
-	int plus;
 }				t_indicators;
 
 typedef	struct	s_data
@@ -51,6 +51,7 @@ int				ft_len_base(long long n, int base);
 void			*ft_malloc_c(size_t size, char c);
 void			ft_free(size_t nb, ...);
 char			*convert_base(long long ptr, char *base);
+void			add_lstd(t_data **s, char *str);
 
 /*
 ** Lists
@@ -64,14 +65,15 @@ void			ft_lstd_clear(t_data **lst);
 /*
 ** Format Checks
 */
+int				check_min(t_indicators *table);
+int				check_wdt(const char *format, va_list ap, t_indicators *table);
 int				check_zero(const char *format, va_list ap, t_indicators *table);
-int				check_precision(const char *format, va_list ap,
-								t_indicators *table);
+int				check_prec(const char *format, va_list ap, t_indicators *table);
 
 /*
 ** Padding
 */
-char			*space_padding(char *data, int padding, char *base);
+char			*space_padding(char *data, int padding);
 char			*zero_padding(long long nbr, int pad, char *base);
 char			*prec_padding(long long nbr, int pad, char *base);
 
@@ -79,14 +81,15 @@ char			*prec_padding(long long nbr, int pad, char *base);
 ** Alloc
 */
 t_types			*ft_init_conversions(void);
-void			ft_alloc_c(t_data **s, t_indicators table, va_list ap);
-void			ft_alloc_s(t_data **s, t_indicators	table, va_list ap);
-void			ft_alloc_p(t_data **s, t_indicators	table, va_list ap);
-void			ft_alloc_d(t_data **s, t_indicators table, va_list ap);
-void			ft_alloc_i(t_data **s, t_indicators table, va_list ap);
-void			ft_alloc_u(t_data **s, t_indicators table, va_list ap);
-void			ft_alloc_hex_min(t_data **s, t_indicators table, va_list ap);
-void			ft_alloc_hex_maj(t_data **s, t_indicators table, va_list ap);
+char			*ft_check_indic_d(long long nbr, t_indicators t, char *base);
+void			ft_alloc_c(t_data **s, t_indicators t, va_list ap);
+void			ft_alloc_s(t_data **s, t_indicators	t, va_list ap);
+void			ft_alloc_p(t_data **s, t_indicators	t, va_list ap);
+void			ft_alloc_d(t_data **s, t_indicators t, va_list ap);
+void			ft_alloc_i(t_data **s, t_indicators t, va_list ap);
+void			ft_alloc_u(t_data **s, t_indicators t, va_list ap);
+void			ft_alloc_hex_min(t_data **s, t_indicators t, va_list ap);
+void			ft_alloc_hex_maj(t_data **s, t_indicators t, va_list ap);
 
 int				ft_alloc_txt(const char *format, t_data **s);
 int				ft_alloc_format(const char *format, va_list ap, t_data **s,
