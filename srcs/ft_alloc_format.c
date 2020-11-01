@@ -6,13 +6,13 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 22:18:36 by besellem          #+#    #+#             */
-/*   Updated: 2020/10/27 16:05:36 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/01 01:10:01 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void		init_indicators(t_indicators *table)
+void	init_indicators(t_indicators *table)
 {
 	table->minus = -1;
 	table->zero = -1;
@@ -32,7 +32,7 @@ void	check_dot(const char *format, va_list ap, t_indicators *table)
 		table->dot = ft_atoi(format) < 0 ? -1 : ft_atoi(format);
 }
 
-static void	fill_indicators(const char *format, va_list ap, t_indicators *table)
+void	fill_indicators(const char *format, va_list ap, t_indicators *table)
 {
 	if (*format == '-')
 		table->minus = 1;
@@ -44,7 +44,7 @@ static void	fill_indicators(const char *format, va_list ap, t_indicators *table)
 		table->plus = 1;
 }
 
-static int	is_conversion(const char *s, t_types *t)
+int		is_conversion(const char *s, t_types *t)
 {
 	int i;
 
@@ -55,7 +55,7 @@ static int	is_conversion(const char *s, t_types *t)
 	return (-1);
 }
 
-int			ft_alloc_format(const char *format, va_list ap, t_data **s, t_types *t)
+int		ft_alloc_format(const char *format, va_list ap, t_data **s, t_types *t)
 {
 	t_indicators	table;
 	int				index;
