@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 22:18:36 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/01 01:10:01 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/01 01:12:44 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_indicators(t_indicators *table)
 	table->plus = -1;
 }
 
-void	check_dot(const char *format, va_list ap, t_indicators *table)
+void	check_precision(const char *format, va_list ap, t_indicators *table)
 {
 	if (*format && *format == '*')
 	{
@@ -39,7 +39,7 @@ void	fill_indicators(const char *format, va_list ap, t_indicators *table)
 	else if (*format == '0')
 		table->zero = 1;
 	else if (*format == '.')
-		check_dot(format + 1, ap, table);
+		check_precision(format + 1, ap, table);
 	else if (*format == '+')
 		table->plus = 1;
 }
