@@ -33,12 +33,15 @@ t_data	*ft_parse_format(const char *format, va_list ap)
 
 int		ft_process(const char *format, va_list ap, int fd)
 {
-	t_data	*data;
 	int		size;
+	t_data	*data;
+	va_list	ap2;
 
+	va_copy(ap2, ap);
 	size = 0;
-	data = ft_parse_format(format, ap);
+	data = ft_parse_format(format, ap2);
 	ft_lstd_print(&data, &size, fd);
 	ft_lstd_clear(&data);
+	va_end(ap2);
 	return (size);
 }
