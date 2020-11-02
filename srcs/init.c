@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 04:07:12 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/02 11:00:59 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/02 17:45:23 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_types		*ft_init_conversions(void)
 	t_types	*t;
 	int		size;
 
-	size = 9;
+	size = 10;
 	if (!(t = (t_types *)malloc(sizeof(t_types) * (size + 1))))
 		return (NULL);
 	add_conversion(&t[0], 'c', &ft_alloc_c);
@@ -35,6 +35,7 @@ t_types		*ft_init_conversions(void)
 	add_conversion(&t[6], 'o', &ft_alloc_o);
 	add_conversion(&t[7], 'x', &ft_alloc_hex_min);
 	add_conversion(&t[8], 'X', &ft_alloc_hex_maj);
+	add_conversion(&t[9], '%', &ft_alloc_mod);
 	t[size].type = '\0';
 	return (t);
 }

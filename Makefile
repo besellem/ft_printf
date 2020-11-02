@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bensellem <bensellem@student.42.fr>        +#+  +:+       +#+         #
+#    By: besellem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 21:13:07 by besellem          #+#    #+#              #
-#    Updated: 2020/11/02 11:02:07 by bensellem        ###   ########.fr        #
+#    Updated: 2020/11/02 21:28:22 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-MUTE		=	
+MUTE		=	@
 NAME		=	libftprintf.a
 EXEC		=	ft_printf_test
 
@@ -27,16 +27,19 @@ SRCS		+=	srcs/ft_alloc_u.c
 SRCS		+=	srcs/ft_alloc_o.c
 SRCS		+=	srcs/ft_alloc_hex_maj.c
 SRCS		+=	srcs/ft_alloc_hex_min.c
+SRCS		+=	srcs/ft_alloc_mod.c
 SRCS		+=	srcs/ft_alloc_p.c
+SRCS		+=	srcs/ft_common.c
+SRCS		+=	srcs/ft_lst_common.c
+SRCS		+=	srcs/init.c
+SRCS		+=	srcs/ft_parser.c
 SRCS		+=	srcs/ft_alloc_txt.c
 SRCS		+=	srcs/ft_alloc_format.c
 SRCS		+=	srcs/ft_format_checks.c
-SRCS		+=	srcs/ft_common.c
-SRCS		+=	srcs/ft_lst_common.c
 SRCS		+=	srcs/ft_padding.c
-SRCS		+=	srcs/ft_parser.c
 SRCS		+=	srcs/ft_printf.c
-SRCS		+=	srcs/init.c
+SRCS		+=	srcs/ft_dprintf.c
+SRCS		+=	srcs/ft_asprintf.c
 
 ## Objects
 OBJS		=	$(SRCS:.c=.o)

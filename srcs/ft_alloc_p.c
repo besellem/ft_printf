@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 16:20:39 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/02 11:09:27 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/02 21:12:25 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,17 @@ void		ft_alloc_p(t_data **s, t_indicators t, va_list ap)
 	char			*data;
 	char			*sp;
 	unsigned long	tmp;
+	unsigned int	len;
 
 	tmp = va_arg(ap, unsigned long);
-	data = tmp ? convert_p(tmp) : ft_strdup("0x0");
+	data = tmp ? convert_p(tmp) : ft_strdup("0x");
 	sp = NULL;
+	len = (t.width >= 0 ? t.width : t.zero) - (!tmp && t.dot < 0 ? 1 : 0);
 	if ((t.dot >= 0 && t.zero >= 0) || t.width >= 0)
-		sp = space_padding(data, t.width >= 0 ? t.width : t.zero);
+		sp = space_padding(data, len);
 	(t.minus == -1) ? add_lstd(s, sp) : 0;
 	data ? add_lstd(s, data) : 0;
+	!tmp && t.dot < 0 ? add_lstd(s, "0") : 0;
 	(t.minus == 1) ? add_lstd(s, sp) : 0;
 	ft_free(2, sp, data);
 }

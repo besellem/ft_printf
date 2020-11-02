@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 16:13:26 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/01 12:15:32 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/02 19:10:19 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_data	*ft_parse_format(const char *format, va_list ap)
 	i = 0;
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1] != '%' && ++i)
+		if (format[i] == '%' && ++i)
 		{
 			if ((check = ft_alloc_format(format + i, ap, &data, t)) == -1)
 				return (NULL);

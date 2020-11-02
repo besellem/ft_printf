@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alloc_txt.c                                     :+:      :+:    :+:   */
+/*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/17 21:36:50 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/02 18:01:49 by besellem         ###   ########.fr       */
+/*   Created: 2020/11/02 21:26:27 by besellem          #+#    #+#             */
+/*   Updated: 2020/11/02 21:26:42 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static size_t	len_alloc(const char *format)
+int	ft_dprintf(int fd, const char *format, ...)
 {
-	int i;
+	va_list	ap;
+	int		size;
 
-	i = 0;
-	while (format[i] && format[i] != '%')
-		++i;
-	return (i);
-}
-
-int				ft_alloc_txt(const char *format, t_data **s)
-{
-	char	*data;
-	int		len;
-	int		i;
-
-	len = len_alloc(format);
-	if (!(data = (char *)malloc(sizeof(char) * (len + 1))))
-		return (-1);
-	i = -1;
-	while (++i < len)
-		data[i] = format[i];
-	data[i] = '\0';
-	ft_lstd_add(s, ft_lstd_new(data, len));
-	free(data);
-	return (i);
+	va_start(ap, format);
+	size = ft_process(format, ap, fd);
+	va_end(ap);
+	return (size);
 }

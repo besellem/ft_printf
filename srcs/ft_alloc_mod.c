@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alloc_s.c                                       :+:      :+:    :+:   */
+/*   ft_alloc_mod.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/17 21:06:02 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/02 16:53:05 by besellem         ###   ########.fr       */
+/*   Created: 2020/11/02 17:43:58 by besellem          #+#    #+#             */
+/*   Updated: 2020/11/02 18:38:52 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void		ft_alloc_s(t_data **s, t_indicators t, va_list ap)
+void	ft_alloc_mod(t_data **s, t_indicators t)
 {
-	char	*data;
-	char	*sp;
-	int		size;
-	int		tmp;
+	char data[2];
+	char *sp;
 
-	data = va_arg(ap, char *);
-	data = data ? data : "(null)";
-	size = ft_strlen(data);
+	data[0] = '%';
+	data[1] = '\0';
 	sp = NULL;
-	if (t.dot >= 0)
-		size = (size >= t.dot) ? t.dot : size;
-	tmp = ft_strlen(data) + t.width - size;
+	if (t.zero > 0 && t.minus == 1)
+		sp = space_padding(data, t.zero);
+	else if (t.zero > 0)
+		sp = ft_malloc_c(t.zero - 1, '0');
 	if ((t.dot >= 0 && t.zero >= 0) || t.width >= 0)
-		sp = space_padding(data, tmp);
+		sp = space_padding(data, t.width >= 0 ? t.width : t.zero);
 	(t.minus == -1) ? add_lstd(s, sp) : 0;
-	ft_lstd_add(s, ft_lstd_new(data, size));
+	ft_lstd_add(s, ft_lstd_new(data, 1));
 	(t.minus == 1) ? add_lstd(s, sp) : 0;
 	ft_free(1, sp);
 }

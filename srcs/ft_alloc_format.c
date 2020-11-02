@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 22:18:36 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/01 23:53:42 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/02 19:12:50 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int		ft_alloc_format(const char *format, va_list ap, t_data **s, t_types *t)
 			return (-1);
 		i += check;
 	}
+	if (!format[i])
+		return (-1);
 	t[index].f(s, table, ap);
 	return (i + 1);
 }
