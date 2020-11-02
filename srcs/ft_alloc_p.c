@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 16:20:39 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/01 23:50:59 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/02 11:09:27 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*convert_p(long long ptr)
 
 	div = 16;
 	hex = "0123456789abcdef";
-	while (ptr / div > 16)
+	while (ptr / div >= 16)
 		div *= 16;
 	if (!(data = (char *)malloc(sizeof(char) * (ft_len_base(ptr, 16) + 3))))
 		return (NULL);
@@ -39,10 +39,12 @@ static char	*convert_p(long long ptr)
 
 void		ft_alloc_p(t_data **s, t_indicators t, va_list ap)
 {
-	char *data;
-	char *sp;
+	char			*data;
+	char			*sp;
+	unsigned long	tmp;
 
-	data = convert_p(va_arg(ap, unsigned long));
+	tmp = va_arg(ap, unsigned long);
+	data = tmp ? convert_p(tmp) : ft_strdup("0x0");
 	sp = NULL;
 	if ((t.dot >= 0 && t.zero >= 0) || t.width >= 0)
 		sp = space_padding(data, t.width >= 0 ? t.width : t.zero);
