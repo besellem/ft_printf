@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alloc_c.c                                       :+:      :+:    :+:   */
+/*   ft_format_checks2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/25 19:37:44 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/08 21:45:22 by besellem         ###   ########.fr       */
+/*   Created: 2020/11/08 23:03:38 by besellem          #+#    #+#             */
+/*   Updated: 2020/11/09 02:05:19 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_alloc_c(t_data **s, t_indicators t, va_list ap)
+int	check_htag(t_indicators *table)
 {
-	char data[2];
-	char *sp;
+	table->htag = 1;
+	return (1);
+}
 
-	data[0] = va_arg(ap, int);
-	data[1] = '\0';
-	sp = NULL;
-	if ((t.dot >= 0 && t.zero >= 0) || t.width >= 0)
-		sp = space_padding(*data ? data : " ", t.width >= 0 ? t.width : t.zero);
-	(t.minus == -1) ? add_lstd(s, sp) : 0;
-	ft_lstd_add(s, ft_lstd_new(data, 1));
-	(t.minus == 1) ? add_lstd(s, sp) : 0;
-	ft_free(1, sp);
+int	check_spce(t_indicators *table)
+{
+	table->space = 1;
+	if (table->plus == 1)
+		table->space = 0;
+	return (1);
+}
+
+int	check_plus(t_indicators *table)
+{
+	table->plus = 1;
+	return (1);
 }

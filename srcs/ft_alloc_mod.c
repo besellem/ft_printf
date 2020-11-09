@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 17:43:58 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/02 18:38:52 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/08 21:21:16 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	ft_alloc_mod(t_data **s, t_indicators t)
 {
-	char data[2];
+	char *data;
 	char *sp;
 
-	data[0] = '%';
-	data[1] = '\0';
+	data = "%";
 	sp = NULL;
 	if (t.zero > 0 && t.minus == 1)
 		sp = space_padding(data, t.zero);

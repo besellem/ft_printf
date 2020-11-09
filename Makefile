@@ -6,7 +6,7 @@
 #    By: besellem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 21:13:07 by besellem          #+#    #+#              #
-#    Updated: 2020/11/02 21:28:22 by besellem         ###   ########.fr        #
+#    Updated: 2020/11/08 23:04:01 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS		+=	srcs/ft_parser.c
 SRCS		+=	srcs/ft_alloc_txt.c
 SRCS		+=	srcs/ft_alloc_format.c
 SRCS		+=	srcs/ft_format_checks.c
+SRCS		+=	srcs/ft_format_checks2.c
 SRCS		+=	srcs/ft_padding.c
 SRCS		+=	srcs/ft_printf.c
 SRCS		+=	srcs/ft_dprintf.c

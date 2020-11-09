@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alloc_c.c                                       :+:      :+:    :+:   */
+/*   ft_alloc_f.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/25 19:37:44 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/08 21:45:22 by besellem         ###   ########.fr       */
+/*   Created: 2020/11/09 02:42:55 by besellem          #+#    #+#             */
+/*   Updated: 2020/11/09 02:43:26 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_alloc_c(t_data **s, t_indicators t, va_list ap)
+void	ft_alloc_f(t_data **s, t_indicators t, va_list ap)
 {
-	char data[2];
-	char *sp;
-
-	data[0] = va_arg(ap, int);
-	data[1] = '\0';
-	sp = NULL;
-	if ((t.dot >= 0 && t.zero >= 0) || t.width >= 0)
-		sp = space_padding(*data ? data : " ", t.width >= 0 ? t.width : t.zero);
-	(t.minus == -1) ? add_lstd(s, sp) : 0;
-	ft_lstd_add(s, ft_lstd_new(data, 1));
-	(t.minus == 1) ? add_lstd(s, sp) : 0;
-	ft_free(1, sp);
+	
 }

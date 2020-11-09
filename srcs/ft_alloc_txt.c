@@ -6,13 +6,13 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:36:50 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/02 18:01:49 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/08 22:05:22 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static size_t	len_alloc(const char *format)
+static int	len_alloc(const char *format)
 {
 	int i;
 
@@ -22,7 +22,7 @@ static size_t	len_alloc(const char *format)
 	return (i);
 }
 
-int				ft_alloc_txt(const char *format, t_data **s)
+int			ft_alloc_txt(const char *format, t_data **s)
 {
 	char	*data;
 	int		len;

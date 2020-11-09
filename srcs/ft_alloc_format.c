@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 22:18:36 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/02 19:12:50 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/09 02:03:50 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,44 @@ int		is_conversion(const char *s, t_types *t)
 	return (-1);
 }
 
+int		is_specifier(const char *format, t_indicators *t)
+{
+	int ret;
+
+	if (t->is_specifier != 0)
+		return (-1);
+	ret = 1;
+	t->is_specifier = 1;
+	if (ft_strncmp("hh", format, 2) == 0 && (ret = 2))
+		t->hh = 1;
+	else if (ft_strncmp("h", format, 1) == 0)
+		t->h = 1;
+	else if (ft_strncmp("ll", format, 2) == 0 && (ret = 2))
+		t->ll = 1;
+	else if (ft_strncmp("l", format, 1) == 0)
+		t->l = 1;
+	else if (ft_strncmp("L", format, 1) == 0)
+		t->lf = 1;
+	else
+		return (-1);
+	return (ret);
+}
+
 void	init_indicators(t_indicators *table)
 {
 	table->width = -1;
 	table->minus = -1;
 	table->zero = -1;
 	table->dot = -1;
+	table->htag = 0;
+	table->space = 0;
+	table->plus = 0;
+	table->is_specifier = 0;
+	table->h = 0;
+	table->hh = 0;
+	table->l = 0;
+	table->ll = 0;
+	table->lf = 0;
 }
 
 int		fill_indicators(const char *format, va_list ap, t_indicators *table)
@@ -43,6 +75,14 @@ int		fill_indicators(const char *format, va_list ap, t_indicators *table)
 		index = check_wdt(format, ap, table);
 	else if (*format == '.')
 		index = 1 + check_prec(format + 1, ap, table);
+	else if (*format == '#')
+		index = check_htag(table);
+	else if (*format == ' ')
+		index = check_spce(table);
+	else if (*format == '+')
+		index = check_plus(table);
+	else if ((index = is_specifier(format, table)) > 0)
+		return (index);
 	else
 		return (-1);
 	return (index);
