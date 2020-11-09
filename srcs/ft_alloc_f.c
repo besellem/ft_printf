@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 02:42:55 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/09 02:43:26 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/09 03:02:05 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_alloc_f(t_data **s, t_indicators t, va_list ap)
 {
-	
+	return ;
 }
