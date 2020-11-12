@@ -1,49 +1,94 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alloc_hex_maj.c                                 :+:      :+:    :+:   */
+/*   ft_common2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 16:23:35 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 20:31:21 by besellem         ###   ########.fr       */
+/*   Created: 2020/11/12 20:19:44 by besellem          #+#    #+#             */
+/*   Updated: 2020/11/12 20:38:13 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-char	*conv_add_xmaz(t_indicators t, char *d, unsigned long long n, int s)
+void	*ft_malloc_c(size_t size, char c)
+{
+	char	*str;
+	size_t	i;
+
+	if (size <= 0 || !(str = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		str[i] = c;
+		++i;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+void	ft_free(size_t nb, ...)
+{
+	va_list	ap;
+	void	*ptr;
+
+	va_start(ap, nb);
+	while (nb-- > 0)
+	{
+		ptr = va_arg(ap, void *);
+		if (ptr)
+			free(ptr);
+	}
+	va_end(ap);
+}
+
+char	*conv_add_z(t_indicators t, char *data, unsigned long long n, int s)
 {
 	char	*z;
 	int		len;
 	int		sign_len;
 
-	z = t.htag && n > 0 ? ft_strdup("0X") : NULL;
-	len = d ? ft_strlen(d) : 0;
+	z = NULL;
+	len = data ? ft_strlen(data) : 0;
 	sign_len = (s || t.plus || t.space) ? 1 : 0;
 	if (t.dot >= 0)
 	{
 		len = (int)len > t.dot ? 0 : t.dot - len;
-		z = ft_mcat(z, ft_malloc_c((n == 0 && t.dot == 0 ? 0 : len), '0'));
+		z = ft_malloc_c((n == 0 && t.dot == 0 ? 0 : len), '0');
 	}
 	else if (t.zero > 0)
 	{
 		len = t.zero + s > (int)len ? t.zero - len - sign_len : 0;
-		len -= t.htag && n > 0 ? 2 : 0;
-		z = ft_mcat(z, ft_malloc_c((len < 0 ? 0 : len), '0'));
+		z = ft_malloc_c((len < 0 ? 0 : len), '0');
 	}
 	return (z);
 }
 
-char	*conv_x_maj(t_indicators t, unsigned long long n, int sign)
+char	*conv_add_sign(t_indicators t, int sign)
+{
+	char *sgn;
+
+	sgn = NULL;
+	if (sign == 0 && t.plus)
+		sgn = ft_strdup("+");
+	else if (sign == 1)
+		sgn = ft_strdup("-");
+	else if (sign == 0 && t.space == 1)
+		sgn = ft_strdup(" ");
+	return (sgn);
+}
+
+char	*conv_d(t_indicators t, unsigned long long n, int sign, char *base)
 {
 	char *r;
 	char *sp;
 
 	r = NULL;
 	if (!(n == 0 && t.dot == 0))
-		r = convert_base_u(n, "0123456789ABCDEF");
-	r = ft_mcat(conv_add_xmaz(t, r, n, sign), r);
+		r = convert_base_u(n, base);
+	r = ft_mcat(conv_add_z(t, r, n, sign), r);
 	r = ft_mcat(conv_add_sign(t, sign), r);
 	sp = NULL;
 	if ((t.dot >= 0 && t.zero >= 0) || t.width >= 0)
@@ -53,15 +98,4 @@ char	*conv_x_maj(t_indicators t, unsigned long long n, int sign)
 	else if (t.minus == 1)
 		r = ft_mcat(r, sp);
 	return (r);
-}
-
-void	ft_alloc_hex_maj(t_data **s, t_indicators t, va_list ap)
-{
-	char				*data;
-	unsigned long long	n;
-
-	n = u_spec(&t, ap);
-	data = conv_x_maj(t, n, 0);
-	add_lstd(s, data);
-	ft_free(1, data);
 }

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_alloc_n.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 23:10:19 by bensellem         #+#    #+#             */
-/*   Updated: 2020/11/12 22:03:18 by besellem         ###   ########.fr       */
+/*   Created: 2020/11/10 13:20:09 by besellem          #+#    #+#             */
+/*   Updated: 2020/11/12 19:46:30 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	main(void)
+void	ft_alloc_n(t_data **s, va_list ap)
 {
-	char	*ret;
-	char	*ret2;
-	int		orig;
-	int		mine;
+	int size;
+	int *ptr;
 
-	mine = ft_asprintf(&ret, "%.10f", 0.);
-	orig = asprintf(&ret2, "%.10f", 0.);
-	printf("MINE [%d]: [%s]\nREAL [%d]: [%s]\n", mine, ret, orig, ret2);
-
-	if (ft_strcmp(ret, ret2) == 0)
-		printf("\033[1;32mSUCCESS !\033[0m\n");
-	else
-		printf("\033[1;31mERROR\033[0m\n");
-	free(ret);
-	free(ret2);
-	return (0);
+	ptr = va_arg(ap, int *);
+	ft_lstd_get_size(s, &size);
+	*ptr = size;
 }

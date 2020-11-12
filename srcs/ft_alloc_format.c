@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 22:18:36 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/09 02:03:50 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/12 19:20:45 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int		is_specifier(const char *format, t_indicators *t)
 {
 	int ret;
 
+	ret = 1;
 	if (t->is_specifier != 0)
 		return (-1);
-	ret = 1;
 	t->is_specifier = 1;
 	if (ft_strncmp("hh", format, 2) == 0 && (ret = 2))
 		t->hh = 1;
@@ -81,7 +81,7 @@ int		fill_indicators(const char *format, va_list ap, t_indicators *table)
 		index = check_spce(table);
 	else if (*format == '+')
 		index = check_plus(table);
-	else if ((index = is_specifier(format, table)) > 0)
+	else if ((index = is_specifier(format, table)) != -1)
 		return (index);
 	else
 		return (-1);

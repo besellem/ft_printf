@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lst_common2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 23:10:19 by bensellem         #+#    #+#             */
-/*   Updated: 2020/11/12 22:03:18 by besellem         ###   ########.fr       */
+/*   Created: 2020/11/12 20:21:20 by besellem          #+#    #+#             */
+/*   Updated: 2020/11/12 20:22:00 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	main(void)
+void	add_lstd(t_data **s, char *str)
 {
-	char	*ret;
-	char	*ret2;
-	int		orig;
-	int		mine;
+	size_t size;
 
-	mine = ft_asprintf(&ret, "%.10f", 0.);
-	orig = asprintf(&ret2, "%.10f", 0.);
-	printf("MINE [%d]: [%s]\nREAL [%d]: [%s]\n", mine, ret, orig, ret2);
+	if (!str || ((size = ft_strlen(str)) == 0))
+		return ;
+	ft_lstd_add(s, ft_lstd_new(str, size));
+}
 
-	if (ft_strcmp(ret, ret2) == 0)
-		printf("\033[1;32mSUCCESS !\033[0m\n");
-	else
-		printf("\033[1;31mERROR\033[0m\n");
-	free(ret);
-	free(ret2);
-	return (0);
+void	ft_lstd_get_size(t_data **s, int *size)
+{
+	t_data	**tracer;
+
+	tracer = s;
+	while (*tracer)
+	{
+		*size += (*tracer)->size;
+		tracer = &(*tracer)->next;
+	}
 }

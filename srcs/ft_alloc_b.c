@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alloc_u.c                                       :+:      :+:    :+:   */
+/*   ft_alloc_b.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 16:58:37 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 20:39:35 by besellem         ###   ########.fr       */
+/*   Created: 2020/11/12 21:49:58 by besellem          #+#    #+#             */
+/*   Updated: 2020/11/12 21:51:14 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-t_ull	u_spec(t_indicators *t, va_list ap)
-{
-	unsigned long long n;
-
-	if (t->hh)
-		n = (unsigned char)va_arg(ap, unsigned int);
-	else if (t->h)
-		n = (unsigned short)va_arg(ap, unsigned int);
-	else if (t->l)
-		n = (unsigned long)va_arg(ap, unsigned long);
-	else if (t->ll)
-		n = va_arg(ap, unsigned long long);
-	else
-		n = va_arg(ap, unsigned int);
-	return (n);
-}
-
-void	ft_alloc_u(t_data **s, t_indicators t, va_list ap)
+void	ft_alloc_b(t_data **s, t_indicators t, va_list ap)
 {
 	char				*data;
 	unsigned long long	n;
 
 	n = u_spec(&t, ap);
-	data = conv_d(t, n, 0, "0123456789");
+	data = conv_d(t, n, 0, "01");
 	add_lstd(s, data);
 	ft_free(1, data);
 }

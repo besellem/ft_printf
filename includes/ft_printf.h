@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:02:45 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/09 02:43:48 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/12 21:51:41 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef	struct	s_data
 	struct s_data	*next;
 }				t_data;
 
-typedef	unsigned long long t_ullong;
+typedef	unsigned long long t_ull;
 
 /*
 ** -- PROTOTYPES --
@@ -60,10 +60,15 @@ typedef	unsigned long long t_ullong;
 */
 int				ft_len_base(long long n, int base);
 void			*ft_malloc_c(size_t size, char c);
+char			*ft_mcat(char *dst, char *src);
 void			ft_free(size_t nb, ...);
 char			*convert_base(long long ptr, char *base);
-char			*convert_base_u(t_ullong n, char *base);
-void			add_lstd(t_data **s, char *str);
+char			*convert_base_u(t_ull n, char *base);
+char			*conv_add_sign(t_indicators t, int sign);
+char			*conv_add_z(t_indicators t, char *data, unsigned long long n,
+							int s);
+char			*conv_d(t_indicators t, unsigned long long n, int sign,
+						char *base);
 
 /*
 ** Lists
@@ -71,6 +76,8 @@ void			add_lstd(t_data **s, char *str);
 t_data			*ft_lstd_new(char *data, int size);
 t_data			*ft_lstd_last(t_data *lst);
 void			ft_lstd_add(t_data **lst, t_data *new);
+void			add_lstd(t_data **s, char *str);
+void			ft_lstd_get_size(t_data **s, int *size);
 void			ft_lstd_print(t_data **s, int *size, int fd);
 void			ft_lstd_clear(t_data **lst);
 
@@ -96,9 +103,9 @@ char			*prec_padding(long long nbr, int pad, char *base);
 ** Alloc
 */
 t_types			*ft_init_conversions(void);
-t_ullong		u_spec(t_indicators *t, va_list ap);
+t_ull			u_spec(t_indicators *t, va_list ap);
 char			*ft_check_indic_d(long long nbr, t_indicators t, char *base);
-char			*ft_check_indic_u(t_ullong nbr, t_indicators t, char *base);
+char			*ft_check_indic_u(t_ull nbr, t_indicators t, char *base);
 void			ft_alloc_mod(t_data **s, t_indicators t);
 void			ft_alloc_c(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_s(t_data **s, t_indicators	t, va_list ap);
@@ -106,10 +113,12 @@ void			ft_alloc_p(t_data **s, t_indicators	t, va_list ap);
 void			ft_alloc_d(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_i(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_u(t_data **s, t_indicators t, va_list ap);
-void			ft_alloc_o(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_hex_min(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_hex_maj(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_f(t_data **s, t_indicators t, va_list ap);
+void			ft_alloc_n(t_data **s, va_list ap);
+void			ft_alloc_o(t_data **s, t_indicators t, va_list ap);
+void			ft_alloc_b(t_data **s, t_indicators t, va_list ap);
 
 int				ft_alloc_txt(const char *format, t_data **s);
 int				ft_alloc_format(const char *format, va_list ap, t_data **s,

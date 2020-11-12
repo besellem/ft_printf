@@ -6,23 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 21:28:41 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/02 21:53:02 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/12 20:21:51 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-static void	ft_lstd_get_size(t_data **s, int *size)
-{
-	t_data	**tracer;
-
-	tracer = s;
-	while (*tracer)
-	{
-		*size += (*tracer)->size;
-		tracer = &(*tracer)->next;
-	}
-}
 
 static void	fill_ret(t_data **s, char **ret)
 {

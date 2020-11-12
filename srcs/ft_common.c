@@ -6,11 +6,27 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 01:11:34 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/09 02:36:56 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/12 20:36:46 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+char	*ft_mcat(char *dst, char *src)
+{
+	char	*new;
+	size_t	len;
+
+	len = (dst ? ft_strlen(dst) : 0) + (src ? ft_strlen(src) : 0);
+	if (!(new = (char *)ft_calloc(len + 1, sizeof(char))))
+		return (NULL);
+	if (dst)
+		ft_strcat(new, dst);
+	if (src)
+		ft_strcat(new, src);
+	ft_free(2, dst, src);
+	return (new);
+}
 
 int		ft_len_base(long long n, int base)
 {
@@ -28,36 +44,17 @@ int		ft_len_base(long long n, int base)
 	return (len);
 }
 
-void	*ft_malloc_c(size_t size, char c)
+int		ft_ulen_base(unsigned long long n, int base)
 {
-	char	*str;
-	size_t	i;
+	int len;
 
-	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
-		return (NULL);
-	i = 0;
-	while (i < size)
+	len = 1;
+	while (n / base > 0)
 	{
-		str[i] = c;
-		++i;
+		n /= base;
+		++len;
 	}
-	str[i] = '\0';
-	return (str);
-}
-
-void	ft_free(size_t nb, ...)
-{
-	va_list	ap;
-	void	*ptr;
-
-	va_start(ap, nb);
-	while (nb-- > 0)
-	{
-		ptr = va_arg(ap, void *);
-		if (ptr)
-			free(ptr);
-	}
-	va_end(ap);
+	return (len);
 }
 
 char	*convert_base(long long n, char *base)
@@ -86,23 +83,21 @@ char	*convert_base(long long n, char *base)
 	return (data);
 }
 
-char	*convert_base_u(t_ullong n, char *base)
+char	*convert_base_u(t_ull n, char *base)
 {
-	char		*data;
-	t_ullong	div;
-	t_ullong	len;
-	int			i;
+	char	*data;
+	t_ull	div;
+	t_ull	len;
+	int		i;
 
-	len = ft_len_base(n, ft_strlen(base)) + (n < 0 ? 1 : 0) + 1;
-	if (!(data = (char *)malloc(sizeof(char) * len)))
+	len = ft_ulen_base(n, ft_strlen(base));
+	if (!(data = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	len = ft_strlen(base);
-	i = -1;
-	if (n < 0 && (n = -n))
-		data[++i] = '-';
 	div = 1;
 	while (n / div >= len)
 		div *= len;
+	i = -1;
 	while (div > 0)
 	{
 		data[++i] = base[n / div % len];
@@ -110,13 +105,4 @@ char	*convert_base_u(t_ullong n, char *base)
 	}
 	data[++i] = '\0';
 	return (data);
-}
-
-void	add_lstd(t_data **s, char *str)
-{
-	size_t size;
-
-	if (!str || ((size = ft_strlen(str)) == 0))
-		return ;
-	ft_lstd_add(s, ft_lstd_new(str, size));
 }

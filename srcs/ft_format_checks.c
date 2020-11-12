@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 11:51:03 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/01 23:59:39 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/12 19:02:52 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,19 @@ int	check_wdt(const char *format, va_list ap, t_indicators *table)
 	return (ft_len_base(table->width, 10));
 }
 
+/*
+** REINIT `table->zero` in this case :
+**
+** if (table->minus == 1)
+** 		return ;
+*/
+
 int	check_zero(const char *format, va_list ap, t_indicators *table)
 {
 	if (*format && *format == '0')
 		return (0);
+	if (*format && *format == '+')
+		return (check_plus(table) - 1);
 	if (*format && *format == '*')
 	{
 		table->zero = va_arg(ap, int);
