@@ -6,7 +6,7 @@
 #    By: besellem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 21:13:07 by besellem          #+#    #+#              #
-#    Updated: 2020/11/12 22:06:02 by besellem         ###   ########.fr        #
+#    Updated: 2020/11/12 22:16:49 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ LIBFT		=	libft/libft.a
 
 SRCS		+=	srcs/ft_common.c
 SRCS		+=	srcs/ft_common2.c
+SRCS		+=	srcs/ft_common3.c
 SRCS		+=	srcs/ft_lst_common.c
 SRCS		+=	srcs/ft_lst_common2.c
 SRCS		+=	srcs/ft_init_conversions.c
@@ -29,7 +30,6 @@ SRCS		+=	srcs/ft_alloc_txt.c
 SRCS		+=	srcs/ft_alloc_format.c
 SRCS		+=	srcs/ft_format_checks.c
 SRCS		+=	srcs/ft_format_checks2.c
-SRCS		+=	srcs/ft_padding.c
 SRCS		+=	srcs/ft_alloc_mod.c
 SRCS		+=	srcs/ft_alloc_c.c
 SRCS		+=	srcs/ft_alloc_s.c

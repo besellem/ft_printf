@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:02:45 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 21:51:41 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/12 23:25:28 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ char			*conv_add_z(t_indicators t, char *data, unsigned long long n,
 							int s);
 char			*conv_d(t_indicators t, unsigned long long n, int sign,
 						char *base);
+char			*space_padding(char *data, int padding);
+int				ft_signbit_f(long double x);
+char			*conv_f(long long n, int sign);
 
 /*
 ** Lists
@@ -93,19 +96,10 @@ int				check_spce(t_indicators *table);
 int				check_plus(t_indicators *table);
 
 /*
-** Padding
-*/
-char			*space_padding(char *data, int padding);
-char			*zero_padding(long long nbr, int pad, char *base);
-char			*prec_padding(long long nbr, int pad, char *base);
-
-/*
 ** Alloc
 */
 t_types			*ft_init_conversions(void);
 t_ull			u_spec(t_indicators *t, va_list ap);
-char			*ft_check_indic_d(long long nbr, t_indicators t, char *base);
-char			*ft_check_indic_u(t_ull nbr, t_indicators t, char *base);
 void			ft_alloc_mod(t_data **s, t_indicators t);
 void			ft_alloc_c(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_s(t_data **s, t_indicators	t, va_list ap);

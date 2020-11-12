@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 02:42:55 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 21:48:25 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/13 00:02:34 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,27 @@ int			ft_round_str(char *prec, int precision)
 	}
 }
 
-int			convert_f_prec(char **ret, long double n, int precision)
+int			f_prec(char **ret, long double n, int precision, int sign)
 {
 	char	*data;
 	int		i;
 
-	n = (n < 0 ? -n : n) - (int)n;
-	i = (int)(n * 10) - (((int)n % 10) * 10) >= 5 ? 1 : 0;
+	n = (sign ? -n : n) - (long long)n;
+	i = (long long)(n * 10) - (((long long)n % 10) * 10) >= 5 ? 1 : 0;
 	if (precision == 0)
-		return (!i && n < 0. ? 1 : i);
+		return (!i && sign ? 1 : i);
 	if (!(data = (char *)ft_calloc(precision + 2, sizeof(char))))
 		return (0);
 	i = -1;
 	data[++i] = '.';
 	while (i < precision)
 	{
-		n = (n * 10) - (((int)n % 10) * 10);
-		data[++i] = (int)n % 10 + 48;
+		n = (n * 10) - (((long long)n % 10) * 10);
+		data[++i] = (long long)n % 10 + 48;
 	}
 	data[++i] = '\0';
 	i = 0;
-	if (((int)((n * 10) - (((int)n % 10) * 10)) % 10) >= 5)
+	if (((long long)((n * 10) - (((long long)n % 10) * 10)) % 10) >= 5)
 		i = ft_round_str(data, precision);
 	*ret = data;
 	return (i);
@@ -60,12 +60,13 @@ char		*convert_f(long double n, int prec, int htag)
 	char	*nbr;
 	char	*pr;
 	int		len;
+	int		sign;
 
 	pr = NULL;
+	sign = n == 0. ? ft_signbit_f(n) : (n < 0);
 	prec = prec < 0 ? 6 : prec;
-	n += n < 0. ? -convert_f_prec(&pr, -n, prec) : convert_f_prec(&pr, n, prec);
-	nbr = (long)n == 0 && n < 0. ? ft_strdup("-0") : NULL;
-	nbr = nbr == NULL ? convert_base((long long)n, "0123456789") : nbr;
+	n += sign ? -f_prec(&pr, n, prec, sign) : f_prec(&pr, n, prec, sign);
+	nbr = conv_f((long long)n, sign);
 	len = ft_strlen(nbr) + prec + (prec == 0 && htag ? 1 : 0);
 	if (!(data = (char *)ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
