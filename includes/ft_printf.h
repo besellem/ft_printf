@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:02:45 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 23:25:28 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:15:45 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char			*conv_d(t_indicators t, unsigned long long n, int sign,
 						char *base);
 char			*space_padding(char *data, int padding);
 int				ft_signbit_f(long double x);
-char			*conv_f(long long n, int sign);
+char			*convert_to_float(long long n, int sign);
 
 /*
 ** Lists
@@ -83,6 +83,7 @@ void			add_lstd(t_data **s, char *str);
 void			ft_lstd_get_size(t_data **s, int *size);
 void			ft_lstd_print(t_data **s, int *size, int fd);
 void			ft_lstd_clear(t_data **lst);
+void			ft_fill_ret(t_data **s, char **ret);
 
 /*
 ** Flags checks and inits
@@ -94,6 +95,19 @@ int				check_prec(const char *format, va_list ap, t_indicators *table);
 int				check_htag(t_indicators *table);
 int				check_spce(t_indicators *table);
 int				check_plus(t_indicators *table);
+
+/*
+** Sub-Specifiers conversions
+*/
+long long		d_spec(t_indicators *t, va_list ap);
+t_ull			u_spec(t_indicators *t, va_list ap);
+long double		f_spec(t_indicators *t, va_list ap);
+
+/*
+** Specialized
+*/
+int				ft_round_str(char *str, int precision);
+int				prec_zero_case(long double n, int sign);
 
 /*
 ** Alloc
@@ -125,10 +139,22 @@ t_data			*ft_parse_format(const char *format, va_list ap);
 int				ft_process(const char *format, va_list ap, int fd);
 
 /*
-** printf functions
+** ft_printf functions family
 */
 int				ft_printf(const char *format, ...);
-int				ft_dprintf(int fd, const char *format, ...);
 int				ft_asprintf(char **ret, const char *format, ...);
+int				ft_dprintf(int fd, const char *format, ...);
+/*
+** To add:
+**
+** int			ft_vdprintf(int fd, const char *format, va_list ap);
+** int			ft_vasprintf(char **ret, const char *format, va_list ap);
+** int			ft_vprintf(const char *format, va_list ap);
+** int			ft_vsprintf(char *str, const char *format, va_list ap);
+** int			ft_vsnprintf(char *str, size_t size, const char *format,
+**							va_list ap);
+** int			ft_sprintf(char *str, const char *format, ...);
+** int			ft_snprintf(char *str, size_t size, const char *format, ...);
+*/
 
 #endif

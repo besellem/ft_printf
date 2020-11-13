@@ -6,7 +6,7 @@
 #    By: besellem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 21:13:07 by besellem          #+#    #+#              #
-#    Updated: 2020/11/12 22:16:49 by besellem         ###   ########.fr        #
+#    Updated: 2020/11/13 15:16:00 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS		+=	srcs/ft_common3.c
 SRCS		+=	srcs/ft_lst_common.c
 SRCS		+=	srcs/ft_lst_common2.c
 SRCS		+=	srcs/ft_init_conversions.c
+SRCS		+=	srcs/ft_specifiers.c
 SRCS		+=	srcs/ft_parser.c
 SRCS		+=	srcs/ft_alloc_txt.c
 SRCS		+=	srcs/ft_alloc_format.c
@@ -40,13 +41,14 @@ SRCS		+=	srcs/ft_alloc_u.c
 SRCS		+=	srcs/ft_alloc_hex_maj.c
 SRCS		+=	srcs/ft_alloc_hex_min.c
 SRCS		+=	srcs/ft_alloc_f.c
+SRCS		+=	srcs/ft_alloc_f_utils.c
 SRCS		+=	srcs/ft_alloc_n.c
 SRCS		+=	srcs/ft_alloc_o.c
 SRCS		+=	srcs/ft_alloc_b.c
 
-SRCS		+=	srcs/ft_printf.c
-SRCS		+=	srcs/ft_dprintf.c
-SRCS		+=	srcs/ft_asprintf.c
+SRCS		+=	ft_printf_family/ft_printf.c
+SRCS		+=	ft_printf_family/ft_asprintf.c
+SRCS		+=	ft_printf_family/ft_dprintf.c
 
 ## Objects
 OBJS		=	$(SRCS:.c=.o)

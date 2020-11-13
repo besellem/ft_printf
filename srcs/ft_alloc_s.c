@@ -6,13 +6,13 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:06:02 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 21:41:52 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:18:13 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void		ft_alloc_s(t_data **s, t_indicators t, va_list ap)
+void	ft_alloc_s(t_data **s, t_indicators t, va_list ap)
 {
 	char	*data;
 	char	*sp;

@@ -6,28 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 16:58:37 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 20:39:35 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:09:45 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-t_ull	u_spec(t_indicators *t, va_list ap)
-{
-	unsigned long long n;
-
-	if (t->hh)
-		n = (unsigned char)va_arg(ap, unsigned int);
-	else if (t->h)
-		n = (unsigned short)va_arg(ap, unsigned int);
-	else if (t->l)
-		n = (unsigned long)va_arg(ap, unsigned long);
-	else if (t->ll)
-		n = va_arg(ap, unsigned long long);
-	else
-		n = va_arg(ap, unsigned int);
-	return (n);
-}
 
 void	ft_alloc_u(t_data **s, t_indicators t, va_list ap)
 {

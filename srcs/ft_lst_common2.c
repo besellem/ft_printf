@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 20:21:20 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 20:22:00 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/13 13:53:42 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ void	ft_lstd_get_size(t_data **s, int *size)
 	while (*tracer)
 	{
 		*size += (*tracer)->size;
+		tracer = &(*tracer)->next;
+	}
+}
+
+void	ft_fill_ret(t_data **s, char **ret)
+{
+	t_data	**tracer;
+
+	tracer = s;
+	while (*tracer)
+	{
+		ft_strncat(*ret, (*tracer)->data, (*tracer)->size);
 		tracer = &(*tracer)->next;
 	}
 }

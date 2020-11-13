@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 22:16:14 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 23:57:04 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/13 02:28:09 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,19 @@ int		ft_signbit_f(long double x)
 	return ((1.0 / x) != (1.0 / (x < 0 ? 1 : 0)));
 }
 
-char	*conv_f(long long n, int sign)
+char	*convert_to_float(long long n, int sign)
 {
 	char		*data;
 	long long	div;
 	int			i;
 	int			len;
 
-	len = ft_len_base(n, 10) + sign + 1;
+	len = ft_len_base(n, 10) + 1;
 	if (!(data = (char *)malloc(sizeof(char) * len)))
 		return (NULL);
 	i = -1;
 	if (sign == 1)
-	{
 		n = -n;
-		data[++i] = '-';
-	}
 	div = 1;
 	while (n / div >= 10)
 		div *= 10;

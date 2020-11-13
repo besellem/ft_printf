@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 11:51:03 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 19:02:52 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:17:43 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_wdt(const char *format, va_list ap, t_indicators *table)
 }
 
 /*
-** REINIT `table->zero` in this case :
+** Maybe reinit `table->zero` in this case :
 **
 ** if (table->minus == 1)
 ** 		return ;
