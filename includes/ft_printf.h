@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:02:45 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/13 15:15:45 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/14 20:42:10 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,12 +144,13 @@ int				ft_process(const char *format, va_list ap, int fd);
 int				ft_printf(const char *format, ...);
 int				ft_asprintf(char **ret, const char *format, ...);
 int				ft_dprintf(int fd, const char *format, ...);
+
+int				ft_vprintf(const char *format, va_list ap);
+int				ft_vasprintf(char **ret, const char *format, va_list ap);
+int				ft_vdprintf(int fd, const char *format, va_list ap);
 /*
 ** To add:
 **
-** int			ft_vdprintf(int fd, const char *format, va_list ap);
-** int			ft_vasprintf(char **ret, const char *format, va_list ap);
-** int			ft_vprintf(const char *format, va_list ap);
 ** int			ft_vsprintf(char *str, const char *format, va_list ap);
 ** int			ft_vsnprintf(char *str, size_t size, const char *format,
 **							va_list ap);

@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dprintf.c                                       :+:      :+:    :+:   */
+/*   ft_vdprintf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 21:26:27 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/14 20:39:42 by besellem         ###   ########.fr       */
+/*   Created: 2020/11/14 20:37:56 by besellem          #+#    #+#             */
+/*   Updated: 2020/11/14 20:38:29 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ft_dprintf(int fd, const char *format, ...)
+int	ft_vdprintf(int fd, const char *format, va_list ap)
 {
-	va_list	ap;
-	int		size;
+	int size;
 
-	va_start(ap, format);
-	size = ft_vdprintf(fd, format, ap);
-	va_end(ap);
+	size = ft_process(format, ap, fd);
 	return (size);
 }

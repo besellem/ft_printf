@@ -6,11 +6,12 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 23:10:19 by bensellem         #+#    #+#             */
-/*   Updated: 2020/11/14 19:15:08 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/14 21:02:41 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <fcntl.h>
 
 int	main(void)
 {
@@ -19,6 +20,8 @@ int	main(void)
 	int		orig;
 	int		mine;
 
+	ret = NULL;
+	ret2 = NULL;
 	mine = ft_asprintf(&ret, "Hello World !");
 	orig = asprintf(&ret2, "Hello World !");
 	printf("MINE [%d]: [%s]\nREAL [%d]: [%s]\n", mine, ret, orig, ret2);
