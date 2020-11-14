@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 16:13:26 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 17:05:30 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/14 18:54:13 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_data	*ft_parse_format(const char *format, va_list ap)
 		else
 			i += ft_alloc_txt(format + i, &data);
 	}
+	free(t);
 	return (data);
 }
 
@@ -43,13 +44,10 @@ int		ft_process(const char *format, va_list ap, int fd)
 {
 	int		size;
 	t_data	*data;
-	va_list	ap2;
 
-	va_copy(ap2, ap);
 	size = 0;
-	data = ft_parse_format(format, ap2);
+	data = ft_parse_format(format, ap);
 	ft_lstd_print(&data, &size, fd);
 	ft_lstd_clear(&data);
-	va_end(ap2);
 	return (size);
 }

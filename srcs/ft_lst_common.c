@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:57:23 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 21:33:01 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/14 19:06:55 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ void	ft_lstd_clear(t_data **lst)
 	{
 		if ((*lst)->data)
 			free((*lst)->data);
-		tmp = *lst;
-		*lst = tmp->next;
+		tmp = (*lst)->next;
+		free(*lst);
+		*lst = tmp;
 	}
 	*lst = NULL;
 }
