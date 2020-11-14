@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:02:45 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/14 20:42:10 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/14 22:36:24 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ t_types			*ft_init_conversions(void);
 t_ull			u_spec(t_indicators *t, va_list ap);
 void			ft_alloc_mod(t_data **s, t_indicators t);
 void			ft_alloc_c(t_data **s, t_indicators t, va_list ap);
-void			ft_alloc_s(t_data **s, t_indicators	t, va_list ap);
-void			ft_alloc_p(t_data **s, t_indicators	t, va_list ap);
+void			ft_alloc_s(t_data **s, t_indicators t, va_list ap);
+void			ft_alloc_p(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_d(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_i(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_u(t_data **s, t_indicators t, va_list ap);
@@ -142,20 +142,16 @@ int				ft_process(const char *format, va_list ap, int fd);
 ** ft_printf functions family
 */
 int				ft_printf(const char *format, ...);
+int				ft_sprintf(char *str, const char *format, ...);
+int				ft_snprintf(char *str, size_t size, const char *format, ...);
 int				ft_asprintf(char **ret, const char *format, ...);
 int				ft_dprintf(int fd, const char *format, ...);
 
 int				ft_vprintf(const char *format, va_list ap);
+int				ft_vsprintf(char *str, const char *format, va_list ap);
+int				ft_vsnprintf(char *str, size_t size, const char *format,
+							va_list ap);
 int				ft_vasprintf(char **ret, const char *format, va_list ap);
 int				ft_vdprintf(int fd, const char *format, va_list ap);
-/*
-** To add:
-**
-** int			ft_vsprintf(char *str, const char *format, va_list ap);
-** int			ft_vsnprintf(char *str, size_t size, const char *format,
-**							va_list ap);
-** int			ft_sprintf(char *str, const char *format, ...);
-** int			ft_snprintf(char *str, size_t size, const char *format, ...);
-*/
 
 #endif

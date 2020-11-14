@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 23:10:19 by bensellem         #+#    #+#             */
-/*   Updated: 2020/11/14 22:37:33 by besellem         ###   ########.fr       */
+/*   Created: 2020/11/14 21:34:05 by besellem          #+#    #+#             */
+/*   Updated: 2020/11/14 21:35:57 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <fcntl.h>
 
-int	main(void)
+int	ft_sprintf(char *str, const char *format, ...)
 {
-	char	ret[20];
-	char	ret2[20];
-	int		orig;
-	int		mine;
+	va_list	ap;
+	int		size;
 
-	mine = ft_snprintf(ret, 10, "Hello Friend");
-	orig = snprintf(ret2, 10, "Hello Friend");
-	printf("MINE [%d]: [%s]\nREAL [%d]: [%s]\n", mine, ret, orig, ret2);
-
-	if (ft_strcmp(ret, ret2) == 0)
-		printf("\033[1;32mSUCCESS !\033[0m\n");
-	else
-		printf("\033[1;31mERROR\033[0m\n");
-	// free(ret);
-	// free(ret2);
-	return (0);
+	va_start(ap, format);
+	size = ft_vsprintf(str, format, ap);
+	va_end(ap);
+	return (size);
 }
