@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:02:45 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/14 22:36:24 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/14 22:51:23 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void			ft_alloc_u(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_hex_min(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_hex_maj(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_f(t_data **s, t_indicators t, va_list ap);
-void			ft_alloc_n(t_data **s, va_list ap);
+void			ft_alloc_n(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_o(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_b(t_data **s, t_indicators t, va_list ap);
 

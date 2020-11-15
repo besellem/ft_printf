@@ -6,7 +6,7 @@
 #    By: besellem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 21:13:07 by besellem          #+#    #+#              #
-#    Updated: 2020/11/13 15:16:00 by besellem         ###   ########.fr        #
+#    Updated: 2020/11/15 01:15:45 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,15 @@ SRCS		+=	srcs/ft_alloc_o.c
 SRCS		+=	srcs/ft_alloc_b.c
 
 SRCS		+=	ft_printf_family/ft_printf.c
+SRCS		+=	ft_printf_family/ft_sprintf.c
+SRCS		+=	ft_printf_family/ft_snprintf.c
 SRCS		+=	ft_printf_family/ft_asprintf.c
 SRCS		+=	ft_printf_family/ft_dprintf.c
+SRCS		+=	ft_printf_family/ft_vprintf.c
+SRCS		+=	ft_printf_family/ft_vsprintf.c
+SRCS		+=	ft_printf_family/ft_vsnprintf.c
+SRCS		+=	ft_printf_family/ft_vasprintf.c
+SRCS		+=	ft_printf_family/ft_vdprintf.c
 
 ## Objects
 OBJS		=	$(SRCS:.c=.o)
