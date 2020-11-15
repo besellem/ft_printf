@@ -6,7 +6,7 @@
 #    By: besellem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 21:13:07 by besellem          #+#    #+#              #
-#    Updated: 2020/11/15 12:05:16 by besellem         ###   ########.fr        #
+#    Updated: 2020/11/15 17:39:01 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ RM			=	rm -f
 			$(MUTE) $(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(INCS)
 
 $(NAME):	$(OBJS)
-			$(MUTE) cd libft && make bonus && make clean
+			$(MUTE) cd libft && make
 			$(MUTE) $(LIBC) $(NAME) $(OBJS)
 
 all:		$(NAME)
