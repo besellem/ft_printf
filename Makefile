@@ -6,7 +6,7 @@
 #    By: besellem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 21:13:07 by besellem          #+#    #+#              #
-#    Updated: 2020/11/15 01:15:45 by besellem         ###   ########.fr        #
+#    Updated: 2020/11/15 12:05:16 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		=	libftprintf.a
 EXEC		=	ft_printf_test
 
 ## Mandatory
-INCS		=	includes/ft_printf.h
+INCS		=	inc/ft_printf.h
 
 LIBFT		=	libft/libft.a
 
@@ -25,8 +25,8 @@ SRCS		+=	srcs/ft_common3.c
 SRCS		+=	srcs/ft_lst_common.c
 SRCS		+=	srcs/ft_lst_common2.c
 SRCS		+=	srcs/ft_init_conversions.c
-SRCS		+=	srcs/ft_specifiers.c
 SRCS		+=	srcs/ft_parser.c
+SRCS		+=	srcs/ft_specifiers.c
 SRCS		+=	srcs/ft_alloc_txt.c
 SRCS		+=	srcs/ft_alloc_format.c
 SRCS		+=	srcs/ft_format_checks.c

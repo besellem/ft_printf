@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 22:18:36 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 19:20:45 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:14 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 int		is_conversion(const char *s, t_types *t)
 {

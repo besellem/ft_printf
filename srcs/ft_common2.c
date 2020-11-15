@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 20:19:44 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 20:38:13 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:44 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 void	*ft_malloc_c(size_t size, char c)
 {
@@ -44,7 +44,7 @@ void	ft_free(size_t nb, ...)
 	va_end(ap);
 }
 
-char	*conv_add_z(t_indicators t, char *data, unsigned long long n, int s)
+char	*conv_add_z(t_indicators t, char *data, t_ull n, int s)
 {
 	char	*z;
 	int		len;
@@ -80,7 +80,7 @@ char	*conv_add_sign(t_indicators t, int sign)
 	return (sgn);
 }
 
-char	*conv_d(t_indicators t, unsigned long long n, int sign, char *base)
+char	*conv_d(t_indicators t, t_ull n, int sign, char *base)
 {
 	char *r;
 	char *sp;

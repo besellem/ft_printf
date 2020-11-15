@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 16:20:39 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/02 21:12:25 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:30 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 static char	*convert_p(long long ptr)
 {

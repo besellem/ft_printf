@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 04:07:12 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/14 18:52:15 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:56 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 static void	add_conversion(t_types *t, char type, void (*f)())
 {

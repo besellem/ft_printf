@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 16:23:35 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 20:31:21 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:17 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 char	*conv_add_xmaz(t_indicators t, char *d, unsigned long long n, int s)
 {

@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 22:16:14 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/13 02:28:09 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:46 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 char	*space_padding(char *data, int padding)
 {

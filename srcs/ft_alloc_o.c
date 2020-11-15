@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 10:58:50 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 21:32:16 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:28 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 char	*conv_add_oz(t_indicators t, char *d, unsigned long long n, int s)
 {

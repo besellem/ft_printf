@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 21:26:27 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/14 20:39:42 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:01:31 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 int	ft_dprintf(int fd, const char *format, ...)
 {

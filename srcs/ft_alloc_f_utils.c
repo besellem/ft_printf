@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:06:12 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/13 15:15:03 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:08 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 int	ft_round_str(char *str, int precision)
 {

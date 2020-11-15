@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:36:50 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/08 22:05:22 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:36 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 static int	len_alloc(const char *format)
 {

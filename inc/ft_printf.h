@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:02:45 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/14 22:51:23 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 11:56:41 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,17 @@ void			ft_free(size_t nb, ...);
 char			*convert_base(long long ptr, char *base);
 char			*convert_base_u(t_ull n, char *base);
 char			*conv_add_sign(t_indicators t, int sign);
-char			*conv_add_z(t_indicators t, char *data, unsigned long long n,
-							int s);
-char			*conv_d(t_indicators t, unsigned long long n, int sign,
-						char *base);
+char			*conv_add_z(t_indicators t, char *data, t_ull n, int s);
+char			*conv_d(t_indicators t, t_ull n, int sign, char *base);
 char			*space_padding(char *data, int padding);
 int				ft_signbit_f(long double x);
 char			*convert_to_float(long long n, int sign);
+
+/*
+** Float Specialized
+*/
+int				ft_round_str(char *str, int precision);
+int				prec_zero_case(long double n, int sign);
 
 /*
 ** Lists
@@ -86,15 +90,15 @@ void			ft_lstd_clear(t_data **lst);
 void			ft_fill_ret(t_data **s, char **ret);
 
 /*
-** Flags checks and inits
+** Flags checks
 */
-int				check_min(t_indicators *table);
-int				check_wdt(const char *format, va_list ap, t_indicators *table);
-int				check_zero(const char *format, va_list ap, t_indicators *table);
-int				check_prec(const char *format, va_list ap, t_indicators *table);
 int				check_htag(t_indicators *table);
 int				check_spce(t_indicators *table);
 int				check_plus(t_indicators *table);
+int				check_min(t_indicators *table);
+int				check_zero(const char *format, va_list ap, t_indicators *table);
+int				check_wdt(const char *format, va_list ap, t_indicators *table);
+int				check_prec(const char *format, va_list ap, t_indicators *table);
 
 /*
 ** Sub-Specifiers conversions
@@ -104,16 +108,10 @@ t_ull			u_spec(t_indicators *t, va_list ap);
 long double		f_spec(t_indicators *t, va_list ap);
 
 /*
-** Specialized
-*/
-int				ft_round_str(char *str, int precision);
-int				prec_zero_case(long double n, int sign);
-
-/*
 ** Alloc
 */
+t_data			*ft_parse_format(const char *format, va_list ap);
 t_types			*ft_init_conversions(void);
-t_ull			u_spec(t_indicators *t, va_list ap);
 void			ft_alloc_mod(t_data **s, t_indicators t);
 void			ft_alloc_c(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_s(t_data **s, t_indicators t, va_list ap);
@@ -128,18 +126,13 @@ void			ft_alloc_n(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_o(t_data **s, t_indicators t, va_list ap);
 void			ft_alloc_b(t_data **s, t_indicators t, va_list ap);
 
+int				ft_process(const char *format, va_list ap, int fd);
 int				ft_alloc_txt(const char *format, t_data **s);
 int				ft_alloc_format(const char *format, va_list ap, t_data **s,
 								t_types	*t);
 
 /*
-** Parser
-*/
-t_data			*ft_parse_format(const char *format, va_list ap);
-int				ft_process(const char *format, va_list ap, int fd);
-
-/*
-** ft_printf functions family
+** FT_PRINTF Family
 */
 int				ft_printf(const char *format, ...);
 int				ft_sprintf(char *str, const char *format, ...);

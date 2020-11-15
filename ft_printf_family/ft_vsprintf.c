@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 21:32:13 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/14 22:09:36 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:01:52 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 static int	vsprintf_process(char *str, const char *fmt, va_list ap)
 {

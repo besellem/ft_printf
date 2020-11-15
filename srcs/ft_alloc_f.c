@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 02:42:55 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/13 15:16:57 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:10 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 int		f_prec(char **ret, long double n, int precision, int sign)
 {

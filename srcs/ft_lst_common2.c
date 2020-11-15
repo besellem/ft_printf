@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 20:21:20 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/13 13:53:42 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:03:01 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 void	add_lstd(t_data **s, char *str)
 {

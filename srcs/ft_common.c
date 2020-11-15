@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 01:11:34 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/12 20:36:46 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:41 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 char	*ft_mcat(char *dst, char *src)
 {

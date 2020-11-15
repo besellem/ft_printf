@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 13:20:09 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/14 23:25:35 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:26 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 void	*n_spec(t_indicators *t, va_list ap)
 {

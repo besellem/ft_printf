@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 11:51:03 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/13 15:17:43 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:50 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 int	check_min(t_indicators *table)
 {

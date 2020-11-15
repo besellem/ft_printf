@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 17:43:58 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/08 21:21:16 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:02:24 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 void	ft_alloc_mod(t_data **s, t_indicators t)
 {

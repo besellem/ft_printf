@@ -6,11 +6,11 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 16:13:26 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/14 18:54:13 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:03:05 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 t_data	*ft_parse_format(const char *format, va_list ap)
 {
