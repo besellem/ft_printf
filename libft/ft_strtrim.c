@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 21:53:35 by besellem          #+#    #+#             */
-/*   Updated: 2020/09/13 22:06:53 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/16 23:11:44 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,22 @@ char				*ft_strtrim(char const *s1, char const *set)
 	unsigned int	tail;
 	unsigned int	i;
 
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
 	head = head_index(s1, set);
+	if (!s1[head])
+		return (ft_strdup("\0"));
 	tail = tail_index(s1, set);
-	if (!(new = (char *)malloc(sizeof(char) * (tail - head + 1))))
+	if (!(new = (char *)malloc(sizeof(char) * (tail - head + 2))))
 		return (NULL);
 	i = 0;
-	while (head <= tail)
-		new[i++] = s1[head++];
+	while (i < tail - head + 1)
+	{
+		new[i] = s1[head + i];
+		++i;
+	}
 	new[i] = '\0';
 	return (new);
 }

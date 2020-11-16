@@ -6,14 +6,14 @@
 #    By: besellem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/13 02:01:30 by besellem          #+#    #+#              #
-#    Updated: 2020/11/15 16:50:04 by besellem         ###   ########.fr        #
+#    Updated: 2020/11/16 23:41:25 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 MUTE		=	@
 NAME		=	libft.a
 
-## Mandatory
+## Main srcs
 SRCS		+=	ft_atoi.c
 SRCS		+=	ft_bzero.c
 SRCS		+=	ft_calloc.c
@@ -49,8 +49,7 @@ SRCS		+=	ft_substr.c
 SRCS		+=	ft_tolower.c
 SRCS		+=	ft_toupper.c
 
-## Bonus
-# List Bonus
+# List
 SRCS	+=	ft_lstadd_back.c
 SRCS	+=	ft_lstadd_front.c
 SRCS	+=	ft_lstclear.c

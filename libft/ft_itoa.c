@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 22:27:52 by besellem          #+#    #+#             */
-/*   Updated: 2020/09/13 22:42:47 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/16 21:26:04 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int		nblen(unsigned int nb)
 {
 	int len;
 
-	len = 0;
-	while (nb > 0)
+	len = 1;
+	while (nb / 10 > 0)
 	{
 		++len;
 		nb /= 10;
@@ -27,7 +27,7 @@ static int		nblen(unsigned int nb)
 
 static size_t	power(unsigned int nb)
 {
-	unsigned int pow;
+	size_t pow;
 
 	pow = 1;
 	while (nb / pow >= 10)

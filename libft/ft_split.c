@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 22:07:09 by besellem          #+#    #+#             */
-/*   Updated: 2020/09/13 22:20:28 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/16 21:05:23 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char		**ft_split(char const *s, char c)
 	int		i;
 	int		j;
 
+	if (!s)
+		return (NULL);
 	if (!(strs = (char **)malloc(sizeof(char *) * (w_count(s, c) + 1))))
 		return (NULL);
 	i = 0;

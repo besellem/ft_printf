@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 23:17:25 by besellem          #+#    #+#             */
-/*   Updated: 2020/09/13 23:19:44 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/16 22:16:10 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list *last;
-
-	last = lst;
-	while (last->next)
-		last = last->next;
-	return (last);
+	if (lst)
+		while (lst->next)
+			lst = lst->next;
+	return (lst);
 }

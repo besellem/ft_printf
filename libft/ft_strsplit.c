@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 15:51:25 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/15 16:49:43 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/16 23:39:46 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ char				**ft_strsplit(char *str, char *charset)
 	int		i;
 	int		j;
 
+	if (!str)
+		return (NULL);
 	if (!(strs = (char **)malloc(sizeof(char *) * (ft_len(str, charset) + 1))))
 		return (NULL);
 	i = 0;

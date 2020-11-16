@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 02:29:24 by besellem          #+#    #+#             */
-/*   Updated: 2020/09/13 21:33:33 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/16 21:48:26 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	s1 = (unsigned char *)dst;
 	s2 = (unsigned char *)src;
+	if (dst == src)
+		return (dst);
 	if (dst > src)
 	{
 		while (len-- > 0)

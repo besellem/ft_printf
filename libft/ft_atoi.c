@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 02:28:53 by besellem          #+#    #+#             */
-/*   Updated: 2020/09/13 02:28:54 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/16 21:31:02 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_atoi(const char *str)
 		if (*str++ == '-')
 			min = -1;
 	nb = 0;
-	while (*str >= '0' && *str <= '9')
+	while (*str && *str >= '0' && *str <= '9')
 		nb = nb * 10 + *str++ - 48;
 	return (nb * min);
 }
