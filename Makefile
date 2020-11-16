@@ -6,7 +6,7 @@
 #    By: besellem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 21:13:07 by besellem          #+#    #+#              #
-#    Updated: 2020/11/15 17:39:01 by besellem         ###   ########.fr        #
+#    Updated: 2020/11/16 16:32:53 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ SRCS		+=	ft_printf_family/ft_vdprintf.c
 OBJS		=	$(SRCS:.c=.o)
 
 ## Commands
-CC			=	gcc
+CC			=	clang
 CFLAGS		=	-Wall -Wextra -Werror
 SFLAGS		=	-fsanitize=address
 LIBC		=	ar rc
@@ -72,12 +72,13 @@ RM			=	rm -f
 
 $(NAME):	$(OBJS)
 			$(MUTE) cd libft && make
+			$(MUTE) cp $(LIBFT) . && mv libft.a $(NAME)
 			$(MUTE) $(LIBC) $(NAME) $(OBJS)
 
 all:		$(NAME)
 
 test:		all
-			$(MUTE) $(CC) $(CFLAGS) $(SFLAGS) test/main.c $(NAME) $(LIBFT) -o $(EXEC)
+			$(MUTE) $(CC) $(CFLAGS) $(SFLAGS) test/main.c $(NAME) -o $(EXEC)
 
 clean:
 			$(MUTE) $(RM) $(OBJS)
@@ -85,7 +86,6 @@ clean:
 
 fclean:		clean
 			$(MUTE) $(RM) $(NAME)
-			$(MUTE) $(RM) $(LIBFT)
 			$(MUTE) $(RM) $(EXEC)
 			$(MUTE) cd libft && make fclean
 
