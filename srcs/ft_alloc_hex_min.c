@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_alloc_hex_min.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 16:23:26 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/15 12:01:08 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/18 16:06:15 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-char	*conv_add_xmiz(t_indicators t, char *d, unsigned long long n, int s)
+static char	*conv_add_xmiz(t_indicators t, char *d, unsigned long long n, int s)
 {
 	char	*z;
 	int		len;
@@ -35,7 +35,7 @@ char	*conv_add_xmiz(t_indicators t, char *d, unsigned long long n, int s)
 	return (z);
 }
 
-char	*conv_x_min(t_indicators t, unsigned long long n, int sign)
+char		*conv_x(t_indicators t, unsigned long long n, int sign)
 {
 	char *r;
 	char *sp;
@@ -55,13 +55,13 @@ char	*conv_x_min(t_indicators t, unsigned long long n, int sign)
 	return (r);
 }
 
-void	ft_alloc_hex_min(t_data **s, t_indicators t, va_list ap)
+void		ft_alloc_hex_min(t_data **s, t_indicators t, va_list ap)
 {
 	char				*data;
 	unsigned long long	n;
 
 	n = u_spec(&t, ap);
-	data = conv_x_min(t, n, 0);
+	data = conv_x(t, n, 0);
 	add_lstd(s, data);
 	ft_free(1, data);
 }

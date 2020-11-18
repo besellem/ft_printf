@@ -6,13 +6,13 @@
 #    By: besellem <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 21:13:07 by besellem          #+#    #+#              #
-#    Updated: 2020/11/16 16:32:53 by besellem         ###   ########.fr        #
+#    Updated: 2020/11/18 15:14:43 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 MUTE		=	@
 NAME		=	libftprintf.a
-EXEC		=	ft_printf_test
+EXEC		=	printf_test
 
 ## Mandatory
 INCS		=	inc/ft_printf.h
@@ -77,7 +77,7 @@ $(NAME):	$(OBJS)
 
 all:		$(NAME)
 
-test:		all
+test:		$(NAME)
 			$(MUTE) $(CC) $(CFLAGS) $(SFLAGS) test/main.c $(NAME) -o $(EXEC)
 
 clean:

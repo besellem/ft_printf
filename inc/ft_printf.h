@@ -6,7 +6,7 @@
 /*   By: besellem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 21:02:45 by besellem          #+#    #+#             */
-/*   Updated: 2020/11/15 11:56:41 by besellem         ###   ########.fr       */
+/*   Updated: 2020/11/17 14:20:52 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char			*convert_base_u(t_ull n, char *base);
 char			*conv_add_sign(t_indicators t, int sign);
 char			*conv_add_z(t_indicators t, char *data, t_ull n, int s);
 char			*conv_d(t_indicators t, t_ull n, int sign, char *base);
+char			*conv_x(t_indicators t, unsigned long long n, int sign);
 char			*space_padding(char *data, int padding);
 int				ft_signbit_f(long double x);
 char			*convert_to_float(long long n, int sign);
