@@ -1,6 +1,9 @@
 # ft_printf
 Recreating the printf functions in C
 
+## WARNING
+This repo is no longer updated. To get the newest version, check my other repo [https://github.com/besellem/libft.git]
+
 ## Prototypes
 ```c
 int	ft_printf(const char *format, ...);
