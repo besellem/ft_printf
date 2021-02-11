@@ -1,0 +1,6 @@
+*.txt
+.vscode/
+*.sh
+*.o
+*.a
+*.dSYM
