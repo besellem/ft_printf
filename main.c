@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/02/12 00:48:35 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/02 23:58:06 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@ int	main(void)
 	real_size = asprintf(&ret2, "[Hello World]");
 	printf("mine[%d]: %s\n", mine_size, ret1);
 	printf("real[%d]: %s\n", real_size, ret2);
+	
+	printf("ft_printf() returned => [%d]\n", ft_printf(NULL));
+	// printf("ft_printf() returned => [%d]\n", ft_printf("%d")); /// Throw Warning (Error with -Werror)
 
 	if (ft_strcmp(ret1, ret2) == 0 && mine_size == real_size)
-		printf("\033[1;32mSUCCESS\033[0m\n");
+		printf(B_GREEN"SUCCESS\n"CLR_COLOR);
 	else
-		printf("\033[1;31mFAILURE\033[0m\n");
+		printf(B_RED"FAILURE\n"CLR_COLOR);
 	free(ret1);
 	free(ret2);
 	return (0);

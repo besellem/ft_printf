@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/02/12 00:40:25 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/02 23:27:44 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stddef.h>
+# include <stdint.h>
 # include <unistd.h>
 # include <libft.h>
 
@@ -29,27 +30,30 @@
 # define PFT_BUFSIZ 4096
 
 /*
-** -- STRUCTS & TYPEDEFS --
+** -- STRUCTS, UNIONS & TYPEDEFS --
 */
-typedef	struct	s_types
+typedef	union	u_types
 {
-	int8_t		int_8;
-	uint8_t		uint_8;
-	int16_t		int_16;
-	uint16_t	uint_16;
-	int32_t		int_32;
-	uint32_t	uint_32;
-	int64_t		int_64;
-	uint64_t	uint_64;
-	ptrdiff_t	ptr_diff;
-	size_t		sizet;
-	uintmax_t	uint_max;
+	int8_t		var_int8;
+	uint8_t		var_uint8;
+	int16_t		var_int16;
+	uint16_t	var_uint16;
+	int32_t		var_int32;
+	uint32_t	var_uint32;
+	int64_t		var_int64;
+	uint64_t	var_uint64;
+	ptrdiff_t	var_ptrdiff;
+	size_t		var_size_t;
+	ssize_t		var_ssize_t;
+	intmax_t	var_intmax;
+	uintmax_t	var_uintmax;
 }				t_types;
 
 typedef	struct	s_pft
 {
-	char		buffer[PFT_BUFSIZ + 1];
 	char		*ret;
+	char		buffer[PFT_BUFSIZ + 1];
+	int			fd;
 	int			size;
 	int			global_size;
 	t_types		type;
