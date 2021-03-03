@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:26:26 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/02 23:26:41 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/03 01:59:27 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ static int	ft_no_conversion_opti(int fd, const char *fmt, t_pft *pft)
 	}
 }
 
-static int	ft_buf(t_pft *pft, char c)
+static int	write2buf_vdprintf(t_pft *pft, char *str)
 {
 	if (pft->size < PFT_BUFSIZ)
 	{
-		pft->buffer[pft->size++] = c;
+		pft->buffer[pft->size++] = *str;
 		++pft->global_size;
 	}
 	if (pft->size == PFT_BUFSIZ)
@@ -44,34 +44,24 @@ static int	ft_buf(t_pft *pft, char c)
 		ft_bzero(pft->buffer, sizeof(char));
 		pft->size = 0;
 	}
-	return (0);
+	return (1);
+}
+
+static void	init_pft(int fd, t_pft *pft)
+{
+	ft_bzero(pft, sizeof(t_pft));
+	pft->fd = fd;
+	pft->write2buf = write2buf_vdprintf;
 }
 
 int			ft_vdprintf_internal(int fd, const char *fmt, va_list ap)
 {
 	t_pft	pft;
-	int		check;
 
-	(void)ap;
-	ft_bzero(&pft, sizeof(t_pft));
-	pft.fd = fd;
+	init_pft(fd, &pft);
 	if (ft_no_conversion_opti(fd, fmt, &pft))
 		return (pft.global_size);
-	while (*fmt)
-	{
-		check = 0;
-		if (*fmt && *fmt == '%' && ++fmt)
-			check = ft_get_conversion(&pft, fmt);
-		else
-			check = ft_buf(&pft, *fmt);
-		if (check)
-		{
-			ft_bzero(&pft, sizeof(t_pft));
-			printf("%s:%d: ERROR\n", __FILE__, __LINE__);
-			return (-1);
-		}
-		++fmt;
-	}
+	ft_printf_process(fmt, ap, &pft);
 	ft_putstr_fd(pft.ret, fd);
 	ft_putstr_fd(pft.buffer, fd);
 	return (pft.global_size);
