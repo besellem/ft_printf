@@ -6,13 +6,13 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 01:58:47 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/17 02:05:24 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:17:30 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_int64		ft_get_val_int(t_pft *pft, char *sign)
+t_int64	ft_get_val_int(t_pft *pft, char *sign)
 {
 	t_int64	nb;
 
@@ -39,9 +39,9 @@ t_int64		ft_get_val_int(t_pft *pft, char *sign)
 	return (nb);
 }
 
-t_uint64		ft_get_val_uint(t_pft *pft)
+t_uint64	ft_get_val_uint(t_pft *pft)
 {
-	t_uint64 nb;
+	t_uint64	nb;
 
 	if (spec_hh & pft->conversion.specifiers)
 		nb = (int8_t)va_arg(pft->ap, unsigned int);
@@ -64,13 +64,13 @@ t_uint64		ft_get_val_uint(t_pft *pft)
 
 long double	ft_get_val_float(t_pft *pft, char *sign)
 {
-	long double nb;
+	long double	nb;
 
 	if (spec_lf & pft->conversion.specifiers)
 		nb = va_arg(pft->ap, long double);
 	else
 		nb = va_arg(pft->ap, double);
-	if (nb < 0)			// False in doubles (cases -0 +0)
+	if (nb < 0) // False in doubles (cases -0 +0)
 		*sign = -1;
 	else
 		*sign = 1;

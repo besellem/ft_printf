@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:55 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/03 03:17:47 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:13:49 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,34 @@
 /*
 ** -- PROTOTYPES --
 */
-int	ft_printf(const char *format, ...) __attribute__((format(printf,1,2)));
+int	ft_printf(const char *format, ...) __attribute__((format(printf, 1, 2)));
 
 int	ft_dprintf(int fd,
-				const char *format, ...) __attribute__((format(printf,2,3)));
+		const char *format, ...) __attribute__((format(printf, 2, 3)));
 
 int	ft_sprintf(char *str,
-				const char *format, ...) __attribute__((format(printf,2,3)));
+		const char *format, ...) __attribute__((format(printf, 2, 3)));
 
 int	ft_snprintf(char *str, size_t size,
-				const char *format, ...) __attribute__((format(printf,3,4)));
+		const char *format, ...) __attribute__((format(printf, 3, 4)));
 
 int	ft_asprintf(char **ret,
-				const char *format, ...) __attribute__((format(printf,2,3)));
+		const char *format, ...) __attribute__((format(printf, 2, 3)));
 
 int	ft_vprintf(const char *format,
-				va_list ap) __attribute__((format(printf,1,0)));
+		va_list ap) __attribute__((format(printf, 1, 0)));
 
 int	ft_vdprintf(int fd, const char *format,
-				va_list ap) __attribute__((format(printf,2,0)));
+		va_list ap) __attribute__((format(printf, 2, 0)));
 
 int	ft_vsprintf(char *str, const char *format,
-				va_list ap) __attribute__((format(printf,2,0)));
+		va_list ap) __attribute__((format(printf, 2, 0)));
 
 int	ft_vsnprintf(char *str, size_t size, const char *format,
-				va_list ap) __attribute__((format(printf,3,0)));
+		va_list ap) __attribute__((format(printf, 3, 0)));
 
 int	ft_vasprintf(char **ret, const char *format,
-				va_list ap) __attribute__((format(printf,2,0)));
+		va_list ap) __attribute__((format(printf, 2, 0)));
 
 /*
 ** -- COLORS --

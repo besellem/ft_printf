@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:42:12 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/17 02:00:28 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:16:28 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	*get_va_arg_idx(va_list ap, int idx)
 
 void	write2buf_str(t_pft *pft, char *str)
 {
-	int i;
+	int	i;
 
 	if (!str)
 		return ;
@@ -68,7 +68,7 @@ void	write2buf_str(t_pft *pft, char *str)
 
 void	conv_p(t_pft *pft)
 {
-	const t_uint64 nb = va_arg(pft->ap, unsigned long);
+	const t_uint64	nb = va_arg(pft->ap, unsigned long);
 
 	write2buf_str(pft, "0x");
 	ft_put_uint(pft, nb, "0123456789abcdef");
@@ -76,28 +76,28 @@ void	conv_p(t_pft *pft)
 
 void	conv_x_min(t_pft *pft)
 {
-	const t_uint64 nb = ft_get_val_uint(pft);
+	const t_uint64	nb = ft_get_val_uint(pft);
 
 	ft_put_uint(pft, nb, "0123456789abcdef");
 }
 
 void	conv_x_max(t_pft *pft)
 {
-	const t_uint64 nb = ft_get_val_uint(pft);
+	const t_uint64	nb = ft_get_val_uint(pft);
 
 	ft_put_uint(pft, nb, "0123456789ABCDEF");
 }
 
 void	conv_o(t_pft *pft)
 {
-	const t_uint64 nb = ft_get_val_uint(pft);
+	const t_uint64	nb = ft_get_val_uint(pft);
 
 	ft_put_uint(pft, nb, "01234567");
 }
 
 void	conv_u(t_pft *pft)
 {
-	const t_uint64 nb = ft_get_val_uint(pft);
+	const t_uint64	nb = ft_get_val_uint(pft);
 
 	ft_put_uint(pft, nb, "0123456789");
 }
@@ -124,7 +124,7 @@ void	conv_c(t_pft *pft)
 	conv_d(pft);
 }
 
-int		ft_get_conversion(t_pft *pft, char conv)
+int	ft_get_conversion(t_pft *pft, char conv)
 {
 	const t_conv_ptrs	conv_ptrs[] = {
 		{'c', conv_c}, {'d', conv_d}, {'i', conv_i}, {'u', conv_u},
@@ -133,7 +133,7 @@ int		ft_get_conversion(t_pft *pft, char conv)
 		// {'a', conv_a}, {'n', conv_n}, {'%', conv_perc},
 		{0, NULL}
 	};
-	int			i;
+	int					i;
 
 	i = 0;
 	while (conv_ptrs[i].conversion)
@@ -148,9 +148,9 @@ int		ft_get_conversion(t_pft *pft, char conv)
 	return (0);
 }
 
-int		check_flags(t_pft *pft, const char *fmt)
+int	check_flags(t_pft *pft, const char *fmt)
 {
-	int ret;
+	int	ret;
 
 	ret = 1;
 	if (*fmt == '.')
@@ -158,9 +158,9 @@ int		check_flags(t_pft *pft, const char *fmt)
 	return (ret);
 }
 
-int		ft_parse_conversion(t_pft *pft, const char *fmt)
+int	ft_parse_conversion(t_pft *pft, const char *fmt)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	ft_bzero(&pft->conversion, sizeof(t_conv));

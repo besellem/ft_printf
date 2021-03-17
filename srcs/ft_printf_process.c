@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 01:55:17 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/17 01:50:15 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:15:21 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	ft_error(t_pft *pft)
 	ft_bzero(pft, sizeof(t_pft));
 }
 
-void		ft_printf_process(const char *fmt, va_list ap, t_pft *pft)
+void	ft_printf_process(const char *fmt, va_list ap, t_pft *pft)
 {
-	int check;
+	int	check;
 
 	(void)ap;
 	while (*fmt)

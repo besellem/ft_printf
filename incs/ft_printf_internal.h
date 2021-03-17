@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/17 02:04:39 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:14:20 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ enum	e_specifiers
 ** width:		contains a valid integer parsed from ft_printf's `format'
 ** precision:	contains a valid integer parsed from ft_printf's `format'
 */
-typedef	struct	s_conv
+typedef struct s_conv
 {
 	uint16_t	flags;
 	uint16_t	specifiers;
@@ -95,7 +95,7 @@ typedef	struct	s_conv
 	int			precision;
 }				t_conv;
 
-typedef	struct	s_pft
+typedef struct s_pft
 {
 	va_list		ap;
 	char		*ret;
@@ -111,7 +111,7 @@ typedef	struct	s_pft
 ** Used in ft_get_conversion() to execute the right function for
 ** the right conversion
 */
-typedef	struct	s_conv_ptrs
+typedef struct s_conv_ptrs
 {
 	char	conversion;
 	void	(*f)(struct	s_pft *);

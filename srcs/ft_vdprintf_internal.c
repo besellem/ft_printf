@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:26:26 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/17 01:02:34 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:18:14 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_no_conversion_opti(int fd, const char *fmt, t_pft *pft)
 {
-	int len;
+	int	len;
 
 	if (!fmt)
 		return (1);
@@ -55,7 +55,7 @@ static void	init_pft(int fd, t_pft *pft, va_list ap)
 	va_copy(pft->ap, ap);
 }
 
-int			ft_vdprintf_internal(int fd, const char *fmt, va_list ap)
+int	ft_vdprintf_internal(int fd, const char *fmt, va_list ap)
 {
 	t_pft	pft;
 
