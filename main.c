@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/17 01:43:07 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/18 00:19:17 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 int	main(void)
 {
 	__attribute((unused)) t_conv	conversion;
-	__attribute((unused)) char	*ret1;
-	__attribute((unused)) char	*ret2;
+	__attribute((unused)) char		*ret1;
+	__attribute((unused)) char		*ret2;
 	__attribute((unused)) int		mine_size;
 	__attribute((unused)) int		real_size;
 
 	// ft_printf("[Hello World !] [%d]", 123);
-	mine_size = ft_asprintf(&ret1, "[Hello World !] [%d]", INT32_MAX);
-	real_size = asprintf(&ret2, "[Hello World !] [%d]", INT32_MAX);
+	mine_size = ft_asprintf(&ret1, "[Hello %s !] [%d] [%d]", "World", INT32_MIN, INT32_MAX);
+	real_size = asprintf(&ret2, "[Hello %s !] [%d] [%d]", "World", INT32_MIN, INT32_MAX);
 	printf("mine[%d]: %s\n", mine_size, ret1);
 	printf("real[%d]: %s\n", real_size, ret2);
 	
@@ -32,7 +32,6 @@ int	main(void)
 	// printf("ft_printf() returned => [%d]\n", ft_printf(""));
 	// printf("ft_printf() returned => [%d]\n", ft_printf("%d")); /// Throw Warning (Error with -Werror)
 
-	(void)conversion;
 	// ft_bzero(&conversion, sizeof(t_conv));
 	// conversion.flags |= flag_arg_nbr;
 	// conversion.flags |= flag_precision;
@@ -43,7 +42,7 @@ int	main(void)
 	// printf("conversion.flags aft:  %d\n", conversion.flags);
 	// printf("conversion.specifiers: %d\n", conversion.specifiers);
 
-	if (ft_strcmp(ret1, ret2) == 0 && mine_size == real_size)
+	if (ret1 && ret2 && ft_strcmp(ret1, ret2) == 0 && mine_size == real_size)
 		printf(B_GREEN"SUCCESS\n"CLR_COLOR);
 	else
 		printf(B_RED"FAILURE\n"CLR_COLOR);
