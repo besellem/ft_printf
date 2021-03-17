@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 01:55:17 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/03 02:03:20 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/17 01:50:15 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		ft_printf_process(const char *fmt, va_list ap, t_pft *pft)
 		if (*fmt && *fmt == '%' && ++fmt)
 			check = ft_parse_conversion(pft, fmt);
 		else
-			check = pft->write2buf(pft, fmt);
+			check = pft->write2buf(pft, (char *)fmt);
 		if (check == -1)
 		{
 			ft_error(pft);

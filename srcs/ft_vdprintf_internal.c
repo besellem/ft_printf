@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:26:26 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/03 01:59:27 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/17 01:02:34 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,19 @@ static int	write2buf_vdprintf(t_pft *pft, char *str)
 	return (1);
 }
 
-static void	init_pft(int fd, t_pft *pft)
+static void	init_pft(int fd, t_pft *pft, va_list ap)
 {
 	ft_bzero(pft, sizeof(t_pft));
 	pft->fd = fd;
 	pft->write2buf = write2buf_vdprintf;
+	va_copy(pft->ap, ap);
 }
 
 int			ft_vdprintf_internal(int fd, const char *fmt, va_list ap)
 {
 	t_pft	pft;
 
-	init_pft(fd, &pft);
+	init_pft(fd, &pft, ap);
 	if (ft_no_conversion_opti(fd, fmt, &pft))
 		return (pft.global_size);
 	ft_printf_process(fmt, ap, &pft);

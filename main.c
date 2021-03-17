@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/03 03:22:32 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/17 01:43:07 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 
 int	main(void)
 {
-	t_conv	conversion;
-	char	*ret1;
-	char	*ret2;
-	int		mine_size;
-	int		real_size;
+	__attribute((unused)) t_conv	conversion;
+	__attribute((unused)) char	*ret1;
+	__attribute((unused)) char	*ret2;
+	__attribute((unused)) int		mine_size;
+	__attribute((unused)) int		real_size;
 
-	mine_size = ft_asprintf(&ret1, "[Hello World !]");
-	real_size = asprintf(&ret2, "[Hello World !]");
+	// ft_printf("[Hello World !] [%d]", 123);
+	mine_size = ft_asprintf(&ret1, "[Hello World !] [%d]", INT32_MAX);
+	real_size = asprintf(&ret2, "[Hello World !] [%d]", INT32_MAX);
 	printf("mine[%d]: %s\n", mine_size, ret1);
 	printf("real[%d]: %s\n", real_size, ret2);
 	

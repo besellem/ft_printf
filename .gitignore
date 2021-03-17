@@ -1,5 +1,6 @@
 *.txt
 .vscode/
+utils/
 *.sh
 *.o
 *.a

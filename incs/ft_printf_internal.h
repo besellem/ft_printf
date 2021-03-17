@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/03 02:06:33 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/17 01:56:25 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 */
 # include <stdarg.h>
 # include <stdlib.h>
-# include <stdio.h>
+# include <stdio.h> // To remove
 # include <stdint.h>
 # include <stddef.h>
 # include <wchar.h>
@@ -57,26 +57,26 @@ enum	e_flags
 
 /*
 ** is_spec:		found a specifier
-** spec_h:		`h'  specifier
 ** spec_hh:		`hh' specifier
+** spec_h:		`h'  specifier
 ** spec_l:		`l'  specifier
 ** spec_ll:		`ll' specifier
-** spec_lf:		`L'  specifier
 ** spec_j:		`j'  specifier
 ** spec_z:		`z'  specifier
 ** spec_t:		`t'  specifier
+** spec_lf:		`L'  specifier
 */
 enum	e_specifiers
 {
 	is_spec = (1L << 0),
-	spec_h = (1L << 1),
-	spec_hh = (1L << 2),
+	spec_hh = (1L << 1),
+	spec_h = (1L << 2),
 	spec_l = (1L << 3),
 	spec_ll = (1L << 4),
-	spec_lf = (1L << 5),
-	spec_j = (1L << 6),
-	spec_z = (1L << 7),
-	spec_t = (1L << 8)
+	spec_j = (1L << 5),
+	spec_z = (1L << 6),
+	spec_t = (1L << 7),
+	spec_lf = (1L << 8)
 };
 
 /*
@@ -95,34 +95,27 @@ typedef	struct	s_conv
 	int			precision;
 }				t_conv;
 
-typedef	union	u_types
-{
-	int8_t		var_int8;
-	uint8_t		var_uint8;
-	int16_t		var_int16;
-	uint16_t	var_uint16;
-	int32_t		var_int32;
-	uint32_t	var_uint32;
-	int64_t		var_int64;
-	uint64_t	var_uint64;
-	ptrdiff_t	var_ptrdiff;
-	size_t		var_size_t;
-	ssize_t		var_ssize_t;
-	intmax_t	var_intmax;
-	uintmax_t	var_uintmax;
-}				t_types;
-
 typedef	struct	s_pft
 {
+	va_list		ap;
 	char		*ret;
 	char		buffer[PFT_BUFSIZ + 1];
 	int			fd;
 	int			size;
 	int			global_size;
-	t_types		type;
 	t_conv		conversion;
-	int			(*write2buf)();
+	int			(*write2buf)(struct	s_pft *, char *);
 }				t_pft;
+
+/*
+** Used in ft_get_conversion() to execute the right function for
+** the right conversion
+*/
+typedef	struct	s_conv_ptrs
+{
+	char	conversion;
+	void	(*f)(struct	s_pft *);
+}				t_conv_ptrs;
 
 /*
 ** -- PROTOTYPES --
