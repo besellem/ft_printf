@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/17 01:56:25 by besellem         ###   ########.fr       */
+/*   Updated: 2021/03/17 02:04:39 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,20 @@ typedef	struct	s_conv_ptrs
 int				ft_parse_conversion(t_pft *pft, const char *fmt);
 
 /*
+** Specifiers
+*/
+t_int64			ft_get_val_int(t_pft *pft, char *sign);
+t_uint64		ft_get_val_uint(t_pft *pft);
+long double		ft_get_val_float(t_pft *pft, char *sign);
+
+/*
 ** Main
 */
 void			ft_printf_process(const char *fmt, va_list ap, t_pft *pft);
 
+/*
+** Internals
+*/
 int				ft_vdprintf_internal(int fd, const char *fmt, va_list ap);
 int				ft_vasprintf_internal(char **ret, const char *fmt, va_list ap);
 
