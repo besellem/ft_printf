@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:45 by besellem          #+#    #+#             */
-/*   Updated: 2021/02/12 00:43:18 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/02 12:56:50 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_printf(const char *format, ...)
 	int		size;
 
 	va_start(ap, format);
-	size = ft_vdprintf_internal(1, format, ap);
+	size = ft_vdprintf_internal(STDOUT_FILENO, format, ap);
 	va_end(ap);
 	return (size);
 }

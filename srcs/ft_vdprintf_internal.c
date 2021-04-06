@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:26:26 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/18 00:08:24 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/02 13:04:23 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	write2buf_vdprintf(t_pft *pft, char *str)
 	if (pft->size == PFT_BUFSIZ)
 	{
 		ft_putstr_fd(pft->buffer, pft->fd);
-		ft_bzero(pft->buffer, sizeof(char));
+		ft_bzero(pft->buffer, sizeof(char) * (PFT_BUFSIZ + 1));
 		pft->size = 0;
 	}
 	return (1);
