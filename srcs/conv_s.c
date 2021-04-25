@@ -6,11 +6,11 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:49:34 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/18 00:15:01 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/25 22:32:36 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_internal.h"
 
 void	conv_s(t_pft *pft)
 {

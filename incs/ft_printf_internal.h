@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/18 00:08:42 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/25 22:36:31 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,13 @@
 */
 enum	e_flags
 {
-	flag_arg_nbr = (1L << 0),
-	flag_htag = (1L << 1),
-	flag_space = (1L << 2),
-	flag_plus = (1L << 3),
-	flag_minus = (1L << 4),
-	flag_zero = (1L << 5),
-	flag_width = (1L << 6),
-	flag_precision = (1L << 7)
+	FLAG_HTAG = (1L << 0),
+	FLAG_SPACE = (1L << 1),
+	FLAG_PLUS = (1L << 2),
+	FLAG_MINUS = (1L << 3),
+	FLAG_ZERO = (1L << 4),
+	FLAG_WIDTH = (1L << 5),
+	FLAG_PRECISION = (1L << 6)
 };
 
 /*
@@ -67,15 +66,15 @@ enum	e_flags
 */
 enum	e_specifiers
 {
-	is_spec = (1L << 0),
-	spec_hh = (1L << 1),
-	spec_h = (1L << 2),
-	spec_l = (1L << 3),
-	spec_ll = (1L << 4),
-	spec_j = (1L << 5),
-	spec_z = (1L << 6),
-	spec_t = (1L << 7),
-	spec_lf = (1L << 8)
+	IS_SPEC = (1L << 0),
+	SPEC_HH = (1L << 1),
+	SPEC_H = (1L << 2),
+	SPEC_L = (1L << 3),
+	SPEC_LL = (1L << 4),
+	SPEC_J = (1L << 5),
+	SPEC_Z = (1L << 6),
+	SPEC_T = (1L << 7),
+	SPEC_LF = (1L << 8)
 };
 
 /*
@@ -89,23 +88,20 @@ typedef struct s_conv
 {
 	uint16_t	flags;
 	uint16_t	specifiers;
-	int			arg_nbr;
-	void		*arg;
 	int			width;
 	int			precision;
 }				t_conv;
 
 typedef struct s_pft
 {
-	va_list		ap_cpy;
-	va_list		ap;
-	char		*ret;
-	char		buffer[PFT_BUFSIZ + 1];
 	int			fd;
 	int			size;
 	int			global_size;
-	t_conv		conversion;
+	char		*ret;
+	char		buffer[PFT_BUFSIZ + 1];
 	int			(*write2buf)(struct	s_pft *, char *);
+	t_conv		conversion;
+	va_list		ap;
 }				t_pft;
 
 /*
@@ -127,7 +123,9 @@ void			print_flags(t_pft *pft);
 /*
 ** Common
 */
+int				ft_error(t_pft *pft);
 void			write2buf_str(t_pft *pft, char *str);
+int				ft_len_base(long long n, int base); 	// GOT THIS FROM OLD CODEBASE
 void			ft_put_int(t_pft *pft, int64_t nb, const char *base);
 void			ft_put_uint(t_pft *pft, uint64_t nb, const char *base);
 
@@ -135,7 +133,6 @@ void			ft_put_uint(t_pft *pft, uint64_t nb, const char *base);
 ** Parsing
 */
 int				ft_parse_conversion(t_pft *pft, const char *fmt);
-int				ft_parse_flags(t_pft *pft, const char *fmt);
 
 /*
 ** Specifiers

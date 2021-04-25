@@ -6,7 +6,7 @@
 #    By: besellem <besellem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 00:10:57 by besellem          #+#    #+#              #
-#    Updated: 2021/03/17 02:00:06 by besellem         ###   ########.fr        #
+#    Updated: 2021/04/25 21:01:13 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ all:		$(NAME)
 ## TO REMOVE AFTER DEBUG
 leaks:
 			$(MUTE) $(MAKE) -C libft
-			$(MUTE) $(CC) $(CFLAGS) main.c $(SRCS) $(INCS)
-			clear && leaks -atExit -- ./a.out
+			$(MUTE) $(CC) -Wall -Wextra -Werror -g3 main.c $(SRCS) $(INCS)
+			clear && leaks -quiet -atExit -- ./a.out
 ## END
 
 

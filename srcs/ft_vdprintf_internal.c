@@ -6,11 +6,11 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:26:26 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/02 13:04:23 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/25 22:32:58 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_internal.h"
 
 static int	ft_no_conversion_opti(int fd, const char *fmt, t_pft *pft)
 {
@@ -24,7 +24,7 @@ static int	ft_no_conversion_opti(int fd, const char *fmt, t_pft *pft)
 	{
 		len = ft_strlen(fmt);
 		if (write(fd, fmt, len) == -1)
-			pft->global_size = -1;
+			return (ft_error(pft));
 		else
 			pft->global_size = len;
 		return (1);
@@ -40,7 +40,8 @@ static int	write2buf_vdprintf(t_pft *pft, char *str)
 	}
 	if (pft->size == PFT_BUFSIZ)
 	{
-		ft_putstr_fd(pft->buffer, pft->fd);
+		if (write(pft->fd, pft->buffer, PFT_BUFSIZ) == -1)
+			return (ft_error(pft));
 		ft_bzero(pft->buffer, sizeof(char) * (PFT_BUFSIZ + 1));
 		pft->size = 0;
 	}
@@ -52,7 +53,6 @@ static void	init_pft(int fd, t_pft *pft, va_list ap)
 	ft_bzero(pft, sizeof(t_pft));
 	pft->fd = fd;
 	pft->write2buf = write2buf_vdprintf;
-	va_copy(pft->ap_cpy, ap);
 	va_copy(pft->ap, ap);
 }
 
@@ -64,7 +64,7 @@ int	ft_vdprintf_internal(int fd, const char *fmt, va_list ap)
 	if (ft_no_conversion_opti(fd, fmt, &pft))
 		return (pft.global_size);
 	ft_printf_process(fmt, &pft);
-	ft_putstr_fd(pft.ret, fd);
-	ft_putstr_fd(pft.buffer, fd);
+	if (write(pft.fd, pft.buffer, pft.size) == -1)
+		return (ft_error(&pft));
 	return (pft.global_size);
 }

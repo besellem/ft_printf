@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/02 13:01:03 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/25 23:21:29 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ int	main(void)
 	__attribute((unused)) int		real_size;
 
 	// ft_printf("[Hello World !] [%d]", 123);
-	mine_size = ft_asprintf(&ret1, "[Hello %s !] [%d] [%d]", "World", INT32_MIN, INT32_MAX);
-	real_size = asprintf(&ret2, "[Hello %s !] [%d] [%d]", "World", INT32_MIN, INT32_MAX);
+	mine_size = ft_asprintf(&ret1, "[%*d]", -2, 0);
+	real_size = asprintf(&ret2, "[%*d]", -2, 0);
 	printf("mine[%d]: %s\n", mine_size, ret1);
 	printf("real[%d]: %s\n", real_size, ret2);
+
+	// ft_dprintf(2, "[Hello %s !] [%d] [%d]\n", "World", INT32_MIN, INT32_MAX);
+	// dprintf(2, "[Hello %s !] [%d] [%d]\n", "World", INT32_MIN, INT32_MAX);
 	
 	ft_printf("");			/// Check if ft_printf execute without errors
 	ft_printf(NULL);		/// Check if ft_printf execute without errors

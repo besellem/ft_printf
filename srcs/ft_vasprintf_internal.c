@@ -6,27 +6,30 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:40:13 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/18 00:08:27 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/25 22:32:53 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_internal.h"
 
 static int	write2buf_vasprintf(t_pft *pft, char *fmt)
 {
 	char	*new;
 	size_t	size_tmp;
 
-	if (pft->size < PFT_BUFSIZ && ++pft->global_size)
+	if (pft->size < PFT_BUFSIZ)
+	{
 		pft->buffer[pft->size++] = *fmt;
-	if (pft->size == PFT_BUFSIZ || ft_strlen(fmt) > 0)
+		++pft->global_size;
+	}
+	if (pft->size == PFT_BUFSIZ)
 	{
 		size_tmp = PFT_BUFSIZ;
 		if (pft->ret)
 			size_tmp += ft_strlen(pft->ret);
 		new = ft_calloc(size_tmp + 1, sizeof(char));
 		if (!new)
-			return (-1);
+			return (ft_error(pft));
 		if (pft->ret)
 			ft_strlcat(new, pft->ret, size_tmp - PFT_BUFSIZ + 1);
 		ft_strlcat(new, pft->buffer, size_tmp + 1);
@@ -34,8 +37,28 @@ static int	write2buf_vasprintf(t_pft *pft, char *fmt)
 			free(pft->ret);
 		pft->ret = new;
 		pft->size = 0;
-		ft_bzero(pft->buffer, sizeof(char));
+		ft_bzero(pft->buffer, sizeof(char) * (PFT_BUFSIZ + 1));
 	}
+	return (1);
+}
+
+static int	vasprintf_ultimate_realloc(t_pft *pft)
+{
+	char			*new;
+	size_t			size_tmp;
+	const size_t	size_ret = ft_strlen(pft->ret);
+	const size_t	size_buf = ft_strlen(pft->buffer);
+
+	size_tmp = size_ret + size_buf;
+	new = ft_calloc(size_tmp + 1, sizeof(char));
+	if (!new)
+		return (ft_error(pft));
+	if (pft->ret)
+		ft_strlcat(new, pft->ret, size_ret + 1);
+	ft_strlcat(new, pft->buffer, size_ret + size_buf + 1);
+	if (pft->ret)
+		free(pft->ret);
+	pft->ret = new;
 	return (1);
 }
 
@@ -43,7 +66,6 @@ static void	init_pft(t_pft *pft, va_list ap)
 {
 	ft_bzero(pft, sizeof(t_pft));
 	pft->write2buf = write2buf_vasprintf;
-	va_copy(pft->ap_cpy, ap);
 	va_copy(pft->ap, ap);
 }
 
@@ -53,6 +75,9 @@ int	ft_vasprintf_internal(char **ret, const char *fmt, va_list ap)
 
 	init_pft(&pft, ap);
 	ft_printf_process(fmt, &pft);
-	*ret = pft.ret;
+	if (vasprintf_ultimate_realloc(&pft) != -1)
+		*ret = pft.ret;
+	else
+		*ret = NULL;
 	return (pft.global_size);
 }

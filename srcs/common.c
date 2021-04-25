@@ -6,11 +6,11 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:50:16 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/17 23:52:51 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/25 22:32:11 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_internal.h"
 
 void	write2buf_str(t_pft *pft, char *str)
 {
@@ -24,6 +24,33 @@ void	write2buf_str(t_pft *pft, char *str)
 		pft->write2buf(pft, &str[i]);
 		++i;
 	}
+}
+
+int	ft_error(t_pft *pft)
+{
+	if (pft->ret)
+	{
+		free(pft->ret);
+		pft->ret = NULL;
+	}
+	pft->global_size = -1;
+	return (-1);
+}
+
+int	ft_len_base(long long n, int base)
+{
+	long long	i;
+	int			len;
+
+	n = n < 0 ? -n : n;
+	len = 1;
+	i = base;
+	while (n / i > 0)
+	{
+		i *= base;
+		++len;
+	}
+	return (len);
 }
 
 /*
