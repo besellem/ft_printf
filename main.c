@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/25 23:21:29 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/26 12:26:56 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main(void)
 	__attribute((unused)) int		real_size;
 
 	// ft_printf("[Hello World !] [%d]", 123);
-	mine_size = ft_asprintf(&ret1, "[%*d]", -2, 0);
-	real_size = asprintf(&ret2, "[%*d]", -2, 0);
+	mine_size = ft_asprintf(&ret1, "[%10d]", -123);
+	real_size = asprintf(&ret2, "[%10d]", -123);
 	printf("mine[%d]: %s\n", mine_size, ret1);
 	printf("real[%d]: %s\n", real_size, ret2);
 

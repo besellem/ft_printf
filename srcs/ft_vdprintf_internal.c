@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:26:26 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/25 22:32:58 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/26 12:20:24 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_vdprintf_internal(int fd, const char *fmt, va_list ap)
 	if (ft_no_conversion_opti(fd, fmt, &pft))
 		return (pft.global_size);
 	ft_printf_process(fmt, &pft);
-	if (write(pft.fd, pft.buffer, pft.size) == -1)
+	if (pft.global_size == -1 || write(pft.fd, pft.buffer, pft.size) == -1)
 		return (ft_error(&pft));
 	return (pft.global_size);
 }

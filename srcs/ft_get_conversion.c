@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:42:12 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/25 22:55:09 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/26 13:03:18 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,17 +141,17 @@ int	is_specifier(const char *fmt, t_conv *conversion)
 	int	ret;
 
 	ret = 1;
-	if (conversion->specifiers && IS_SPEC)
+	if (conversion->specifiers & IS_SPEC)
 		return (-1);
 	conversion->specifiers |= IS_SPEC;
 	if (ft_strncmp("hh", fmt, 2) == 0 && (ret = 2))
 		conversion->specifiers |= SPEC_HH;
 	else if (ft_strncmp("h", fmt, 1) == 0)
 		conversion->specifiers |= SPEC_H;
-	else if (ft_strncmp("l", fmt, 1) == 0)
-		conversion->specifiers |= SPEC_L;
 	else if (ft_strncmp("ll", fmt, 2) == 0 && (ret = 2))
 		conversion->specifiers |= SPEC_LL;
+	else if (ft_strncmp("l", fmt, 1) == 0)
+		conversion->specifiers |= SPEC_L;
 	else if (ft_strncmp("j", fmt, 1) == 0)
 		conversion->specifiers |= SPEC_J;
 	else if (ft_strncmp("z", fmt, 1) == 0)

@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:40:13 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/25 22:32:53 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/26 12:19:17 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,11 @@ int	ft_vasprintf_internal(char **ret, const char *fmt, va_list ap)
 	t_pft	pft;
 
 	init_pft(&pft, ap);
+	if (!fmt || !ret)
+		return (ft_error(&pft));
 	ft_printf_process(fmt, &pft);
-	if (vasprintf_ultimate_realloc(&pft) != -1)
-		*ret = pft.ret;
-	else
-		*ret = NULL;
+	if (pft.global_size == -1 || vasprintf_ultimate_realloc(&pft) == -1)
+		return (ft_error(&pft));
+	*ret = pft.ret;
 	return (pft.global_size);
 }

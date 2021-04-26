@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 01:55:17 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/25 22:32:45 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/26 12:22:30 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_printf_process(const char *fmt, t_pft *pft)
 			check = pft->write2buf(pft, (char *)fmt);
 		if (check == -1)
 		{
-			printf("%s:%d: ERROR\n", __FILE__, __LINE__);
+			ft_error(pft);
 			return ;
 		}
 		fmt += check;

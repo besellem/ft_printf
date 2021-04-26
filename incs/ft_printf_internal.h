@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/25 22:36:31 by besellem         ###   ########.fr       */
+/*   Updated: 2021/04/26 13:02:07 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@
 /*
 ** -- DATA STRUCTURES --
 **
-** flag_arg_nbr:	`$' optional flag
 ** flag_htag:		`#' optional flag
 ** flag_space:		` ' optional flag
 ** flag_plus:		`+' optional flag
 ** flag_minus:		`-' optional flag
 ** flag_zero:		`0' optional flag
-** flag_width:			found width integer
+** flag_width:			width integer
 ** flag_precision:	`.' optional flag
 */
 enum	e_flags
@@ -137,8 +136,8 @@ int				ft_parse_conversion(t_pft *pft, const char *fmt);
 /*
 ** Specifiers
 */
-t_int64			ft_get_val_int(t_pft *pft, char *sign);
-t_uint64		ft_get_val_uint(t_pft *pft);
+int64_t			ft_get_val_int(t_pft *pft, char *sign);
+uint64_t		ft_get_val_uint(t_pft *pft);
 long double		ft_get_val_float(t_pft *pft, char *sign);
 
 /*
