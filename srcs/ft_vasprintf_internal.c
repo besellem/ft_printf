@@ -6,11 +6,26 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:40:13 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/26 12:19:17 by besellem         ###   ########.fr       */
+/*   Updated: 2021/05/07 19:00:41 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_internal.h"
+
+static int	ft_no_conversion_opti(const char *fmt, t_pft *pft)
+{
+	if (ft_strchr(fmt, '%'))
+		return (0);
+	else
+	{
+		pft->ret = ft_strdup(fmt);
+		if (!pft->ret)
+			return (ft_error(pft));
+		else
+			pft->global_size = ft_strlen(fmt);
+		return (1);
+	}
+}
 
 static int	write2buf_vasprintf(t_pft *pft, char *fmt)
 {
@@ -76,6 +91,11 @@ int	ft_vasprintf_internal(char **ret, const char *fmt, va_list ap)
 	init_pft(&pft, ap);
 	if (!fmt || !ret)
 		return (ft_error(&pft));
+	if (ft_no_conversion_opti(fmt, &pft))
+	{
+		*ret = pft.ret;
+		return (pft.global_size);
+	}
 	ft_printf_process(fmt, &pft);
 	if (pft.global_size == -1 || vasprintf_ultimate_realloc(&pft) == -1)
 		return (ft_error(&pft));
