@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:40:13 by besellem          #+#    #+#             */
-/*   Updated: 2021/05/07 19:00:41 by besellem         ###   ########.fr       */
+/*   Updated: 2021/05/11 20:23:50 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 
 static int	ft_no_conversion_opti(const char *fmt, t_pft *pft)
 {
+	const size_t	fmt_len = ft_strlen(fmt);
+
 	if (ft_strchr(fmt, '%'))
 		return (0);
 	else
 	{
-		pft->ret = ft_strdup(fmt);
+		pft->ret = ft_calloc(fmt_len + 1, sizeof(char));
 		if (!pft->ret)
 			return (ft_error(pft));
 		else
-			pft->global_size = ft_strlen(fmt);
+		{
+			ft_memcpy(pft->ret, fmt, fmt_len);
+			pft->global_size = fmt_len;
+		}
 		return (1);
 	}
 }

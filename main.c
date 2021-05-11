@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/05/07 19:00:37 by besellem         ###   ########.fr       */
+/*   Updated: 2021/05/11 20:24:57 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ int	main(void)
 		printf(B_GREEN"SUCCESS\n"CLR_COLOR);
 	else
 		printf(B_RED"FAILURE\n"CLR_COLOR);
-	free(ret1);
-	free(ret2);
+	if (ret1)
+		free(ret1);
+	if (ret2)
+		free(ret2);
 	return (0);
 }
 
