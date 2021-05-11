@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:40:13 by besellem          #+#    #+#             */
-/*   Updated: 2021/05/11 20:23:50 by besellem         ###   ########.fr       */
+/*   Updated: 2021/05/11 20:26:00 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_no_conversion_opti(const char *fmt, t_pft *pft)
 		else
 		{
 			ft_memcpy(pft->ret, fmt, fmt_len);
-			pft->global_size = fmt_len;
+			pft->global_size = (int)fmt_len;
 		}
 		return (1);
 	}
