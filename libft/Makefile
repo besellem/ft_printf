@@ -6,11 +6,11 @@
 #    By: besellem <besellem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/13 02:01:30 by besellem          #+#    #+#              #
-#    Updated: 2021/02/11 22:18:07 by besellem         ###   ########.fr        #
+#    Updated: 2021/06/10 21:29:05 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-MUTE		=	
+MUTE		=	@
 NAME		=	libft.a
 
 # Main srcs
@@ -46,6 +46,7 @@ SRCS		+=	ft_memccpy.c
 SRCS		+=	ft_memchr.c
 SRCS		+=	ft_memcmp.c
 SRCS		+=	ft_memcpy.c
+SRCS		+=	ft_memdel.c
 SRCS		+=	ft_memmove.c
 SRCS		+=	ft_memset.c
 SRCS		+=	ft_nblen_base.c
@@ -114,7 +115,7 @@ INC			=	libft.h
 
 ## Commands
 CC			=	clang
-CFLAGS		=	-Wall -Wextra -Werror -Ofast
+CFLAGS		=	-Wall -Wextra -Werror
 LIBC		=	ar rc
 RM			=	rm -f
 
@@ -134,4 +135,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		$(NAME) all clean fclean re
+.PHONY:		all clean fclean re

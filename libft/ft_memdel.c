@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asprintf.c                                      :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 00:42:03 by besellem          #+#    #+#             */
-/*   Updated: 2021/06/10 21:31:56 by besellem         ###   ########.fr       */
+/*   Created: 2021/05/09 18:35:58 by besellem          #+#    #+#             */
+/*   Updated: 2021/06/10 21:25:28 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_asprintf(char **ret, const char *format, ...)
+void	*ft_memdel(void **ptr)
 {
-	va_list	ap;
-	int		size;
-
-	va_start(ap, format);
-	size = ft_vasprintf(ret, format, ap);
-	va_end(ap);
-	return (size);
+	if (ptr && *ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
+	return (NULL);
 }

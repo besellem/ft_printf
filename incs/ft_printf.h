@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:55 by besellem          #+#    #+#             */
-/*   Updated: 2021/03/17 23:43:58 by besellem         ###   ########.fr       */
+/*   Updated: 2021/06/10 21:35:37 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@
 
 // int	ft_vasprintf(char **ret, const char *format,
 // 		va_list ap) __attribute__((format(printf, 2, 0)));
-
 
 // WITHOUT PRINTF'S ATTRIBUTES
 int	ft_printf(const char *format, ...);

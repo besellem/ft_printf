@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 02:28:58 by besellem          #+#    #+#             */
-/*   Updated: 2020/09/13 02:28:58 by besellem         ###   ########.fr       */
+/*   Updated: 2021/06/10 21:24:23 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,5 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	char	*tmp;
-	size_t	i;
-
-	tmp = (char *)s;
-	i = 0;
-	while (i < n)
-	{
-		tmp[i] = '\0';
-		++i;
-	}
+	ft_memset(s, 0, n);
 }

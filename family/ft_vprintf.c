@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 00:43:04 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/02 12:56:42 by besellem         ###   ########.fr       */
+/*   Updated: 2021/06/10 21:32:50 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_vprintf(const char *format, va_list ap)
 {
-	return (ft_vdprintf_internal(STDOUT_FILENO, format, ap));
+	return (ft_vdprintf(STDOUT_FILENO, format, ap));
 }
