@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/26 13:02:07 by besellem         ###   ########.fr       */
+/*   Updated: 2021/08/23 02:15:06 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,19 @@
 /*
 ** -- DEFINES --
 */
-# define PFT_BUFSIZ 4096
+// # ifdef BUFSIZ
+// #  define PFT_BUFSIZ BUFSIZ
+// # else
+#  define PFT_BUFSIZ   16384 // 32768 // 16384 // 8192 // 4096
+// # endif
+
+# if defined(__APPLE__) && defined(__MACH__)
+#  define PFT_NULL      "(null)"
+#  define PFT_NULL_LEN  6
+# else // Linux
+#  define PFT_NULL      "(nil)"
+#  define PFT_NULL_LEN  5
+# endif
 
 /*
 ** -- DATA STRUCTURES --
@@ -118,6 +130,7 @@ typedef struct s_conv_ptrs
 ** Utils
 */
 void			print_flags(t_pft *pft);
+void			print_binary(const char *prefix, long long n);
 
 /*
 ** Common
@@ -127,6 +140,7 @@ void			write2buf_str(t_pft *pft, char *str);
 int				ft_len_base(long long n, int base); 	// GOT THIS FROM OLD CODEBASE
 void			ft_put_int(t_pft *pft, int64_t nb, const char *base);
 void			ft_put_uint(t_pft *pft, uint64_t nb, const char *base);
+void			print_char(t_pft *pft, char c, int len);
 
 /*
 ** Parsing

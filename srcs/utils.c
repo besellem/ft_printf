@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:39:26 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/25 22:54:56 by besellem         ###   ########.fr       */
+/*   Updated: 2021/08/23 02:16:50 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,15 @@ void	print_flags(t_pft *pft)
 	printf("    width:          [%d]\n", pft->conversion.width);
 	printf("    precision:      [%d]\n", pft->conversion.precision);
 	printf("}\n");
+}
+
+void	print_binary(const char *prefix, long long n)
+{
+	const char	*binary = ft_itoa_base(n, "01");
+
+	if (prefix)
+		printf("%s -> [%s] [%lld]\n", prefix, binary, n);
+	else
+		printf("[%s] [%lld]\n", binary, n);
+	ft_memdel((void **)&binary);
 }
