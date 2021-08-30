@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_x.c                                           :+:      :+:    :+:   */
+/*   conv_a.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 23:48:37 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/30 13:43:39 by besellem         ###   ########.fr       */
+/*   Created: 2021/08/30 18:43:49 by besellem          #+#    #+#             */
+/*   Updated: 2021/08/30 19:00:28 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_internal.h"
 
-static void	conv_x(t_pft *pft, const char *charset)
+void	conv_a(t_pft *pft)
 {
-	const uintmax_t	nb = ft_get_val_uint(pft);
+	int				exp;
+	const double	nb = ft_get_val_float(pft);
+	const double	x = frexp(nb, &exp);
 
-	ft_put_uint(pft, nb, charset);
-}
-
-void	conv_x_min(t_pft *pft)
-{
-	conv_x(pft, HEX_CHARSET);
-}
-
-void	conv_x_max(t_pft *pft)
-{
-	conv_x(pft, HEX_CHARSET_UP);
+	if (-1 == pft->conversion.precision)
+		pft->conversion.precision = 6;
+	if (ft_signbit(nb))
+		write2buf_str(pft, "-");
+	write2buf_str(pft, "0x");
+	ft_put_float(pft, x, HEX_CHARSET);
+	write2buf_str(pft, "p");
+	if (exp >= 0)
+		write2buf_str(pft, "+");
+	ft_put_int(pft, exp, DEC_CHARSET);
 }

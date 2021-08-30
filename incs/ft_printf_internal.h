@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/23 02:15:06 by besellem         ###   ########.fr       */
+/*   Updated: 2021/08/30 18:59:27 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,30 @@
 /*
 ** -- DEFINES --
 */
-// # ifdef BUFSIZ
-// #  define PFT_BUFSIZ BUFSIZ
-// # else
-#  define PFT_BUFSIZ   16384 // 32768 // 16384 // 8192 // 4096
-// # endif
+# define PFT_ERR        (-1)
 
-# if defined(__APPLE__) && defined(__MACH__)
-#  define PFT_NULL      "(null)"
-#  define PFT_NULL_LEN  6
-# else // Linux
-#  define PFT_NULL      "(nil)"
-#  define PFT_NULL_LEN  5
+# ifdef BUFSIZ
+#  define PFT_BUFSIZ    BUFSIZ
+# else
+#  define PFT_BUFSIZ    16384 // 32768 // 16384 // 8192 // 4096
 # endif
+
+# define PFT_NULL       "(null)"
+
+/*
+** printf("%p", NULL):
+**   macOS -> "(null)"
+**   Linux -> "(nil)"
+*/
+# if defined(__APPLE__) && defined(__MACH__)
+#  define PFT_NULL_PTR  PFT_NULL
+# else
+#  define PFT_NULL_PTR  "(nil)"
+# endif
+
+# define DEC_CHARSET    "0123456789"
+# define HEX_CHARSET    "0123456789abcdef"
+# define HEX_CHARSET_UP "0123456789ABCDEF"
 
 /*
 ** -- DATA STRUCTURES --
@@ -129,7 +140,7 @@ typedef struct s_conv_ptrs
 ** -- PROTOTYPES --
 ** Utils
 */
-void			print_flags(t_pft *pft);
+void			print_flags(t_conv conv);
 void			print_binary(const char *prefix, long long n);
 
 /*
@@ -138,9 +149,11 @@ void			print_binary(const char *prefix, long long n);
 int				ft_error(t_pft *pft);
 void			write2buf_str(t_pft *pft, char *str);
 int				ft_len_base(long long n, int base); 	// GOT THIS FROM OLD CODEBASE
-void			ft_put_int(t_pft *pft, int64_t nb, const char *base);
-void			ft_put_uint(t_pft *pft, uint64_t nb, const char *base);
-void			print_char(t_pft *pft, char c, int len);
+void			ft_put_int(t_pft *pft, intmax_t nb, const char *base);
+void			ft_put_uint(t_pft *pft, uintmax_t nb, const char *base);
+void			ft_put_float(t_pft *pft, double nb, const char *base);
+int				ft_print_special_fp(t_pft *pft, double nb);
+void			print_char(t_pft *pft, char c, int n);
 
 /*
 ** Parsing
@@ -150,9 +163,9 @@ int				ft_parse_conversion(t_pft *pft, const char *fmt);
 /*
 ** Specifiers
 */
-int64_t			ft_get_val_int(t_pft *pft, char *sign);
-uint64_t		ft_get_val_uint(t_pft *pft);
-long double		ft_get_val_float(t_pft *pft, char *sign);
+intmax_t		ft_get_val_int(t_pft *pft, char *sign);
+uintmax_t		ft_get_val_uint(t_pft *pft);
+long double		ft_get_val_float(t_pft *pft);
 
 /*
 ** Conversions
@@ -164,6 +177,8 @@ void			conv_i(t_pft *pft);
 void			conv_u(t_pft *pft);
 void			conv_o(t_pft *pft);
 void			conv_b(t_pft *pft);
+void			conv_f(t_pft *pft);
+void			conv_a(t_pft *pft);
 void			conv_x_min(t_pft *pft);
 void			conv_x_max(t_pft *pft);
 void			conv_p(t_pft *pft);

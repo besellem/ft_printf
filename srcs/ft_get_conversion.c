@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:42:12 by besellem          #+#    #+#             */
-/*   Updated: 2021/04/26 13:03:18 by besellem         ###   ########.fr       */
+/*   Updated: 2021/08/30 18:50:56 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_get_conversion(t_pft *pft, char conv)
 	const t_conv_ptrs	conv_ptrs[] = {
 		{'s', conv_s}, {'d', conv_d}, {'u', conv_u}, {'c', conv_c},
 		{'p', conv_p}, {'x', conv_x_min}, {'X', conv_x_max}, {'i', conv_i},
-		{'o', conv_o}, 
+		{'o', conv_o}, {'f', conv_f}, {'a', conv_a},
 		// {'b', conv_b}, {'f', conv_f}, {'g', conv_g}, {'e', conv_e},
 		// {'a', conv_a}, {'n', conv_n}, {'%', conv_perc},
 		{0, NULL}
@@ -165,40 +165,23 @@ int	is_specifier(const char *fmt, t_conv *conversion)
 	return (ret);
 }
 
-// void	init_indicators(t_indicators *table)
-// {
-// 	table->width = -1;
-// 	table->minus = -1;
-// 	table->zero = -1;
-// 	table->dot = -1;
-// 	table->htag = 0;
-// 	table->space = 0;
-// 	table->plus = 0;
-// 	table->is_specifier = 0;
-// 	table->h = 0;
-// 	table->hh = 0;
-// 	table->l = 0;
-// 	table->ll = 0;
-// 	table->lf = 0;
-// }
-
 int	fill_indicators(const char *fmt, va_list ap, t_conv *conversion)
 {
 	int	index;
 
-	if (*fmt == '-')
+	if ('-' == *fmt)
 		return (1 + check_min(conversion));
-	else if (*fmt == '0')
+	else if ('0' == *fmt)
 		return (1 + check_zero(fmt + 1, ap, conversion));
-	else if (*fmt == '*' || (*fmt >= '1' && *fmt <= '9'))
+	else if ('*' == *fmt || (*fmt >= '1' && *fmt <= '9'))
 		return (check_wdt(fmt, ap, conversion));
-	else if (*fmt == '.')
+	else if ('.' == *fmt)
 		return (1 + check_prec(fmt + 1, ap, conversion));
-	else if (*fmt == '#')
+	else if ('#' == *fmt)
 		return (check_htag(conversion));
-	else if (*fmt == ' ')
+	else if (' ' == *fmt)
 		return (check_spce(conversion));
-	else if (*fmt == '+')
+	else if ('+' == *fmt)
 		return (check_plus(conversion));
 	else if ((index = is_specifier(fmt, conversion)) != -1)
 		return (index);
@@ -225,14 +208,14 @@ int	ft_parse_conversion(t_pft *pft, const char *fmt)
 	// printf("precision: %d\n", pft->conversion.precision);
 
 	i = 0;
-	while (ft_get_conversion(pft, fmt[i]) == 0)
+	while (0 == ft_get_conversion(pft, fmt[i]))
 	{
 		check = fill_indicators(fmt + i, pft->ap, &pft->conversion);
 		// printf("PREC: %d\n", pft->conversion.precision);
-		if (check == -1)
-			return (-1);
+		if (PFT_ERR == check)
+			return (PFT_ERR);
 		i += check;
 	}
-	print_flags(pft);
+	print_flags(pft->conversion);
 	return (i + 1);
 }

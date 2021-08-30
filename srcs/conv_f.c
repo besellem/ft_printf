@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_x.c                                           :+:      :+:    :+:   */
+/*   conv_f.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 23:48:37 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/30 13:43:39 by besellem         ###   ########.fr       */
+/*   Created: 2021/08/30 14:56:09 by besellem          #+#    #+#             */
+/*   Updated: 2021/08/30 18:59:58 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_internal.h"
 
-static void	conv_x(t_pft *pft, const char *charset)
+void	conv_f(t_pft *pft)
 {
-	const uintmax_t	nb = ft_get_val_uint(pft);
+	const double	nb = ft_get_val_float(pft);
 
-	ft_put_uint(pft, nb, charset);
-}
-
-void	conv_x_min(t_pft *pft)
-{
-	conv_x(pft, HEX_CHARSET);
-}
-
-void	conv_x_max(t_pft *pft)
-{
-	conv_x(pft, HEX_CHARSET_UP);
+	if (-1 == pft->conversion.precision)
+		pft->conversion.precision = 6;
+	ft_put_float(pft, nb, DEC_CHARSET);
 }

@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:50:16 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/23 01:39:33 by besellem         ###   ########.fr       */
+/*   Updated: 2021/08/30 13:42:17 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,9 @@ void	write2buf_str(t_pft *pft, char *str)
 int	ft_error(t_pft *pft)
 {
 	if (pft->ret)
-	{
-		free(pft->ret);
-		pft->ret = NULL;
-	}
-	pft->global_size = -1;
-	return (-1);
+		ft_memdel((void **)&pft->ret);
+	pft->global_size = PFT_ERR;
+	return (PFT_ERR);
 }
 
 int	ft_len_base(long long n, int base)
@@ -57,7 +54,7 @@ int	ft_len_base(long long n, int base)
 ** If nb < 0, the sign is handled outside this function
 */
 
-void	ft_put_int(t_pft *pft, int64_t nb, const char *base)
+void	ft_put_int(t_pft *pft, intmax_t nb, const char *base)
 {
 	const size_t	base_len = ft_strlen(base);
 	char			tmp;
@@ -70,7 +67,7 @@ void	ft_put_int(t_pft *pft, int64_t nb, const char *base)
 	pft->write2buf(pft, &tmp);
 }
 
-void	ft_put_uint(t_pft *pft, uint64_t nb, const char *base)
+void	ft_put_uint(t_pft *pft, uintmax_t nb, const char *base)
 {
 	const size_t	base_len = ft_strlen(base);
 	char			tmp;

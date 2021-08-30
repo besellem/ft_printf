@@ -6,7 +6,7 @@
 #    By: besellem <besellem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 00:10:57 by besellem          #+#    #+#              #
-#    Updated: 2021/08/23 01:47:46 by besellem         ###   ########.fr        #
+#    Updated: 2021/08/30 14:17:03 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS		=	family/*.c srcs/*.c
 
 ## Commands
 CC			=	clang
-CFLAGS		=	-Wall -Wextra -Werror #-O1#-g3 -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g3# -fsanitize=address #-O1
 
 LIBC		=	ar rc
 RM			=	rm -f
@@ -27,7 +27,7 @@ RMRF		=	rm -rf
 $(NAME):
 			@echo "Compiling executable..."
 			$(MUTE) $(CC) $(CFLAGS) main.c $(SRCS) $(INCS)
-			clear && ./a.out rand_test.txt
+			clear && ./a.out
 
 all:		$(NAME)
 
