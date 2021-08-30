@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 18:28:41 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/30 18:59:35 by besellem         ###   ########.fr       */
+/*   Updated: 2021/08/30 21:44:39 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ void		ft_put_float(t_pft *pft, double nb, const char *base)
 
 	if (ft_print_special_fp(pft, nb))
 		return ;
-	if (ft_signbit(nb))
-		write2buf_str(pft, "-");
 	nb = ft_copysign(nb, 0.);
 	prec_tab = NULL;
 	if (pft->conversion.precision >= 0)

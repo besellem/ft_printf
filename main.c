@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/30 19:01:13 by besellem         ###   ########.fr       */
+/*   Updated: 2021/08/31 00:56:39 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,53 @@ uint64_t	__get_time_ms__(void)
 }
 
 
+#define TESTS_NBR  1UL
+
+/*
+** MASKS:
+** 0x3fe0000000000000 || 0xbfe0000000000000;
+** 0xc01fffffffffffff || 0x401fffffffffffff;
+** 0x4fffffffffffff;
+*/
+
 int	main(void)
 {
 	__unused char	*ret1 = NULL;
 	__unused char	*ret2 = NULL;
 	__unused int	mine_size = 0;
 	__unused int	real_size = 0;
-	__unused int	padding = 0;
+	__unused double value = M_PI;
 
 	// ft_printf("[Hello World !] [%d]", 123);
-	
+
 	// mine_size = ft_asprintf(&ret1, "[%10d]", -123);
 	// real_size = asprintf(&ret2, "[%10d]", -123);
-	mine_size = ft_asprintf(&ret1, "[%#a]", 42.);
-	real_size = asprintf(&ret2, "[%#a]", 42.);
 
-	padding = ft_nblen(mine_size) > ft_nblen(real_size) ? ft_nblen(mine_size) : ft_nblen(real_size);
-	printf("mine[%*d]: %s\n", padding, mine_size, ret1);
-	printf("real[%*d]: %s\n", padding, real_size, ret2);
+	uint64_t	mine_start = __get_time_ms__();
+	for (size_t i = 0; i < TESTS_NBR; ++i)
+	{
+		mine_size = ft_asprintf(&ret1, "[%+a]", value);
+		if (i + 1 < TESTS_NBR) { free(ret1); ret1 = NULL; }
+	}
+	uint64_t	mine_end = __get_time_ms__();
+
+	uint64_t	real_start = __get_time_ms__();
+	for (size_t i = 0; i < TESTS_NBR; ++i)
+	{
+		real_size = asprintf(&ret2, "[%+a]", value);
+		if (i + 1 < TESTS_NBR) { free(ret2); ret2 = NULL; }
+	}
+	uint64_t	real_end = __get_time_ms__();
+	
+	// ft_printf("ptr: [%p]\n", NULL);
+
+	__unused int			p = 0;
+	__unused double			x = frexp(value, &p);
+	__unused unsigned long	x_tmp = *(unsigned long *)&x;
+	// printf("hex: %f*(2^%d) [%#lx]\n", value, p, x_tmp);
+
+	printf("mine[%2d] [%llu ms]: %s\n", mine_size, (mine_end - mine_start), ret1);
+	printf("real[%2d] [%llu ms]: %s\n", real_size, (real_end - real_start), ret2);
 
 
 	// ft_dprintf(2, "[Hello %s !] [%d] [%d]\n", "World", INT32_MIN, INT32_MAX);

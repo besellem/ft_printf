@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:42:12 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/30 18:50:56 by besellem         ###   ########.fr       */
+/*   Updated: 2021/08/31 00:46:45 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,6 @@ int	ft_parse_conversion(t_pft *pft, const char *fmt)
 			return (PFT_ERR);
 		i += check;
 	}
-	print_flags(pft->conversion);
+	// print_flags(pft->conversion);
 	return (i + 1);
 }

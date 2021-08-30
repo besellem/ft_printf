@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:55 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/23 00:38:50 by besellem         ###   ########.fr       */
+/*   Updated: 2021/08/31 00:41:19 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_vsnprintf(char *str, size_t size, const char *format, va_list ap)
 int	ft_vasprintf(char **ret, const char *format, va_list ap)
 	__attribute__((format(printf, 2, 0)));
 
-// WITHOUT PRINTF'S ATTRIBUTES
+/* -- WITHOUT PRINTF'S ATTRIBUTES -- */
 // int	ft_printf(const char *format, ...);
 // int	ft_dprintf(int fd, const char *format, ...);
 // int	ft_sprintf(char *str, const char *format, ...);
@@ -63,6 +63,6 @@ int	ft_vasprintf(char **ret, const char *format, va_list ap)
 // int	ft_vsprintf(char *str, const char *format, va_list ap);
 // int	ft_vsnprintf(char *str, size_t size, const char *format, va_list ap);
 // int	ft_vasprintf(char **ret, const char *format, va_list ap);
-// END WITHOUT PRINTF'S ATTRIBUTES
+/* -- END WITHOUT PRINTF'S ATTRIBUTES -- */
 
 #endif

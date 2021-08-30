@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:50:16 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/30 13:42:17 by besellem         ###   ########.fr       */
+/*   Updated: 2021/08/30 22:14:27 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ int	ft_len_base(long long n, int base)
 	return (len);
 }
 
-/*
-** If nb < 0, the sign is handled outside this function
-*/
-
+// If nb < 0, the sign is handled outside this function
 void	ft_put_int(t_pft *pft, intmax_t nb, const char *base)
 {
 	const size_t	base_len = ft_strlen(base);

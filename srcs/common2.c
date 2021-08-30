@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 01:26:33 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/30 18:49:58 by besellem         ###   ########.fr       */
+/*   Updated: 2021/08/31 00:34:15 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ int	ft_print_special_fp(t_pft *pft, double nb)
 	{
 		if (ft_signbit(nb))
 			write2buf_str(pft, "-");
+		else
+		{
+			if (pft->conversion.flags & FLAG_PLUS)
+				write2buf_str(pft, "+");
+			else if (pft->conversion.flags & FLAG_SPACE)
+				write2buf_str(pft, " ");
+		}
 		write2buf_str(pft, "inf");
 	}
 	else
