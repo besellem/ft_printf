@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:49:34 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/23 02:38:30 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 00:51:45 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	conv_s(t_pft *pft)
 	if (pft->conversion.precision >= 0 && len >= pft->conversion.precision)
 		len = pft->conversion.precision;
 	len_tmp = pft->conversion.width - len;
-	if (-1 != pft->conversion.width && !(pft->conversion.flags & FLAG_MINUS))
+	if (-1 != pft->conversion.width && !isflag(pft, FLAG_MINUS))
 		print_char(pft, ' ', ft_fdim(len_tmp, 0));
 	write2buf_str(pft, (char *)str);
-	if (-1 != pft->conversion.width && pft->conversion.flags & FLAG_MINUS)
+	if (-1 != pft->conversion.width && isflag(pft, FLAG_MINUS))
 		print_char(pft, ' ', ft_fdim(len_tmp, 0));
 }

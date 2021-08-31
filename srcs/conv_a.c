@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 18:43:49 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/31 00:34:32 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 00:52:14 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,23 @@ void	conv_a(t_pft *pft)
 	if (ft_print_special_fp(pft, nb))
 		return ;
 	frexp(nb, &exp);
-	// padding = 5 + ft_signbit(nb) + (0 != (((*(unsigned long *)&nb << 12) >> 12) || pft->conversion.flags & FLAG_HTAG)) + ft_nblen(exp - 1);
+	// padding = 5 + ft_signbit(nb) + (0 != (((*(unsigned long *)&nb << 12) >> 12) || isflag(pft, FLAG_HTAG))) + ft_nblen(exp - 1);
 	// if (-1 == pft->conversion.precision)
 	// 	pft->conversion.precision = 6;
 	if (ft_signbit(nb))
 		write2buf_str(pft, "-");
 	else
 	{
-		if (pft->conversion.flags & FLAG_PLUS)
+		if (isflag(pft, FLAG_PLUS))
 			write2buf_str(pft, "+");
-		else if (pft->conversion.flags & FLAG_SPACE)
+		else if (isflag(pft, FLAG_SPACE))
 			write2buf_str(pft, " ");
 	}
 	write2buf_str(pft, "0x");
 	ft_put_int(pft, 1, HEX_CHARSET); // false with rounding
 	nb = ft_copysign(nb, 0.);
 	mant = (*(unsigned long *)&nb << 12) >> 12;
-	if (mant || pft->conversion.flags & FLAG_HTAG)
+	if (mant || isflag(pft, FLAG_HTAG))
 		write2buf_str(pft, ".");
 	__cut_precision__(pft, ft_itoa_base(mant, HEX_CHARSET), &padding);
 	write2buf_str(pft, "p");

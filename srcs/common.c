@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:50:16 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/30 22:14:27 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 00:44:08 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,6 @@ int	ft_error(t_pft *pft)
 		ft_memdel((void **)&pft->ret);
 	pft->global_size = PFT_ERR;
 	return (PFT_ERR);
-}
-
-int	ft_len_base(long long n, int base)
-{
-	long long	i;
-	int			len;
-
-	n = n < 0 ? -n : n;
-	len = 1;
-	i = base;
-	while (n / i > 0)
-	{
-		i *= base;
-		++len;
-	}
-	return (len);
 }
 
 // If nb < 0, the sign is handled outside this function

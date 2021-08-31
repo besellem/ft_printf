@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/31 00:51:45 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 00:59:46 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@
 # define HEX_CHARSET    "0123456789abcdef"
 # define HEX_CHARSET_UP "0123456789ABCDEF"
 
+/* UNUSED */
+#define PFT_CHARSET        "$#* -+0123456789hljztL.sducpxXiobfgean%"
+#define PFT_END_CONVERSION "sducpxXiobfgean"
+/* END UNUSED */
+
 /*
 ** -- DATA STRUCTURES --
 **
@@ -61,19 +66,12 @@
 ** flag_plus:		`+' optional flag
 ** flag_minus:		`-' optional flag
 ** flag_zero:		`0' optional flag
-** flag_width:			width integer
-** flag_precision:	`.' optional flag
 */
-enum	e_flags
-{
-	FLAG_HTAG = (1L << 0),
-	FLAG_SPACE = (1L << 1),
-	FLAG_PLUS = (1L << 2),
-	FLAG_MINUS = (1L << 3),
-	FLAG_ZERO = (1L << 4),
-	FLAG_WIDTH = (1L << 5),
-	FLAG_PRECISION = (1L << 6)
-};
+# define FLAG_HTAG  0x01
+# define FLAG_SPACE 0x02
+# define FLAG_PLUS  0x04
+# define FLAG_MINUS 0x08
+# define FLAG_ZERO  0x10
 
 /*
 ** is_spec:		found a specifier
@@ -86,18 +84,15 @@ enum	e_flags
 ** spec_t:		`t'  specifier
 ** spec_lf:		`L'  specifier
 */
-enum	e_specifiers
-{
-	IS_SPEC = (1L << 0),
-	SPEC_HH = (1L << 1),
-	SPEC_H = (1L << 2),
-	SPEC_L = (1L << 3),
-	SPEC_LL = (1L << 4),
-	SPEC_J = (1L << 5),
-	SPEC_Z = (1L << 6),
-	SPEC_T = (1L << 7),
-	SPEC_LF = (1L << 8)
-};
+# define IS_SPEC    0x01
+# define SPEC_HH    0x02
+# define SPEC_H     0x04
+# define SPEC_L     0x08
+# define SPEC_LL    0x10
+# define SPEC_J     0x20
+# define SPEC_Z     0x40
+# define SPEC_T     0x80
+# define SPEC_LF    0x100
 
 /*
 ** `flags' and `specifiers' are used with `e_flag' and `e_specifiers' flags
@@ -127,16 +122,6 @@ typedef struct s_pft
 }				t_pft;
 
 /*
-** Used in ft_get_conversion() to execute the right function for
-** the right conversion
-*/
-typedef struct s_conv_ptrs
-{
-	char	conversion;
-	void	(*f)(struct	s_pft *);
-}				t_conv_ptrs;
-
-/*
 ** -- PROTOTYPES --
 ** Utils
 */
@@ -148,16 +133,23 @@ void			print_binary(const char *prefix, long long n);
 */
 int				ft_error(t_pft *pft);
 void			write2buf_str(t_pft *pft, char *str);
-int				ft_len_base(long long n, int base); 	// GOT THIS FROM OLD CODEBASE
 void			ft_put_int(t_pft *pft, intmax_t nb, const char *base);
 void			ft_put_uint(t_pft *pft, uintmax_t nb, const char *base);
 void			ft_put_float(t_pft *pft, double nb, const char *base);
 int				ft_print_special_fp(t_pft *pft, double nb);
 void			print_char(t_pft *pft, char c, int n);
+int				isflag(t_pft *pft, unsigned int flag);
 
 /*
 ** Parsing
 */
+int				check_wdt(const char *fmt, va_list ap, t_conv *conversion);
+int				check_zero(const char *fmt, va_list ap, t_conv *conversion);
+int				check_prec(const char *fmt, va_list ap, t_conv *conversion);
+int				check_htag(t_conv *conversion);
+int				check_spce(t_conv *conversion);
+int				check_plus(t_conv *conversion);
+int				check_min(t_conv *conversion);
 int				ft_parse_conversion(t_pft *pft, const char *fmt);
 
 /*

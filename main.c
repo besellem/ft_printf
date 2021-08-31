@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/31 00:56:39 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 01:09:27 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <sys/time.h>
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wformat-security"
+#pragma clang diagnostic ignored "-Wformat"
 
 
 uint64_t	__get_time_ms__(void)
@@ -52,11 +53,11 @@ int	main(void)
 
 	// mine_size = ft_asprintf(&ret1, "[%10d]", -123);
 	// real_size = asprintf(&ret2, "[%10d]", -123);
-
+	
 	uint64_t	mine_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		mine_size = ft_asprintf(&ret1, "[%+a]", value);
+		mine_size = ft_asprintf(&ret1, "[% 03d]", -1);
 		if (i + 1 < TESTS_NBR) { free(ret1); ret1 = NULL; }
 	}
 	uint64_t	mine_end = __get_time_ms__();
@@ -64,7 +65,7 @@ int	main(void)
 	uint64_t	real_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		real_size = asprintf(&ret2, "[%+a]", value);
+		real_size = asprintf(&ret2, "[% 03d]", -1);
 		if (i + 1 < TESTS_NBR) { free(ret2); ret2 = NULL; }
 	}
 	uint64_t	real_end = __get_time_ms__();

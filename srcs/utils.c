@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:39:26 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/30 14:50:09 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 00:53:27 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	print_flags(t_conv conv)
 	printf("    flag_plus:      [%u]\n", conv.flags & FLAG_PLUS);
 	printf("    flag_minus:     [%u]\n", conv.flags & FLAG_MINUS);
 	printf("    flag_zero:      [%u]\n", conv.flags & FLAG_ZERO);
-	printf("    flag_width:     [%u]\n", conv.flags & FLAG_WIDTH);
-	printf("    flag_precision: [%u]\n", conv.flags & FLAG_PRECISION);
 	printf("\n");
 	printf("    is_spec:        [%u]\n", conv.specifiers & IS_SPEC);
 	printf("    spec_hh:        [%u]\n", conv.specifiers & SPEC_HH);

@@ -6,45 +6,67 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:47:01 by besellem          #+#    #+#             */
-/*   Updated: 2021/08/30 18:41:59 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 01:09:08 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_internal.h"
 
-int	int_get_width(t_pft *pft, const t_int64 nb, const int nb_len)
+typedef struct s_padding
 {
-	int	width;
+	char	_pre_char[3];
+	int		_sign;
+	int		_len;
+	int		_pre;
+	int		_width;
+	int		_prec;
+}				t_padding;
 
-	width = -1;
-	if (pft->conversion.width >= 0)
-		width = pft->conversion.width - nb_len - (nb < 0);
-	if (pft->conversion.precision >= 0)
-		width -= pft->conversion.precision;
-	return (width);
+static void	__init_padding__(t_pft *pft, t_padding *pad, intmax_t val)
+{
+	if (*pad->_pre_char == 0 && pad->_sign < 0)
+		ft_strncpy(pad->_pre_char, "-", 1);
+	else if (*pad->_pre_char == 0 && isflag(pft, FLAG_PLUS))
+		ft_strncpy(pad->_pre_char, "+", 1);
+	else if (*pad->_pre_char == 0 && isflag(pft, FLAG_SPACE))
+		ft_strncpy(pad->_pre_char, " ", 1);
+	pad->_pre = (*pad->_pre_char != 0);
+	pad->_prec = (int)ft_fdim(pft->conversion.precision - pad->_len, 0);
+	if (pft->conversion.precision >= pft->conversion.width)
+		pad->_width = -1;
+	else
+	{
+		pad->_width = (0 == val && 0 == pft->conversion.precision) - pad->_len;
+		pad->_width += pft->conversion.width - pad->_pre - pad->_prec;
+	}
+	if (pft->conversion.precision < 0 && pad->_width > 0
+		&& !isflag(pft, FLAG_MINUS) && isflag(pft, FLAG_ZERO))
+	{
+		pad->_prec = pad->_width;
+		pad->_width = 0;
+	}
+	printf("zero_flag[%d], sign[%d], len[%d], pre[%d], width[%d] precision[%d]\n",
+		isflag(pft, FLAG_ZERO), pad->_sign, pad->_len, pad->_pre, pad->_width, pad->_prec);
 }
 
 void	conv_d(t_pft *pft)
 {
 	char			sign;
 	const intmax_t	nb = ft_get_val_int(pft, &sign);
-	const int		nb_len = ft_nblen_base(nb, 10);
-	int				width;
+	t_padding		pad;
 
-	width = int_get_width(pft, nb, nb_len);
-	if (!(pft->conversion.flags & FLAG_MINUS))
-		while (width-- > 0)
-			pft->write2buf(pft, " ");
-	if (nb < 0)
-		pft->write2buf(pft, "-");
-	while (pft->conversion.precision > nb_len)
-	{
-		pft->write2buf(pft, "0");
-		--pft->conversion.precision;
-	}
+	ft_bzero(&pad, sizeof(pad));
+	pad._len = ft_nblen_base(nb, 10);
+	pad._sign = sign;
+	__init_padding__(pft, &pad, nb);
+	if (pad._width > 0 && !isflag(pft, FLAG_MINUS))
+		print_char(pft, ' ', pad._width);
+	if (pad._pre != 0)
+		write2buf_str(pft, pad._pre_char);
+	if (pad._prec > 0)
+		print_char(pft, '0', pad._prec);
 	if (!(nb == 0 && pft->conversion.precision == 0))
 		ft_put_int(pft, nb, DEC_CHARSET);
-	if (pft->conversion.flags & FLAG_MINUS)
-		while (width-- > 0)
-			pft->write2buf(pft, " ");
+	if (pad._width > 0 && isflag(pft, FLAG_MINUS))
+		print_char(pft, ' ', pad._width);
 }

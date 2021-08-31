@@ -6,7 +6,7 @@
 #    By: besellem <besellem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 00:10:57 by besellem          #+#    #+#              #
-#    Updated: 2021/08/31 00:51:52 by besellem         ###   ########.fr        #
+#    Updated: 2021/08/31 22:07:40 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS		=	family/*.c srcs/*.c
 
 ## Commands
 CC			=	clang
-CFLAGS		=	-Wall -Wextra -Werror #-g3# -fsanitize=address #-O1
+CFLAGS		=	-Wall -Wextra -Werror -g3# -fsanitize=address #-O1
 
 LIBC		=	ar rc
 RM			=	rm -f
