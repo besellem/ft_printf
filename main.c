@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 01:09:27 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 01:48:34 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(void)
 	uint64_t	mine_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		mine_size = ft_asprintf(&ret1, "[% 03d]", -1);
+		mine_size = ft_asprintf(&ret1, "[%d]", -1);
 		if (i + 1 < TESTS_NBR) { free(ret1); ret1 = NULL; }
 	}
 	uint64_t	mine_end = __get_time_ms__();
@@ -65,7 +65,7 @@ int	main(void)
 	uint64_t	real_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		real_size = asprintf(&ret2, "[% 03d]", -1);
+		real_size = asprintf(&ret2, "[%d]", -1);
 		if (i + 1 < TESTS_NBR) { free(ret2); ret2 = NULL; }
 	}
 	uint64_t	real_end = __get_time_ms__();
@@ -99,8 +99,8 @@ int	main(void)
 	// printf("[%s]\n", ret1);
 	// ft_memdel((void **)&ret1);
 	
-	ft_memdel((void **)&ret1);
-	ft_memdel((void **)&ret2);
+	free(ret1);
+	free(ret2);
 	
 	// system("leaks a.out");
 	
