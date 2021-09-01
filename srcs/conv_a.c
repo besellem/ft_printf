@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 18:43:49 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 00:52:14 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 23:28:38 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,15 @@ static void	__cut_precision__(t_pft *pft, char *pad, int *padding)
 
 void	conv_a(t_pft *pft)
 {
-	int				exp = 0;
-	double			nb = ft_get_val_float(pft);
+	int				exp;
+	double			nb;
 	unsigned long	mant;
 	int				padding;
 
+	nb = ft_get_val_float(pft);
 	if (ft_print_special_fp(pft, nb))
 		return ;
-	frexp(nb, &exp);
+	ft_frexp(nb, &exp);
 	// padding = 5 + ft_signbit(nb) + (0 != (((*(unsigned long *)&nb << 12) >> 12) || isflag(pft, FLAG_HTAG))) + ft_nblen(exp - 1);
 	// if (-1 == pft->conversion.precision)
 	// 	pft->conversion.precision = 6;

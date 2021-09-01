@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:50:16 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 17:23:34 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 23:27:11 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_error(t_pft *pft)
 	return (PFT_ERR);
 }
 
-int			ft_uint_base(uintmax_t n, int base)
+int	ft_uint_base(uintmax_t n, int base)
 {
 	int	len;
 
