@@ -1,45 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_o.c                                           :+:      :+:    :+:   */
+/*   conv_perc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 23:48:31 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 23:07:07 by besellem         ###   ########.fr       */
+/*   Created: 2021/09/01 19:27:47 by besellem          #+#    #+#             */
+/*   Updated: 2021/09/01 19:37:01 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_internal.h"
 
-void	conv_o(t_pft *pft)
+void	conv_perc(t_pft *pft)
 {
-	const uintmax_t	nb = ft_get_val_uint(pft);
-	t_padding		pad;
+	t_padding	pad;
 
 	ft_bzero(&pad, sizeof(pad));
-	pad._len = ft_uint_base(nb, 8);
+	pad._len = 1;
 	pad._sign = POS;
-	if (nb != 0 && isflag(pft, FLAG_HTAG))
-		ft_strncpy(pad._pre_char, "0", 1);
-	__init_uint_padding__(pft, &pad, nb);
+	pad._pre = 0;
+	pft->conversion.flags &= ~FLAG_SPACE;
+	__init_int_padding__(pft, &pad, 1);
 	if (pad._width > 0 && !isflag(pft, FLAG_MINUS))
 		print_char(pft, ' ', pad._width);
-	if (pad._pre != 0)
-		write2buf_str(pft, pad._pre_char);
 	if (pad._prec > 0)
 		print_char(pft, '0', pad._prec);
-	if (!(nb == 0 && pft->conversion.precision == 0) || isflag(pft, FLAG_HTAG))
-		ft_put_uint(pft, nb, OCT_CHARSET);
+	write2buf_str(pft, "%");
 	if (pad._width > 0 && isflag(pft, FLAG_MINUS))
 		print_char(pft, ' ', pad._width);
-}
-
-void	conv_o_max(t_pft *pft)
-{
-	const uint16_t	_spec = pft->conversion.specifiers;
-
-	if (0 == (_spec & SPEC_L) && 0 == (_spec & SPEC_LL))
-		pft->conversion.specifiers = IS_SPEC | SPEC_L;
-	conv_o(pft);
 }

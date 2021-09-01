@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 18:28:41 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 00:51:26 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 21:59:21 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ static void	ft_fill_float_precision(double nb, int precision, char *prec_tab)
 	double	fp;
 	int		i;
 
-	fp = (nb - ft_trunc(nb)) * 10.;
+	fp = nb - ft_trunc(nb);
 	i = 0;
 	while (i < precision)
 	{
-		prec_tab[i++] = fmod(nb, 10.) + 48;
 		fp *= 10.;
+		prec_tab[i++] = (int)ft_fmod(fp, 10.) + 48;
 	}
 	prec_tab[i] = '\0';
 }
 
-static void	ft_round_str(double *nb, char *str, int precision)
+__unused static int	ft_round_str(double *nb, char *str, int precision)
 {
 	if (precision >= 0 && '9' == str[precision])
 	{
@@ -46,16 +46,18 @@ static void	ft_round_str(double *nb, char *str, int precision)
 		if (0 == precision)
 		{
 			++(*nb);
-			if ((*nb - ft_trunc(*nb)) >= .5 && 1 == (int)ft_fmod(*nb, 2))
-				++(*nb);
-			else if ((*nb - ft_trunc(*nb)) > .5 && 0 == (int)ft_fmod(*nb, 2))
-				++(*nb);
+			// if ((*nb - ft_trunc(*nb)) >= .5 && 1 == (int)ft_fmod(*nb, 2.))
+			// 	++(*nb);
+			// else if ((*nb - ft_trunc(*nb)) > .5 && 0 == (int)ft_fmod(*nb, 2.))
+			// 	++(*nb);
+			return (1);
 		}
 		return (ft_round_str(nb, str, precision - 1));
 	}
-	else if (precision >= 0)
+	else //if (precision >= 0)
 	{
 		++str[precision];
+		return (0);
 	}
 }
 
@@ -76,7 +78,10 @@ void		ft_put_float(t_pft *pft, double nb, const char *base)
 			return ((void)ft_error(pft));
 		}
 		ft_fill_float_precision(nb, pft->conversion.precision, prec_tab);
-		ft_round_str(&nb, prec_tab, pft->conversion.precision - 1);
+		// printf("bef [%s] [%c]\n", prec_tab, prec_tab[pft->conversion.precision - 1]);
+		if (prec_tab[pft->conversion.precision - 1] == '9')
+			ft_round_str(&nb, prec_tab, pft->conversion.precision - 1);
+		// printf("aft [%s] [%c]\n", prec_tab, prec_tab[pft->conversion.precision - 1]);
 	}
 	ft_put_float_head(pft, nb, base);
 	if ((0 == pft->conversion.precision && isflag(pft, FLAG_HTAG))

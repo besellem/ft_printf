@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:42:12 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 00:45:21 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 23:09:27 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ static int	fill_indicators(const char *fmt, va_list ap, t_conv *conversion)
 static int	ft_get_conversion(t_pft *pft, char conv)
 {
 	static struct s_conv_ptrs	conv_ptrs[] = {
-		{'s', conv_s}, {'d', conv_d}, {'u', conv_u}, {'c', conv_c},
-		{'p', conv_p}, {'x', conv_x_min}, {'X', conv_x_max}, {'i', conv_i},
-		{'o', conv_o}, {'f', conv_f}, {'a', conv_a},
-		// {'b', conv_b}, {'f', conv_f}, {'g', conv_g}, {'e', conv_e},
-		// {'a', conv_a}, {'n', conv_n}, {'%', conv_perc},
+		{'d', conv_d}, {'u', conv_u}, {'x', conv_x_min}, {'X', conv_x_max},
+		{'s', conv_s}, {'c', conv_c}, {'p', conv_p}, {'i', conv_i},
+		{'o', conv_o}, {'f', conv_f}, {'a', conv_a}, {'%', conv_perc},
+		{'D', conv_d_max}, {'U', conv_u_max}, {'O', conv_o_max},
+		// {'b', conv_b}, {'g', conv_g}, {'e', conv_e}, {'n', conv_n},
 		{0, NULL}
 	};
 	int							i;
@@ -112,6 +112,5 @@ int	ft_parse_conversion(t_pft *pft, const char *fmt)
 			return (PFT_ERR);
 		i += check;
 	}
-	// print_flags(pft->conversion);
 	return (i + 1);
 }

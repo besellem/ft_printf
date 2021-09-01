@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 17:23:42 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 23:07:17 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # endif
 
 # define DEC_CHARSET    "0123456789"
+# define OCT_CHARSET    "01234567"
 # define HEX_CHARSET    "0123456789abcdef"
 # define HEX_CHARSET_UP "0123456789ABCDEF"
 
@@ -184,15 +185,19 @@ long double		ft_get_val_float(t_pft *pft);
 void			conv_c(t_pft *pft);
 void			conv_s(t_pft *pft);
 void			conv_d(t_pft *pft);
+void			conv_d_max(t_pft *pft);
 void			conv_i(t_pft *pft);
 void			conv_u(t_pft *pft);
+void			conv_u_max(t_pft *pft);
 void			conv_o(t_pft *pft);
+void			conv_o_max(t_pft *pft);
 void			conv_b(t_pft *pft);
 void			conv_f(t_pft *pft);
 void			conv_a(t_pft *pft);
 void			conv_x_min(t_pft *pft);
 void			conv_x_max(t_pft *pft);
 void			conv_p(t_pft *pft);
+void			conv_perc(t_pft *pft);
 
 /*
 ** Main

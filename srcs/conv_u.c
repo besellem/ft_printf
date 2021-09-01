@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:48:35 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 17:23:54 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 23:01:33 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,13 @@ void	conv_u(t_pft *pft)
 		ft_put_uint(pft, nb, DEC_CHARSET);
 	if (pad._width > 0 && isflag(pft, FLAG_MINUS))
 		print_char(pft, ' ', pad._width);
+}
+
+void	conv_u_max(t_pft *pft)
+{
+	const uint16_t	_spec = pft->conversion.specifiers;
+
+	if (0 == (_spec & SPEC_L) && 0 == (_spec & SPEC_LL))
+		pft->conversion.specifiers = IS_SPEC | SPEC_L;
+	conv_u(pft);
 }
