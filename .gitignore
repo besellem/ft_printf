@@ -4,3 +4,4 @@ utils/
 *.sh
 *.o
 *.dSYMpft/
+pft/

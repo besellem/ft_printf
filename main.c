@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 01:48:34 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 17:39:13 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ uint64_t	__get_time_ms__(void)
 #define TESTS_NBR  1UL
 
 /*
-** MASKS:
+** float MASKS:
 ** 0x3fe0000000000000 || 0xbfe0000000000000;
 ** 0xc01fffffffffffff || 0x401fffffffffffff;
 ** 0x4fffffffffffff;
@@ -57,7 +57,7 @@ int	main(void)
 	uint64_t	mine_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		mine_size = ft_asprintf(&ret1, "[%d]", -1);
+		mine_size = ft_asprintf(&ret1, "[%p]", NULL);
 		if (i + 1 < TESTS_NBR) { free(ret1); ret1 = NULL; }
 	}
 	uint64_t	mine_end = __get_time_ms__();
@@ -65,7 +65,7 @@ int	main(void)
 	uint64_t	real_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		real_size = asprintf(&ret2, "[%d]", -1);
+		real_size = asprintf(&ret2, "[%p]", NULL);
 		if (i + 1 < TESTS_NBR) { free(ret2); ret2 = NULL; }
 	}
 	uint64_t	real_end = __get_time_ms__();

@@ -6,7 +6,7 @@
 #    By: besellem <besellem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 00:10:57 by besellem          #+#    #+#              #
-#    Updated: 2021/09/01 01:48:28 by besellem         ###   ########.fr        #
+#    Updated: 2021/09/01 17:14:53 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS		:=	common.c \
 				ft_vdprintf.c \
 				ft_vdprintf_internal.c \
 				ft_vprintf.c \
+				padding.c \
 				parser_checks1.c \
 				parser_checks2.c \
 				utils.c
@@ -74,7 +75,7 @@ CYAN 		:= \033[1;36m
 
 
 ## Compilation
-$(NAME):	./main.c | $(OBJS)
+$(NAME):	$(OBJS) ./main.c
 			@echo "Creating $(RED_COLOR)$@ $(CLR_COLOR)..."
 			@$(LIBC) $(NAME) $(OBJS)
 

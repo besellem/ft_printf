@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 00:59:46 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/01 17:23:42 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,22 @@
 # define SPEC_LF    0x100
 
 /*
+** is used internally to get all the right padding infos
+*/
+typedef struct s_padding
+{
+	char	_pre_char[3];
+	int		_sign;
+	int		_len;
+	int		_pre;
+	int		_width;
+	int		_prec;
+}				t_padding;
+
+# define POS        1    /* positive number - used in `t_padding' _sign */
+# define NEG        (-1) /* negative number - used in `t_padding' _sign */
+
+/*
 ** `flags' and `specifiers' are used with `e_flag' and `e_specifiers' flags
 **
 ** arg_nbr:		contains a valid integer parsed from ft_printf's `format'
@@ -133,12 +149,15 @@ void			print_binary(const char *prefix, long long n);
 */
 int				ft_error(t_pft *pft);
 void			write2buf_str(t_pft *pft, char *str);
+int				ft_uint_base(uintmax_t n, int base);
 void			ft_put_int(t_pft *pft, intmax_t nb, const char *base);
 void			ft_put_uint(t_pft *pft, uintmax_t nb, const char *base);
 void			ft_put_float(t_pft *pft, double nb, const char *base);
 int				ft_print_special_fp(t_pft *pft, double nb);
 void			print_char(t_pft *pft, char c, int n);
 int				isflag(t_pft *pft, unsigned int flag);
+void			__init_int_padding__(t_pft *pft, t_padding *pad, intmax_t val);
+void			__init_uint_padding__(t_pft *pft, t_padding *pad, uintmax_t val);
 
 /*
 ** Parsing
