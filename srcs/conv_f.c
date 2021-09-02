@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 14:56:09 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 11:44:56 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 16:41:23 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static int	__special_fp__(t_pft *pft, double nb)
 {
 	if (ft_isnan(nb))
-		write2buf_str(pft, "nan");
+		pft->write2buf_s(pft, "nan");
 	else if (ft_isinf(nb))
-		write2buf_str(pft, "inf");
+		pft->write2buf_s(pft, "inf");
 	else
 		return (FALSE);
 	return (TRUE);
@@ -41,7 +41,7 @@ void	conv_f(t_pft *pft)
 	if (pad._width > 0 && !isflag(pft, FLAG_MINUS))
 		print_char(pft, ' ', pad._width);
 	if (!ft_isnan(nb) && pad._pre != 0)
-		write2buf_str(pft, pad._pre_char);
+		pft->write2buf_s(pft, pad._pre_char);
 	if (!_is_special && pad._prec > 0)
 		print_char(pft, '0', pad._prec);
 	if (!__special_fp__(pft, nb))

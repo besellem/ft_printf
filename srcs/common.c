@@ -6,26 +6,11 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:50:16 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 15:29:44 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 16:41:48 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_internal.h"
-
-void	write2buf_str(t_pft *pft, char *str)
-{
-	int	i;
-
-	if (!str)
-		return ;
-	i = 0;
-	while (str[i])
-	{
-		pft->write2buf(pft, &str[i]);
-		++i;
-	}
-	// pft->write2buf_s(pft, str);
-}
 
 int	ft_error(t_pft *pft)
 {

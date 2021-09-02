@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 18:43:49 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 23:28:38 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 16:41:23 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	__cut_precision__(t_pft *pft, char *pad, int *padding)
 		pad[pft->conversion.precision] = '\0';
 	_new_len = ft_strlen(pad);
 	*padding += _new_len;
-	write2buf_str(pft, pad);
+	pft->write2buf_s(pft, pad);
 	print_char(pft, '0', ft_fdim(pft->conversion.precision, _new_len));
 	ft_memdel((void **)&pad);
 }
@@ -50,25 +50,25 @@ void	conv_a(t_pft *pft)
 	// if (-1 == pft->conversion.precision)
 	// 	pft->conversion.precision = 6;
 	if (ft_signbit(nb))
-		write2buf_str(pft, "-");
+		pft->write2buf_s(pft, "-");
 	else
 	{
 		if (isflag(pft, FLAG_PLUS))
-			write2buf_str(pft, "+");
+			pft->write2buf_s(pft, "+");
 		else if (isflag(pft, FLAG_SPACE))
-			write2buf_str(pft, " ");
+			pft->write2buf_s(pft, " ");
 	}
-	write2buf_str(pft, "0x");
+	pft->write2buf_s(pft, "0x");
 	ft_put_int(pft, 1, HEX_CHARSET); // false with rounding
 	nb = ft_copysign(nb, 0.);
 	mant = (*(unsigned long *)&nb << 12) >> 12;
 	if (mant || isflag(pft, FLAG_HTAG))
-		write2buf_str(pft, ".");
+		pft->write2buf_s(pft, ".");
 	__cut_precision__(pft, ft_itoa_base(mant, HEX_CHARSET), &padding);
-	write2buf_str(pft, "p");
+	pft->write2buf_s(pft, "p");
 	if ((exp - 1) < 0)
-		write2buf_str(pft, "-");
+		pft->write2buf_s(pft, "-");
 	else
-		write2buf_str(pft, "+");
+		pft->write2buf_s(pft, "+");
 	ft_put_int(pft, exp - 1, DEC_CHARSET);
 }

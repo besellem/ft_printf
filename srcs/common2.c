@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 01:26:33 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 14:38:14 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 16:41:23 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ int	isflag(t_pft *pft, unsigned int flag)
 int	ft_print_special_fp(t_pft *pft, double nb)
 {
 	if (ft_isnan(nb))
-		write2buf_str(pft, "nan");
+		pft->write2buf_s(pft, "nan");
 	else if (ft_isinf(nb))
 	{
 		if (ft_signbit(nb))
-			write2buf_str(pft, "-");
+			pft->write2buf_s(pft, "-");
 		else
 		{
 			if (isflag(pft, FLAG_PLUS))
-				write2buf_str(pft, "+");
+				pft->write2buf_s(pft, "+");
 			else if (isflag(pft, FLAG_SPACE))
-				write2buf_str(pft, " ");
+				pft->write2buf_s(pft, " ");
 		}
-		write2buf_str(pft, "inf");
+		pft->write2buf_s(pft, "inf");
 	}
 	else
 		return (FALSE);

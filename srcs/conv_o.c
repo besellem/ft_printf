@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:48:31 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 11:38:01 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 16:41:23 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	conv_o(t_pft *pft)
 	if (pad._width > 0 && !isflag(pft, FLAG_MINUS))
 		print_char(pft, ' ', pad._width);
 	if (pad._pre != 0)
-		write2buf_str(pft, pad._pre_char);
+		pft->write2buf_s(pft, pad._pre_char);
 	if (pad._prec > 0)
 		print_char(pft, '0', pad._prec);
 	if (!(nb == 0 && pft->conversion.precision == 0) || isflag(pft, FLAG_HTAG))

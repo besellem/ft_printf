@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 16:32:19 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 16:37:20 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ uint64_t	__get_time_ms__(void)
 }
 
 
-#define TESTS_NBR  10000U
+#define TESTS_NBR  1000000U
 
 /*
 ** float MASKS:
@@ -59,7 +59,7 @@ int	main(void)
 	uint64_t	mine_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		mine_size = ft_dprintf(1, "[%600d]\n", 12);
+		mine_size = ft_asprintf(&ret1, "[%600d]\n", 12);
 		if (i + 1 < TESTS_NBR) { free(ret1); ret1 = NULL; }
 	}
 	uint64_t	mine_end = __get_time_ms__();
@@ -67,7 +67,7 @@ int	main(void)
 	uint64_t	real_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		real_size = dprintf(1, "[%600d]\n", 12);
+		real_size = asprintf(&ret2, "[%600d]\n", 12);
 		if (i + 1 < TESTS_NBR) { free(ret2); ret2 = NULL; }
 	}
 	uint64_t	real_end = __get_time_ms__();

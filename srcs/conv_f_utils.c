@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 18:28:41 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 15:52:06 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 16:41:23 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void		ft_put_float(t_pft *pft, double nb, const char *base)
 	ft_put_float_head(pft, nb, base);
 	if ((0 == pft->conversion.precision && isflag(pft, FLAG_HTAG))
 		|| pft->conversion.precision > 0)
-		write2buf_str(pft, ".");
-	write2buf_str(pft, prec_tab);
+		pft->write2buf_s(pft, ".");
+	pft->write2buf_s(pft, prec_tab);
 	ft_memdel((void **)&prec_tab);
 }
