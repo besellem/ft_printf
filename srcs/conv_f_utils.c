@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 18:28:41 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 16:41:23 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 18:29:05 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	ft_fill_float_precision(double *nb, int precision, char *prec_tab)
 	// 	++(*nb);
 }
 
-void		ft_put_float(t_pft *pft, double nb, const char *base)
+void	ft_put_float(t_pft *pft, double nb, const char *base)
 {
 	char	*prec_tab;
 

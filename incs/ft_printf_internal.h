@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 16:41:44 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 19:09:05 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,13 @@
 #  define PFT_NULL_PTR  "(nil)"
 # endif
 
-# define DEC_CHARSET    "0123456789"
 # define OCT_CHARSET    "01234567"
+# define DEC_CHARSET    "0123456789"
 # define HEX_CHARSET    "0123456789abcdef"
 # define HEX_CHARSET_UP "0123456789ABCDEF"
 
 /* UNUSED */
-#define PFT_CHARSET        "$#* -+0123456789hljztL.sducpxXiobfgean%"
-#define PFT_END_CONVERSION "sducpxXiobfgean"
+#define PFT_CHARSET     "$#* -+0123456789hljztL.sducpxXiobfgean%"
 /* END UNUSED */
 
 /*

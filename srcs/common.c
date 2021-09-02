@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:50:16 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 16:41:48 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 18:24:08 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_dbl_base(t_pft *pft, double n, int base)
 		++len;
 	}
 	if (((0 == pft->conversion.precision && isflag(pft, FLAG_HTAG))
-		|| pft->conversion.precision > 0))
+			|| pft->conversion.precision > 0))
 	{
 		len += 1 + pft->conversion.precision;
 	}
