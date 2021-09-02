@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:26:26 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 16:33:04 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 16:35:52 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	ft_vdprintf_internal(int fd, const char *fmt, va_list ap)
 	pft.write2buf = &write2buf_vdprintf;
 	pft.write2buf_s = &write2buf_str_vdprintf;
 	va_copy(pft.ap, ap);
-	if (ft_no_conversion_opti(fd, fmt, &pft))
+	if (TRUE == ft_no_conversion_opti(fd, fmt, &pft))
 		return (pft.global_size);
 	ft_printf_process(fmt, &pft);
 	if (PFT_ERR == pft.global_size || write(pft.fd, pft.buffer, pft.size) < 0)
