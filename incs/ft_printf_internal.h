@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 23:07:17 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 11:44:48 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,14 +151,16 @@ void			print_binary(const char *prefix, long long n);
 int				ft_error(t_pft *pft);
 void			write2buf_str(t_pft *pft, char *str);
 int				ft_uint_base(uintmax_t n, int base);
+int				ft_dbl_base(t_pft *pft, double n, int base);
 void			ft_put_int(t_pft *pft, intmax_t nb, const char *base);
 void			ft_put_uint(t_pft *pft, uintmax_t nb, const char *base);
 void			ft_put_float(t_pft *pft, double nb, const char *base);
 int				ft_print_special_fp(t_pft *pft, double nb);
 void			print_char(t_pft *pft, char c, int n);
 int				isflag(t_pft *pft, unsigned int flag);
-void			__init_int_padding__(t_pft *pft, t_padding *pad, intmax_t val);
-void			__init_uint_padding__(t_pft *pft, t_padding *pad, uintmax_t val);
+void			__int_padding__(t_pft *pft, t_padding *pad, intmax_t val);
+void			__uint_padding__(t_pft *pft, t_padding *pad, uintmax_t val);
+void			__dbl_padding__(t_pft *pft, t_padding *pad, double val);
 
 /*
 ** Parsing

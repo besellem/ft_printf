@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:48:31 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 23:07:07 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 11:38:01 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	conv_o(t_pft *pft)
 	pad._len = ft_uint_base(nb, 8);
 	pad._sign = POS;
 	if (nb != 0 && isflag(pft, FLAG_HTAG))
-		ft_strncpy(pad._pre_char, "0", 1);
-	__init_uint_padding__(pft, &pad, nb);
+		ft_memcpy(pad._pre_char, "0", 1);
+	__uint_padding__(pft, &pad, nb);
 	if (pad._width > 0 && !isflag(pft, FLAG_MINUS))
 		print_char(pft, ' ', pad._width);
 	if (pad._pre != 0)

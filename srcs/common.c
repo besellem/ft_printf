@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:50:16 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 23:27:11 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 11:13:18 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,26 @@ int	ft_uint_base(uintmax_t n, int base)
 	{
 		n /= base;
 		++len;
+	}
+	return (len);
+}
+
+int	ft_dbl_base(t_pft *pft, double n, int base)
+{
+	int	len;
+
+	if (ft_signbit(n))
+		n = -n;
+	len = 1;
+	while (n / base > 0)
+	{
+		n /= (double)base;
+		++len;
+	}
+	if (((0 == pft->conversion.precision && isflag(pft, FLAG_HTAG))
+		|| pft->conversion.precision > 0))
+	{
+		len += 1 + pft->conversion.precision;
 	}
 	return (len);
 }
