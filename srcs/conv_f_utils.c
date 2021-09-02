@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 18:28:41 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 11:51:57 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 15:52:06 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ __unused static int	ft_round_str(double *nb, char *str, int precision)
 		}
 		return (ft_round_str(nb, str, precision - 1));
 	}
-	else //if (precision >= 0)
+	else if (precision > 0)
 	{
 		++str[precision];
 		return (0);
 	}
+	else
+		return (0);
 }
 
 static void	ft_fill_float_precision(double *nb, int precision, char *prec_tab)

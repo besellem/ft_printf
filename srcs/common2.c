@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 01:26:33 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 11:58:31 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 14:38:14 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,21 @@
 // print a character `n' times
 void	print_char(t_pft *pft, char c, int n)
 {
-	while (n > 0)
+	char	buf[__BUF_TMP_SIZE__ + 1];
+
+	ft_memset(buf, c, __BUF_TMP_SIZE__);
+	buf[__BUF_TMP_SIZE__] = 0;
+	while (n >= __BUF_TMP_SIZE__)
 	{
-		pft->write2buf(pft, &c);
-		--n;
+		pft->write2buf_s(pft, buf);
+		n -= __BUF_TMP_SIZE__;
+	}
+	if (n > 0)
+	{
+		buf[n] = 0;
+		pft->write2buf_s(pft, buf);
 	}
 }
-// void	print_char(t_pft *pft, char c, int n)
-// {
-// 	char	buf[__BUF_TMP_SIZE__ + 1];
-
-// 	ft_memset(buf, c, __BUF_TMP_SIZE__);
-// 	buf[__BUF_TMP_SIZE__] = 0;
-// 	while (n > __BUF_TMP_SIZE__)
-// 	{
-// 		write2buf_str(pft, buf);
-// 		n -= __BUF_TMP_SIZE__;
-// 	}
-// 	if (n > 0)
-// 	{
-// 		buf[n] = 0;
-// 		write2buf_str(pft, buf);
-// 	}
-// }
 
 int	isflag(t_pft *pft, unsigned int flag)
 {

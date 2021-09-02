@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 11:44:48 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 16:28:57 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct s_pft
 	char		*ret;
 	char		buffer[PFT_BUFSIZ + 1];
 	int			(*write2buf)(struct	s_pft *, char *);
+	int			(*write2buf_s)(struct	s_pft *, const char *);
 	t_conv		conversion;
 	va_list		ap;
 }				t_pft;

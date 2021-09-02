@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:50:16 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 11:13:18 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 15:29:44 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	write2buf_str(t_pft *pft, char *str)
 		pft->write2buf(pft, &str[i]);
 		++i;
 	}
+	// pft->write2buf_s(pft, str);
 }
 
 int	ft_error(t_pft *pft)
