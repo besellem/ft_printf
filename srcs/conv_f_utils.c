@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 18:28:41 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 18:29:05 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 22:07:24 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_put_float_head(t_pft *pft, double nb, const char *base)
 	const double	base_len = (double)ft_strlen(base);
 	char			tmp;
 
-	if (trunc(nb / base_len) > 0.)
+	if (ft_trunc(nb / base_len) > 0.)
 		ft_put_float_head(pft, nb / base_len, base);
 	tmp = base[(size_t)fmod(nb, base_len)];
 	pft->write2buf(pft, &tmp);

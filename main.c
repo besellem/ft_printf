@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 16:37:20 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/02 23:12:09 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ uint64_t	__get_time_ms__(void)
 }
 
 
-#define TESTS_NBR  1000000U
+#define TESTS_NBR  1U
 
 /*
 ** float MASKS:
@@ -42,24 +42,25 @@ uint64_t	__get_time_ms__(void)
 ** 0x4fffffffffffff;
 */
 
-int	main(void)
+int	main(__unused int ac, __unused char **av)
 {
 	__unused char	*ret1 = NULL;
 	__unused char	*ret2 = NULL;
 	__unused int	mine_size = 0;
 	__unused int	real_size = 0;
-	__unused double value = -9.999;
+	__unused double value = (ac > 1) ? strtod(av[1], NULL) : -9.999;
 
 	// ft_printf("[Hello World !] [%d]", 123);
 
 	// mine_size = ft_asprintf(&ret1, "[%10d]", -123);
 	// real_size = asprintf(&ret2, "[%10d]", -123);
 	
+	printf("value: [%.10f]\n", value);
 
 	uint64_t	mine_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		mine_size = ft_asprintf(&ret1, "[%600d]\n", 12);
+		mine_size = ft_asprintf(&ret1, "[%a]\n", value);
 		if (i + 1 < TESTS_NBR) { free(ret1); ret1 = NULL; }
 	}
 	uint64_t	mine_end = __get_time_ms__();
@@ -67,7 +68,7 @@ int	main(void)
 	uint64_t	real_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		real_size = asprintf(&ret2, "[%600d]\n", 12);
+		real_size = asprintf(&ret2, "[%a]\n", value);
 		if (i + 1 < TESTS_NBR) { free(ret2); ret2 = NULL; }
 	}
 	uint64_t	real_end = __get_time_ms__();
