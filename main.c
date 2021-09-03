@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 23:12:09 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 02:18:14 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 #include <time.h>
 #include <sys/time.h>
 #pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wformat-invalid-specifier"
+// #pragma clang diagnostic ignored "-Wformat-invalid-specifier"
 // #pragma clang diagnostic ignored "-Wformat-security"
-#pragma clang diagnostic ignored "-Wformat"
+// #pragma clang diagnostic ignored "-Wformat"
 
 
 uint64_t	__get_time_ms__(void)
@@ -33,7 +33,7 @@ uint64_t	__get_time_ms__(void)
 }
 
 
-#define TESTS_NBR  1U
+#define TESTS_NBR  1000000U
 
 /*
 ** float MASKS:
@@ -74,12 +74,10 @@ int	main(__unused int ac, __unused char **av)
 	uint64_t	real_end = __get_time_ms__();
 	
 
-	// ft_printf("ptr: [%p]\n", NULL);
-
 	__unused int			p = 0;
 	__unused double			x = frexp(value, &p);
 	__unused unsigned long	x_tmp = *(unsigned long *)&x;
-	// printf("hex: %f*(2^%d) [%#lx]\n", value, p, x_tmp);
+	printf("hex: %f*(2^%d) [%#lx]\n", value, p, x_tmp);
 
 	printf("mine[%2d] [%4llu ms]: %s\n", mine_size, (mine_end - mine_start), ret1);
 	printf("real[%2d] [%4llu ms]: %s\n", real_size, (real_end - real_start), ret2);
@@ -103,8 +101,8 @@ int	main(__unused int ac, __unused char **av)
 	// printf("[%s]\n", ret1);
 	// ft_memdel((void **)&ret1);
 	
-	free(ret1);
-	free(ret2);
+	if (ret1) free(ret1);
+	if (ret2) free(ret2);
 	
 	// system("leaks a.out");
 	

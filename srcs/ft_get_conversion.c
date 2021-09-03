@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:42:12 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/01 23:09:27 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 01:23:38 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	ft_get_conversion(t_pft *pft, char conv)
 		{'d', conv_d}, {'u', conv_u}, {'x', conv_x_min}, {'X', conv_x_max},
 		{'s', conv_s}, {'c', conv_c}, {'p', conv_p}, {'i', conv_i},
 		{'o', conv_o}, {'f', conv_f}, {'a', conv_a}, {'%', conv_perc},
-		{'D', conv_d_max}, {'U', conv_u_max}, {'O', conv_o_max},
+		{'D', conv_d_max}, {'U', conv_u_max}, {'O', conv_o_max}, {'n', conv_n},
 		// {'b', conv_b}, {'g', conv_g}, {'e', conv_e}, {'n', conv_n},
 		{0, NULL}
 	};

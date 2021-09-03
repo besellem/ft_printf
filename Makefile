@@ -6,7 +6,7 @@
 #    By: besellem <besellem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 00:10:57 by besellem          #+#    #+#              #
-#    Updated: 2021/09/02 16:25:06 by besellem         ###   ########.fr        #
+#    Updated: 2021/09/03 02:18:35 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS		:=	common.c \
 				conv_f.c \
 				conv_f_utils.c \
 				conv_i.c \
+				conv_n.c \
 				conv_o.c \
 				conv_p.c \
 				conv_perc.c \

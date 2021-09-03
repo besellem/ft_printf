@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 19:09:05 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 02:18:21 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ void			conv_s(t_pft *pft);
 void			conv_d(t_pft *pft);
 void			conv_d_max(t_pft *pft);
 void			conv_i(t_pft *pft);
+void			conv_n(t_pft *pft);
 void			conv_u(t_pft *pft);
 void			conv_u_max(t_pft *pft);
 void			conv_o(t_pft *pft);
