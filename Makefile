@@ -6,7 +6,7 @@
 #    By: besellem <besellem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 00:10:57 by besellem          #+#    #+#              #
-#    Updated: 2021/09/03 02:18:35 by besellem         ###   ########.fr        #
+#    Updated: 2021/09/03 03:02:13 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,19 @@ NAME		:=	libftprintf.a
 
 ## Main directories
 BUILD_DIR	:=	.build
-SRCS_DIR	:=	srcs
 INCS		:=	-I incs -I libft/incs
-SUB_DIR		:=	srcs
+SRCS_DIR	:=	srcs
+SUB_DIR		:=	conversions \
+				family \
+				other \
+				parser
 OBJ_DIR 	:=	$(BUILD_DIR)/obj
 DIRS		:=	$(OBJ_DIR) $(addprefix $(OBJ_DIR)/, $(SUB_DIR))
 
 
 ## Main srcs
-SRCS		:=	common.c \
-				common2.c \
-				conv_a.c \
+# SRCS		:=		main.c
+SUB_SRC		:=	conv_a.c \
 				conv_c.c \
 				conv_d.c \
 				conv_f.c \
@@ -36,24 +38,31 @@ SRCS		:=	common.c \
 				conv_perc.c \
 				conv_s.c \
 				conv_u.c \
-				conv_x.c \
-				ft_asprintf.c \
+				conv_x.c
+SRCS		:=	$(addprefix conversions/, $(SUB_SRC))
+SUB_SRC		:=	ft_asprintf.c \
 				ft_dprintf.c \
-				ft_get_conversion.c \
 				ft_printf.c \
-				ft_printf_process.c \
-				ft_specifiers.c \
+				ft_snprintf.c \
+				ft_sprintf.c \
 				ft_vasprintf.c \
 				ft_vasprintf_internal.c \
 				ft_vdprintf.c \
 				ft_vdprintf_internal.c \
 				ft_vprintf.c \
-				padding.c \
+				ft_vsnprintf.c \
+				ft_vsprintf.c
+SRCS		+=	$(addprefix family/, $(SUB_SRC))
+SUB_SRC		:=	common.c \
+				common2.c \
+				padding.c
+SRCS		+=	$(addprefix other/, $(SUB_SRC))
+SUB_SRC		:=	ft_get_conversion.c \
+				ft_printf_process.c \
+				ft_specifiers.c \
 				parser_checks1.c \
-				parser_checks2.c \
-				utils.c
-
-# SRCS		:=	$(addprefix srcs/, $(SUB_SRCS))
+				parser_checks2.c
+SRCS		+=	$(addprefix parser/, $(SUB_SRC))
 
 
 ## Objects
@@ -62,7 +71,7 @@ OBJS 		:=	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 ## Commands
 CC			:=	clang
-CFLAGS		:=	-Wall -Wextra -Werror #-g3 -fsanitize=address #-O1
+CFLAGS		:=	-Wall -Wextra -Werror -g3 -fsanitize=address #-O1
 LIBC		:=	ar rc
 RM			:=	rm -f
 

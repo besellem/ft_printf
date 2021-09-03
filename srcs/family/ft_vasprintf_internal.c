@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 23:40:13 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/03 02:12:10 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 03:56:11 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int	ft_vasprintf_internal(char **ret, const char *fmt, va_list ap)
 	va_copy(pft.ap, ap);
 	if (!fmt || !ret)
 		return (ft_error(&pft));
+	*ret = NULL;
 	if (ft_no_conversion_opti(fmt, &pft))
 	{
 		*ret = pft.ret;

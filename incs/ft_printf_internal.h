@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/03 02:18:21 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 02:23:22 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,12 +140,6 @@ typedef struct s_pft
 
 /*
 ** -- PROTOTYPES --
-** Utils
-*/
-void			print_flags(t_conv conv);
-void			print_binary(const char *prefix, long long n);
-
-/*
 ** Common
 */
 int				ft_error(t_pft *pft);
