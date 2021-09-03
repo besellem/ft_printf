@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:59 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/03 04:37:53 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 05:27:15 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ uint64_t	__get_time_ms__(void)
 	return ((t.tv_sec * (uint64_t)1000) + (t.tv_usec / 1000));
 }
 
-#define __BUF_SIZE 100
-#define TESTS_NBR  1U
+#define TESTS_NBR  100000U
 
 /*
 ** float MASKS:
@@ -44,71 +43,49 @@ uint64_t	__get_time_ms__(void)
 
 int	main(__unused int ac, __unused char **av)
 {
-	// __unused char	*ret1 = NULL;
-	// __unused char	*ret2 = NULL;
-	__unused char	ret1[__BUF_SIZE] = {0};
-	__unused char	ret2[__BUF_SIZE] = {0};
+	__unused char	*ret1 = NULL;
+	__unused char	*ret2 = NULL;
 	__unused int	mine_size = 0;
 	__unused int	real_size = 0;
 	__unused double value = (ac > 1) ? strtod(av[1], NULL) : -9.999;
-
-	// ft_printf("[Hello World !] [%d]", 123);
-
-	// mine_size = ft_asprintf(&ret1, "[%10d]", -123);
-	// real_size = asprintf(&ret2, "[%10d]", -123);
 	
 	printf("value: [%.10f]\n", value);
 
 	__unused uint64_t	mine_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		mine_size = ft_snprintf(ret1, 10, "bla%1dbla", 12);
-		if (i + 1 < TESTS_NBR) { /* free(ret1); ret1 = NULL; */ }
+		mine_size = ft_dprintf(1, "[bla%1dbla]\n", 12);
+		if (i + 1 < TESTS_NBR) { free(ret1); ret1 = NULL; }
 	}
 	__unused uint64_t	mine_end = __get_time_ms__();
 
 	__unused uint64_t	real_start = __get_time_ms__();
 	for (size_t i = 0; i < TESTS_NBR; ++i)
 	{
-		real_size = snprintf(ret2, 10, "bla%1dbla", 12);
-		if (i + 1 < TESTS_NBR) { /* free(ret2); ret2 = NULL; */ }
+		real_size = dprintf(1, "[bla%1dbla]\n", 12);
+		if (i + 1 < TESTS_NBR) { free(ret2); ret2 = NULL; }
 	}
 	__unused uint64_t	real_end = __get_time_ms__();
 	
 	
-
-
 	__unused int			p = 0;
 	__unused double			x = frexp(value, &p);
 	__unused unsigned long	x_tmp = *(unsigned long *)&x;
 	// printf("hex: %f*(2^%d) [%#lx]\n", value, p, x_tmp);
 
-	printf("mine[%2d] [%4llu ms]: [%s]\n", mine_size, (mine_end - mine_start), ret1);
-	printf("real[%2d] [%4llu ms]: [%s]\n", real_size, (real_end - real_start), ret2);
-
-
-	// ft_dprintf(2, "[Hello %s !] [%d] [%d]\n", "World", INT32_MIN, INT32_MAX);
-	// dprintf(2, "[Hello %s !] [%d] [%d]\n", "World", INT32_MIN, INT32_MAX);
+	printf("mine[%2d] [%4llu ms]: %s\n", mine_size, (mine_end - mine_start), ret1);
+	printf("real[%2d] [%4llu ms]: %s\n", real_size, (real_end - real_start), ret2);
 	
 	ft_printf("");			/// Check if ft_printf execute without errors
 	ft_printf(NULL);		/// Check if ft_printf execute without errors
-	// printf("ft_printf() returned => [%d]\n", ft_printf(""));
-	// printf("ft_printf() returned => [%d]\n", ft_printf("%d")); /// Throw Warning (Error with -Werror)
 
-	if (0 == strcmp(ret1, ret2) && mine_size == real_size)
+	if (ret1 && ret2 && 0 == strcmp(ret1, ret2) && mine_size == real_size)
 		printf(B_GREEN "SUCCESS" CLR_COLOR "\n");
 	else
 		printf(B_RED "FAILURE" CLR_COLOR "\n");
 	
-	// ft_memdel((void **)&ret1);
-	// ft_asprintf(&ret1, "");
-	// printf("[%s]\n", ret1);
-	// ft_memdel((void **)&ret1);
-	
-	// if (ret1) free(ret1);
-	// if (ret2) free(ret2);
-	
-	// system("leaks a.out");
+	if (ret1) free(ret1);
+	if (ret2) free(ret2);
 	
 	return (0);
 }

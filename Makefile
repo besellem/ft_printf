@@ -6,7 +6,7 @@
 #    By: besellem <besellem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/26 00:10:57 by besellem          #+#    #+#              #
-#    Updated: 2021/09/03 03:02:13 by besellem         ###   ########.fr        #
+#    Updated: 2021/09/03 04:49:14 by besellem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ OBJS 		:=	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 ## Commands
 CC			:=	clang
-CFLAGS		:=	-Wall -Wextra -Werror -g3 -fsanitize=address #-O1
+CFLAGS		:=	-Wall -Wextra -Werror #-g3 -fsanitize=address #-O1
 LIBC		:=	ar rc
 RM			:=	rm -f
 
