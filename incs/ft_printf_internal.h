@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 00:10:51 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/03 02:23:22 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 18:46:01 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,15 @@
 # ifdef BUFSIZ
 #  define PFT_BUFSIZ    BUFSIZ
 # else
-#  define PFT_BUFSIZ    16384 // 32768 // 16384 // 8192 // 4096
+#  define PFT_BUFSIZ    1024 // 32768 // 16384 // 8192 // 4096 // 1024
 # endif
 
 # define PFT_NULL       "(null)"
-
-/*
-** printf("%p", NULL):
-**   macOS -> "(null)"
-**   Linux -> "(nil)"
-*/
-# if defined(__APPLE__) && defined(__MACH__)
-#  define PFT_NULL_PTR  PFT_NULL
-# else
-#  define PFT_NULL_PTR  "(nil)"
-# endif
 
 # define OCT_CHARSET    "01234567"
 # define DEC_CHARSET    "0123456789"
 # define HEX_CHARSET    "0123456789abcdef"
 # define HEX_CHARSET_UP "0123456789ABCDEF"
-
-/* UNUSED */
-#define PFT_CHARSET     "$#* -+0123456789hljztL.sducpxXiobfgean%"
-/* END UNUSED */
 
 /*
 ** -- DATA STRUCTURES --
@@ -153,7 +138,8 @@ void			print_char(t_pft *pft, char c, int n);
 int				isflag(t_pft *pft, unsigned int flag);
 void			__int_padding__(t_pft *pft, t_padding *pad, intmax_t val);
 void			__uint_padding__(t_pft *pft, t_padding *pad, uintmax_t val);
-void			__dbl_padding__(t_pft *pft, t_padding *pad, double val);
+void			__dbl_padding__(t_pft *pft, t_padding *pad, double val,
+					int is_special);
 
 /*
 ** Parsing
@@ -189,7 +175,8 @@ void			conv_o(t_pft *pft);
 void			conv_o_max(t_pft *pft);
 void			conv_b(t_pft *pft);
 void			conv_f(t_pft *pft);
-void			conv_a(t_pft *pft);
+void			conv_a_min(t_pft *pft); // ugly & doesn't work properly
+void			conv_a_max(t_pft *pft); // ugly & doesn't work properly
 void			conv_x_min(t_pft *pft);
 void			conv_x_max(t_pft *pft);
 void			conv_p(t_pft *pft);

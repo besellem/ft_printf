@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:50:16 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 18:24:08 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 16:11:49 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_dbl_base(t_pft *pft, double n, int base)
 	if (ft_signbit(n))
 		n = -n;
 	len = 1;
-	while (n / base > 0)
+	while (ft_trunc(n / base) > 0.)
 	{
 		n /= (double)base;
 		++len;

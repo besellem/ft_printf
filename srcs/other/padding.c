@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 17:12:41 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 13:54:45 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 17:45:46 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	__uint_padding__(t_pft *pft, t_padding *pad, uintmax_t val)
 	}
 }
 
-void	__dbl_padding__(t_pft *pft, t_padding *pad, double val)
+void	__dbl_padding__(t_pft *pft, t_padding *pad, double val, int is_special)
 {
 	if (0 == *pad->_pre_char && pad->_sign < 0 && !ft_isnan(val))
 		ft_memcpy(pad->_pre_char, "-", 1);
@@ -70,11 +70,12 @@ void	__dbl_padding__(t_pft *pft, t_padding *pad, double val)
 		pad->_width = -1;
 	else
 	{
-		pad->_width = pft->conversion.width - pad->_pre - pad->_prec;
+		pad->_width = pft->conversion.width;
+		pad->_width -= (pad->_pre * !ft_isnan(val) + pad->_prec * !is_special);
 		pad->_width -= pad->_len;
 	}
-	if (pft->conversion.precision < 0 && pad->_width > 0
-		&& !isflag(pft, FLAG_MINUS) && isflag(pft, FLAG_ZERO))
+	if ((pft->conversion.precision - 1) <= 0 && pad->_width > 0
+		&& !isflag(pft, FLAG_MINUS) && isflag(pft, FLAG_ZERO) && !is_special)
 	{
 		pad->_prec = pad->_width;
 		pad->_width = 0;

@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 18:28:41 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 22:07:24 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 16:50:57 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,34 @@
 
 static void	ft_put_float_head(t_pft *pft, double nb, const char *base)
 {
-	const double	base_len = (double)ft_strlen(base);
+	const size_t	base_len = (double)ft_strlen(base);
 	char			tmp;
 
 	if (ft_trunc(nb / base_len) > 0.)
 		ft_put_float_head(pft, nb / base_len, base);
-	tmp = base[(size_t)fmod(nb, base_len)];
+	tmp = base[(size_t)ft_fmod(nb, base_len) % base_len];
 	pft->write2buf(pft, &tmp);
 }
 
-__unused static int	ft_round_str(double *nb, char *str, int precision)
+__unused static void	ft_round_str(double *nb, char *str, int precision)
 {
 	if (precision >= 0 && '9' == str[precision])
 	{
 		str[precision] = '0';
 		if (0 == precision)
-		{
 			++(*nb);
-			// if ((*nb - ft_trunc(*nb)) >= .5 && 1 == (int)ft_fmod(*nb, 2.))
-			// 	++(*nb);
-			// else if ((*nb - ft_trunc(*nb)) > .5 && 0 == (int)ft_fmod(*nb, 2.))
-			// 	++(*nb);
-			return (1);
-		}
-		return (ft_round_str(nb, str, precision - 1));
+		else
+			return (ft_round_str(nb, str, precision - 1));
 	}
-	else if (precision > 0)
-	{
+	else if (precision >= 0)
 		++str[precision];
-		return (0);
-	}
-	else
-		return (0);
 }
 
 static void	ft_fill_float_precision(double *nb, int precision, char *prec_tab)
 {
 	double	fp;
+	double	_nb_truncated;
+	int		_nb_is_odd;
 	int		i;
 
 	fp = *nb - ft_trunc(*nb);
@@ -65,10 +56,12 @@ static void	ft_fill_float_precision(double *nb, int precision, char *prec_tab)
 	prec_tab[i] = '\0';
 	if ((fp * 10.) >= 5.)
 		ft_round_str(nb, prec_tab, precision - 1);
-	// if ((*nb - ft_trunc(*nb)) >= .5 && 1 == (int)ft_fmod(*nb, 2.))
-	// 	++(*nb);
-	// else if ((*nb - ft_trunc(*nb)) > .5 && 0 == (int)ft_fmod(*nb, 2.))
-	// 	++(*nb);
+	_nb_truncated = *nb - ft_trunc(*nb);
+	_nb_is_odd = (int)ft_fmod(*nb, 2.);
+	if (0 == precision && _nb_truncated >= .5 && 1 == _nb_is_odd)
+		++(*nb);
+	else if (0 == precision && _nb_truncated > .5 && 0 == _nb_is_odd)
+		++(*nb);
 }
 
 void	ft_put_float(t_pft *pft, double nb, const char *base)

@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 14:56:09 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 16:41:23 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 18:30:19 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	conv_f(t_pft *pft)
 	else
 		pad._len = ft_dbl_base(pft, nb, 10);
 	pad._sign = (int)ft_copysign(1., nb);
-	__dbl_padding__(pft, &pad, nb);
+	__dbl_padding__(pft, &pad, nb, _is_special);
 	if (pad._width > 0 && !isflag(pft, FLAG_MINUS))
 		print_char(pft, ' ', pad._width);
 	if (!ft_isnan(nb) && pad._pre != 0)

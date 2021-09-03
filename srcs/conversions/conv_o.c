@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:48:31 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/03 02:04:54 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 19:14:32 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void	conv_o(t_pft *pft)
 		ft_memcpy(pad._pre_char, "0", 1);
 	__uint_padding__(pft, &pad, nb);
 	if (pad._width > 0 && !isflag(pft, FLAG_MINUS))
-		print_char(pft, ' ', pad._width);
-	if (pad._pre != 0)
+		print_char(pft, ' ', pad._width - (isflag(pft, FLAG_HTAG) && 0 == nb));
+	if (pad._pre != 0 && pad._prec <= 0)
 		pft->write2buf_s(pft, pad._pre_char);
 	if (pad._prec > 0)
 		print_char(pft, '0', pad._prec);
-	if (!(nb == 0 && pft->conversion.precision == 0) || isflag(pft, FLAG_HTAG))
+	if (!(0 == nb && 0 == pft->conversion.precision) || isflag(pft, FLAG_HTAG))
 		ft_put_uint(pft, nb, OCT_CHARSET);
 	if (pad._width > 0 && isflag(pft, FLAG_MINUS))
-		print_char(pft, ' ', pad._width);
+		print_char(pft, ' ', pad._width - (isflag(pft, FLAG_HTAG) && 0 == nb));
 }
 
 void	conv_o_max(t_pft *pft)

@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 23:49:34 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/02 16:20:59 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/03 18:01:37 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 
 static void	__writen2buf__(t_pft *pft, char *str, size_t n)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < n && str[i])
-	{
-		pft->write2buf(pft, str + i);
-		++i;
-	}
+	while (n-- && *str)
+		pft->write2buf(pft, str++);
 }
 
 void	conv_s(t_pft *pft)
