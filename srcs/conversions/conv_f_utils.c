@@ -6,7 +6,7 @@
 /*   By: besellem <besellem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 18:28:41 by besellem          #+#    #+#             */
-/*   Updated: 2021/09/03 16:50:57 by besellem         ###   ########.fr       */
+/*   Updated: 2021/09/05 02:47:22 by besellem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_put_float_head(t_pft *pft, double nb, const char *base)
 	pft->write2buf(pft, &tmp);
 }
 
-__unused static void	ft_round_str(double *nb, char *str, int precision)
+static void	ft_round_str(double *nb, char *str, int precision)
 {
 	if (precision >= 0 && '9' == str[precision])
 	{
@@ -31,7 +31,7 @@ __unused static void	ft_round_str(double *nb, char *str, int precision)
 		if (0 == precision)
 			++(*nb);
 		else
-			return (ft_round_str(nb, str, precision - 1));
+			ft_round_str(nb, str, precision - 1);
 	}
 	else if (precision >= 0)
 		++str[precision];
@@ -49,9 +49,8 @@ static void	ft_fill_float_precision(double *nb, int precision, char *prec_tab)
 	while (i < precision)
 	{
 		fp *= 10.;
-		prec_tab[i] = (int)ft_fmod(fp, 10.) + 48;
-		fp = fp - ft_trunc(fp);
-		++i;
+		prec_tab[i++] = (int)fp % 10 + 48;
+		fp -= (int)fp;
 	}
 	prec_tab[i] = '\0';
 	if ((fp * 10.) >= 5.)
@@ -74,10 +73,7 @@ void	ft_put_float(t_pft *pft, double nb, const char *base)
 	{
 		prec_tab = malloc(sizeof(char) * (pft->conversion.precision + 1));
 		if (!prec_tab)
-		{
-			printf("%s:%d: ERROR\n", __FILE__, __LINE__);
 			return ((void)ft_error(pft));
-		}
 		ft_fill_float_precision(&nb, pft->conversion.precision, prec_tab);
 	}
 	ft_put_float_head(pft, nb, base);
